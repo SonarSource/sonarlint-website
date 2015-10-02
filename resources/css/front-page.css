@@ -73,6 +73,10 @@ header .short-description {
     font-size: 18px;
     line-height: 1.4em;
 }
+header .short-description .emph{
+    border-bottom: 1px solid #cae3f2;
+    box-shadow: 0px -4px 0px #cae3f2 inset;
+}
 
 header .logo {
     padding-top: 20px;
