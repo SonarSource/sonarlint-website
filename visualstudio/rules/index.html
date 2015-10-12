@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="../../resources/css/reset.css" rel="stylesheet" />
+    <link href="../../resources/css/common.css" rel="stylesheet" />
+    <link href="../resources/css/rules.css" rel="stylesheet" />
+    <link href="../../resources/css/font-awesome.min.css" rel="stylesheet" >
+    <title>SonarLint for Visual Studio</title>
+    <link rel="icon" type="image/png" href="../../resources/images/waves-sonarqube-28.png" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-1880045-9', 'auto');
+      ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="six">
+            <ul>
+                <li>
+                    <a href="../../index.html">
+                        <img class="nav-icon" src="../../resources/images/waves-sonarqube-28.png" title="SonarLint" alt="SonarLint" />
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../index.html">
+                        <span>Visual Studio</span>
+                    </a>
+                </li>
+                <li><a href="../index.html#News">News</a></li>
+                <li><a href="../index.html#Samples">Samples</a></li>
+                <li><a href="../index.html#Contribute">Contribute</a></li>
+                <li><a href="index.html">Rules</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div id="sidebar-resizer"></div>
+            <div id="sidebar-container">
+                <div id="rule-menu-header"></div>
+                <div id="rule-menu-filter">
+                    <h3>Filter by tags</h3>
+                    <ul></ul>
+                </div>
+                <ul data-version="" id="rule-menu"></ul>
+            </div>
+        </div>
+        <div id="content">
+            <div class="rule-details">
+                <div class="rule-meta">
+                    <h1 id="rule-title"></h1>
+                    <span id="rule-id" class="id" style="visibility:hidden"></span>
+                    <div class="rules-detail-properties">
+                        <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+                    </div>
+                </div>
+                <div class="rule-description" id="rule-description">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            &copy; 2008-2015, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland
+        </div>
+    </footer>
+    <script src="../resources/scripts/handlebars-3.0.3.min.js"></script>
+    <script src="../resources/scripts/jquery-2.1.4.min.js"></script>
+    <script src="../resources/scripts/Array.js"></script>
+    <script src="../resources/scripts/Template.js"></script>
+    <script src="../resources/scripts/RuleController.js"></script>
+    <script src="../resources/scripts/App.js"></script>
+</body>
+</html>

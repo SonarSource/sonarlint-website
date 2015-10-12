@@ -1,0 +1,363 @@
+﻿header, main, footer {
+    max-width: 1000px;
+    min-width: 1000px;
+    margin: 0 auto;
+}
+
+section.split {
+    padding: 55px 0;
+    border-bottom: 1px solid #e6e6e6;
+    max-width: 1000px;
+    min-width: 1000px;
+    margin: 0 auto;
+}
+section.split.last {
+        border-bottom: 0;
+    }
+
+section.split.first {
+    padding: 110px 0 55px 0;
+}
+
+section.split:before,
+section.split:after {
+    content: " ";
+    display: table;
+}
+
+section.split:after {
+    clear: both;
+}
+
+/*settings for sample block - start*/
+section.split.sample {
+    padding: 10px 0;
+    border-bottom: 0;
+}
+
+section.split.sample.first {
+    padding: 55px 0 10px 0;
+    border-bottom: 0;
+}
+
+section.split.sample.first div.image{
+    padding-top: 60px;
+}
+
+section.split.sample.last {
+    padding: 10px 0 55px 0;
+    border-bottom: 1px solid #e6e6e6;
+}
+/*settings for sample block - end*/
+
+
+section.split .left {
+    float: left;
+}
+
+section.split .right {
+    float: right;
+}
+
+section.split .text.left {
+    padding-right: 40px;
+}
+
+section.split .text.right {
+    padding-left: 40px;
+}
+
+
+section.split .text h2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+section.split .text {
+    width: 470px;
+}
+section.split .text.wide {
+    width: 100%;
+}
+
+section.split .image {
+    width: 0px;
+}
+
+section.split .image img {
+    max-width: 1000px;
+}
+
+section.split .right.image img {
+    margin-left: -1000px;
+}
+
+/*header - start*/
+
+#nav-div{
+    position: fixed;
+    left: 0;
+    background-color: rgb(243, 243, 243);
+    border-bottom: 1px solid #e6e6e6;
+}
+
+#nav-div li span
+{
+    white-space: nowrap;
+}
+
+nav {
+    max-width: 1000px;
+    min-width: 1000px;
+    margin: 0 auto;
+}
+
+header > div {
+    width: 100%;
+}
+
+#header {
+    padding-top: 80px;
+}
+
+/*header - end*/
+
+#Description .image img {
+    max-width: 979px;
+}
+
+#Description .left.image img {
+    margin-left: 0;
+}
+
+#Feedback li{
+    display: inline-block;
+}
+
+.split.sample .image img {
+    max-width: 800px;
+}
+
+.split.sample .right.image img {
+    margin-left: -800px;
+}
+
+#body {
+    width: 100%;
+    overflow: hidden;
+}
+
+section.split .text p {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+section.split ul {
+    text-align: center;
+}
+
+#News ul {
+    text-align: left;
+}
+#News li {
+    padding-top: 20px;
+}
+
+#Description .text {
+    padding-top: 40px;
+}
+
+#Contribute .text {
+    padding-top: 60px;
+}
+
+.button-link {
+    display: inline-block;
+    margin: 8px;
+    padding: 8px 10px;
+    background: #4479BA;
+    color: #FFF;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: solid 1px #20538D;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.button-link:hover, .button-link:focus {
+    background: #356094;
+    border: solid 1px #2A4E77;
+    text-decoration: none;
+}
+
+.button-link:active {
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: #2E5481;
+    border: solid 1px #203E5F;
+}
+
+.download:after,
+.stack-overflow:after,
+.twitter:after,
+.github:after {
+    content: '\f09b';
+    font-family: FontAwesome;
+    font-size: 18px;
+    margin: 0 0 0 10px;
+    text-decoration: none;
+}
+
+.download:after {
+    content: '\f019';
+}
+
+.stack-overflow:after {
+    content: '\f16c';
+}
+
+.twitter:after {
+    content: '\f099';
+}
+
+.sample-external{
+    padding-top:10px;
+    display: inline-block;
+}
+
+@media (max-width: 1300px) {
+    .split.sample .image img {
+        max-width: 600px;
+    }
+
+    .split.sample .right.image img {
+        margin-left: -600px;
+    }
+}
+
+@media (max-width: 1000px) {
+    section.split.first {
+        padding: 70px 0 10px 0;
+    }
+
+
+    header, main, footer,
+    #body,
+    section.split {
+        max-width: 100%;
+        min-width: 600px;
+        margin: 0;
+        overflow: initial;
+        overflow: visible;
+    }
+
+    section.split .left,
+    section.split .right {
+        float: none;
+    }
+
+    section.split .text.wide,
+    section.split .text.left,
+    section.split .text.right {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #Feedback .text.left,
+    section.split .text,
+    section.split .image {
+        width: 100%;
+        padding-top: 0;
+        padding-bottom: 20px;
+    }
+
+    section.split.sample.first {
+        padding: 20px 0 0 0;
+    }
+    section.split.sample.first div.image{
+            padding-top: 0;
+        }
+
+    section.split.sample.last {
+        padding: 10px 0 0 0;
+    }
+
+    section.split .image {
+        text-align: center;
+    }
+
+    section.split .image img,
+    #Description .image img {
+        max-width: 100%;
+    }
+
+    section.split .right.image img {
+        margin-left: 0;
+    }
+
+    section.split {
+        padding: 20px 0 0 0;
+    }
+
+    #Description li {
+        display: inline-block;
+    }
+
+    #Description .text,
+    #Contribute .text {
+        padding-top: 0;
+    }
+
+    #Contribute{
+        border-bottom: 1px solid #e6e6e6;
+    }
+    #Feedback{
+        margin-top: 20px;
+    }
+
+    section.split .text.fifty {
+        width: 100%;
+    }
+
+    section.split .left.fifty {
+        float: none;
+    }
+
+    section.split .right.fifty {
+        float: none;
+    }
+
+    .split.sample .image img {
+        max-width: 100%;
+    }
+
+    .split.sample .right.image img {
+        margin-left: 0;
+        margin: 0 auto;
+    }
+
+    nav {
+        max-width: 100%;
+        min-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        max-width: 600px;
+        min-width: 600px;
+        margin: 0 auto;
+    }
+}

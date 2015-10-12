@@ -1,0 +1,9 @@
+﻿#Description .image img {
+    max-width: 962px;
+}
+
+@media (max-width: 1000px) {
+    #Description .image img {
+        max-width: 100%;
+    }
+}

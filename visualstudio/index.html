@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../resources/css/reset.css" rel="stylesheet" />
+    <link href="../resources/css/common.css" rel="stylesheet" />
+    <link href="../resources/css/tool.css" rel="stylesheet" />
+    <link href="resources/css/tool_override.css" rel="stylesheet" />
+    <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
+    <title>SonarLint for Visual Studio</title>
+    <link rel="icon" type="image/png" href="../resources/images/waves-sonarqube-28.png" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-1880045-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div id="nav-div">
+                <nav class="six">
+                    <ul>
+                        <li>
+                            <a href="../index.html">
+                                <img class="nav-icon" src="../resources/images/waves-sonarqube-28.png" title="SonarLint" alt="SonarLint" />
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <span>Visual Studio</span>
+                            </a>
+                        </li>
+                        <li><a href="#News">News</a></li>
+                        <li><a href="#Samples">Samples</a></li>
+                        <li><a href="#Contribute">Contribute</a></li>
+                        <li><a href="rules/index.html">Rules</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="header">
+                <div class="logo">
+                    <img src="../resources/images/waves-sonarqube-256.png" title="SonarLint for Visual Studio" alt="SonarLint for Visual Studio" />
+                </div>
+                <div class="header-content">
+                    <h1>SonarLint for Visual Studio</h1>
+                    <div class="short-description">
+                        SonarLint is a Visual Studio 2015 extension that provides
+                        <span class="emph">on-the-fly feedback</span> to developers on
+                        <span class="emph">new bugs and quality issues</span> injected into C# code.
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="split first" id="Description">
+                <div class="left text">
+                    <p>
+                        SonarLint for Visual Studio is based on and benefits from the .NET Compiler Platform ("Roslyn") and its code analysis API
+                        to provide a fully-integrated user experience in Visual Studio 2015.
+                    </p>
+                    <p>
+                        SonarLint is free, open source, and available in the Visual Studio Gallery.
+                    </p>
+                    <ul>
+                        <li><a class="button-link download" href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548" title="Download SonarLint from Visual Studio Gallery">Download</a></li>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-vs" title="SonarLint on GitHub">GitHub</a></li>
+                        <li><a class="button-link twitter" href="https://twitter.com/sonarlintvs" title="SonarLint on Twitter">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="left image">
+                    <img src="resources/images/vs.png" title="SonarLint in Visual Studio" alt="SonarLint in Visual Studio" />
+                </div>
+            </section>
+            <section class="split" id="News">
+                <div class="text wide">
+                    <h2>News</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">October 6, 2015</span> - <a href="rules/index.html#version=1.3.0" title="Go to version 1.3.0">Version 1.3.0</a> of SonarLint for Visual Studio was released today.
+                            With 11 new rules and 10 new code fixes, there are now more than 100 rules for C# available out of the box and 28 of them have code fixes.
+                            As usual your feedback is highly welcome on this new version. We'll be back in few weeks with version 1.4.0 containing some rules for VB.Net.
+                        </li>
+                        <li>
+                            <span class="bold">August 24, 2015</span> - Today we released <a href="rules/index.html#version=1.2.0" title="Go to version 1.2.0">Version 1.2.0</a> of SonarLint for Visual Studio.
+                            This is our first release with codefixes; we have added almost 20 of them. If you want to <a href="#Contribute" title="How to contribute">contribute</a>, code
+                            fixes are the easiest ways to get started. Two new rules were also added to SonarLint for Visual Studio during the sprint.
+                        </li>
+                        <li>
+                            <span class="bold">August 7, 2015</span> - <a href="rules/index.html#version=1.1.0" title="Go to version 1.1.0">Version 1.1.0</a> with 13 new rules was released today.
+                            In addition to the new rules, we focused mainly on user experience. Unused or unneeded code is faded out in the IDE, so low severity warnings
+                            don't pollute the Error Window any more. We also fixed a few false positives. Don't forget to check out the
+                            <a href="https://github.com/SonarSource/sonarlint-vs/issues?q=milestone:1.1.0" title="Release notes for version 1.1.0">release notes</a>.
+                        </li>
+                        <li>
+                            <span class="bold">July 20, 2015</span> - <a href="http://www.sonarsource.com" title="SonarSource website">SonarSource</a> is pleased to announce the release of
+                            <a href="rules/index.html#version=1.0.0" title="Go to version 1.0.0">Version 1.0.0</a> of SonarLint for Visual Studio. This is the first major version of the product,
+                            released on the same day as Visual Studio 2015. This initial version of the product contains 76 rules.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split sample first" id="Samples">
+                <div class="right text">
+                    <h2>Real Bugs in Real Projects</h2>
+                    Using the same value on either side of a binary operator is almost always a mistake. In the case of logical operators, it is either a copy-paste error and
+                    therefore a bug, or it is simply wasted code, and should be simplified. <a href="rules/index.html#ruleId=S1764">Rule S1764</a>
+                    <span class="sample-external">Found in <a href="https://github.com/dotnet/roslyn/pull/2237">Roslyn</a>, <a href="https://github.com/NuGet/NuGet3/pull/41">Nuget</a></span>
+                </div>
+                <div class="right image">
+                    <img src="resources/images/roslyn.png" title="Identical sub-expression in binary operation" alt="Identical sub-expression in binary operation" />
+                </div>
+            </section>
+            <section class="split sample">
+                <div class="right text">
+                    Performing a null-check before referencing an object is a good practice, but when either the equality operator in the null test or the logical operator that
+                    follows it is reversed, it leads to a guaranteed null pointer dereference. <a href="rules/index.html#ruleId=S1697">Rule S1697</a>
+                    <span class="sample-external">Found in <a href="https://github.com/shanselman/dasblog/pull/9">DasBlog</a></span>
+                </div>
+                <div class="right image">
+                    <img src="resources/images/dasblog.png" title="Null dereferencing" alt="Null dereferencing" />
+                </div>
+            </section>
+            <section class="split sample last">
+                <div class="right text">
+                    A static field of a generic class is not shared among instances of different close-constructed types. So using such a field might result in unexpected behavior.
+                    <a href="rules/index.html#ruleId=S2743">Rule S2743</a>
+                    <span class="sample-external">Found in <a href="https://github.com/akkadotnet/akka.net/blob/928ff2b3b23457ea1e4e1d9f0819fca945506a1b/src/contrib/testkits/Akka.TestKit.Xunit/Internals/AkkaAssertEqualityComparer.cs">Akka.NET</a></span>
+                </div>
+                <div class="right image">
+                    <img src="resources/images/akka.png" title="Static field of a generic class" alt="Static field of a generic class" />
+                </div>
+            </section>
+            <section class="split last">
+                <div class="left text fifty" id="Contribute">
+                    <h2>Contribute</h2>
+                    <p>
+                        SonarLint for Visual Studio is open source under the LGPL v3 license. You can fork us on GitHub, and submit Pull Requests. Feel free to fix bugs or to implement new features.
+                    </p>
+                    <ul>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-vs" title="SonarLint GitHub">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="right text fifty" id="Feedback">
+                    <h2>Feedback</h2>
+                    <p>The preferred way to discuss about SonarLint is by posting on the SonarLint Google Group. We are also constantly monitoring questions posted to
+                    StackOverflow. For faster answers mark your StackOverflow questions with [SonarLint] and [C#] tags.</p>
+                     <ul>
+                        <li><a class="button-link google-group" href="https://groups.google.com/a/sonarsource.com/d/forum/sonarlint" title="SonarLint Google Group">Google Group</a></li>
+                        <li><a class="button-link stack-overflow" href="http://stackoverflow.com/search?q=%5Bsonarlint%5D%2C+%5Bc%23%5D" title="SonarLint StackOverflow">StackOverflow</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>
+                &copy; 2008-2015, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
