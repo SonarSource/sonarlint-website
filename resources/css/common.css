@@ -60,6 +60,7 @@ nav ul {
     margin: 0;
     padding: 0;
     font-size: 0;
+    vertical-align: middle;
 }
 
 nav li {
@@ -69,6 +70,7 @@ nav li {
     line-height: 39px;
     margin: 0;
     padding: 0;
+    vertical-align: middle;
 }
 
 nav.four li {
@@ -96,11 +98,15 @@ nav a:hover {
     background-color: white;
 }
 
-.nav-icon {
-    width: 28px;
-    height: 28px;
-    margin-right: 10px;
-    margin-bottom: -8px;
+.nav-icon{
+    padding: 0;
+    margin: auto;
+    height: 24px;
+    width: auto;
+    margin-top: 7px;
+}
+.nav-home{
+    display: none;
 }
 
 a {
@@ -167,5 +173,8 @@ header .short-description {
     }
     .nav-icon {
         display: none;
+    }
+    .nav-home{
+        display: inline-block;
     }
 }

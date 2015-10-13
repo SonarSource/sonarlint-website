@@ -74,6 +74,8 @@
     <Content Include="resources\css\reset.css" />
     <Content Include="resources\images\eclipse.png" />
     <Content Include="resources\images\intellijidea.png" />
+    <Content Include="resources\images\sonarlint.png" />
+    <Content Include="resources\images\sonarlint_24.png" />
     <Content Include="resources\images\visualstudio.png" />
     <Content Include="resources\images\waves-sonarqube-256.png" />
     <Content Include="resources\images\waves-sonarqube-28.png" />
