@@ -140,7 +140,13 @@ var Controllers;
             }
             $('#rule-menu li').each(function (index, elem) {
                 var li = $(elem);
-                var liTags = li.data('rule').Tags;
+                var rule = li.data('rule');
+                var liTags = [];
+                for (var language = 0; language < rule.Data.length; language++) {
+                    for (var i = 0; i < rule.Data[language].Tags.length; i++) {
+                        liTags.push(rule.Data[language].Tags[i]);
+                    }
+                }
                 var commonTags = liTags.intersect(tagsToFilterFor);
                 var hasNoTags = liTags.length == 0;
                 var showLiWithNoTags = hasNoTags && filterForOthers;
@@ -248,30 +254,68 @@ var Controllers;
                 //load file
                 this.getFile('../rules/' + version + '/rules.json', function (jsonString) {
                     self.currentVersion = version;
-                    self.currentRules = JSON.parse(jsonString);
+                    var rules = JSON.parse(jsonString);
+                    if (rules[0].Data == null) {
+                        for (var i = 0; i < rules.length; i++) {
+                            var r = rules[i];
+                            r.Data = [{
+                                    Title: r.Title,
+                                    Description: r.Description,
+                                    Tags: r.Tags,
+                                    Severity: r.Severity,
+                                    IdeSeverity: r.IdeSeverity,
+                                    Language: 'C#'
+                                }];
+                            r.Title = undefined;
+                            r.Description = undefined;
+                            r.Tags = undefined;
+                            r.Severity = undefined;
+                            r.IdeSeverity = undefined;
+                        }
+                    }
+                    else {
+                        for (var i = 0; i < rules.length; i++) {
+                            var r = rules[i];
+                            var meta = [];
+                            for (var language in r.Data) {
+                                meta.push({
+                                    Title: r.Data[language].Title,
+                                    Description: r.Data[language].Description,
+                                    Tags: r.Data[language].Tags,
+                                    Severity: r.Data[language].Severity,
+                                    IdeSeverity: r.Data[language].IdeSeverity,
+                                    Language: language == 'CSharp' ? 'C#' : 'VB.Net'
+                                });
+                            }
+                            r.Data = meta;
+                        }
+                    }
+                    self.currentRules = rules;
                     self.currentAllTags = [];
                     for (var i = 0; i < self.currentRules.length; i++) {
-                        var tags = self.currentRules[i].Tags;
-                        if (!Array.isArray(tags)) {
-                            //handle the different versions of the input files.
-                            self.currentRules[i].Tags = self.splitWithTrim(tags, ',');
-                        }
-                        var ruleTags = self.currentRules[i].Tags;
-                        for (var tagIndex = 0; tagIndex < ruleTags.length; tagIndex++) {
-                            var tag = ruleTags[tagIndex].trim();
-                            var found = false;
-                            for (var j = 0; j < self.currentAllTags.length; j++) {
-                                if (self.currentAllTags[j].Tag == tag) {
-                                    self.currentAllTags[j].Count++;
-                                    found = true;
-                                    break;
-                                }
+                        for (var lang = 0; lang < self.currentRules[i].Data.length; lang++) {
+                            var tags = self.currentRules[i].Data[lang].Tags;
+                            if (!Array.isArray(tags)) {
+                                //handle the different versions of the input files.
+                                self.currentRules[i].Data[lang].Tags = self.splitWithTrim(tags, ',');
                             }
-                            if (!found && tag != '') {
-                                self.currentAllTags.push({
-                                    Count: 1,
-                                    Tag: tag
-                                });
+                            var ruleTags = self.currentRules[i].Data[lang].Tags;
+                            for (var tagIndex = 0; tagIndex < ruleTags.length; tagIndex++) {
+                                var tag = ruleTags[tagIndex].trim();
+                                var found = false;
+                                for (var j = 0; j < self.currentAllTags.length; j++) {
+                                    if (self.currentAllTags[j].Tag == tag) {
+                                        self.currentAllTags[j].Count++;
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                                if (!found && tag != '') {
+                                    self.currentAllTags.push({
+                                        Count: 1,
+                                        Tag: tag
+                                    });
+                                }
                             }
                         }
                     }
@@ -325,4 +369,3 @@ var Controllers;
     })();
     Controllers.RuleController = RuleController;
 })(Controllers || (Controllers = {}));
-//# sourceMappingURL=RuleController.js.map

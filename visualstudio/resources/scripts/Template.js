@@ -14,6 +14,18 @@ var Template = (function () {
             }
             return '';
         });
+        Handlebars.registerHelper('tab-activation', function (index, max, selectedIndex) {
+            if (selectedIndex >= max) {
+                if (index == 0) {
+                    return 'checked';
+                }
+                return '';
+            }
+            if (selectedIndex == index) {
+                return 'checked';
+            }
+            return '';
+        });
         Handlebars.registerHelper('rule-tags-render', function (tags) {
             return tags.join(', ');
         });
@@ -27,19 +39,27 @@ var Template = (function () {
     Template.eval = function (template, context) {
         return template(context);
     };
-    Template.RuleMenuItem = '<li><a  class="rule-link" href="#version={{currentVersion}}&ruleId={{rule.Key}}" title="{{rule.Title}}">{{rule.Title}}</a></li>';
+    Template.RuleMenuItem = '<li><a  class="rule-link" href="#version={{currentVersion}}&ruleId={{rule.Key}}" title="{{rule.Key}}: {{rule.Data.0.Title}}">{{rule.Key}}: {{rule.Data.0.Title}}</a></li>';
     Template.RuleMenuHeaderVersion = '<h2>List of rules</h2><span id="rule-version"><a class="rule-link" href="#version={{currentVersion}}">in version {{currentVersion}}</span></a>';
     Template.RuleMenuHeaderVersionError = '<span id="rule-version"><a href="#">Go to latest version</span></a>';
-    Template.RulePageContent = ('<div class="rule-details">' +
+    Template.RulePageContent = ('<div class="rule-details-container tabs">' +
+        '{{#each Data}}' +
+        '<div class="rule-details tab">' +
+        '<input type="radio" id="rule-detail-tab-{{../Key}}-{{@index}}" name="rule-detail-tab-group-{{../Key}}" {{{tab-activation @index ../Data.length 0}}}/>' +
+        '<label for="rule-detail-tab-{{../Key}}-{{@index}}">{{Language}}</label>' +
+        '<div class="tab-content">' +
         '<div class="rule-meta">' +
         '<h1 id="rule-title">{{Title}}</h1>' +
-        '<span id="rule-id" class="id">Rule ID: {{Key}}</span>' +
+        '<span id="rule-id" class="id">Rule ID: {{../Key}}</span>' +
         '<div class="rules-detail-properties">' +
         '<span class="tags" id="rule-tags" title="Tags" style="{{{rule-tags-visibility Tags}}}">{{rule-tags-render Tags}}</span>' +
         '<span class="severity rule-severity-{{IdeSeverity}}" id="rule-severity" title="Severity" style="{{{rule-severity-visibility Severity}}}">{{Severity}}</span>' +
         '</div>' +
         '</div>' +
         '<div class="rule-description" id="rule-description">{{{Description}}}</div>' +
+        '</div>' +
+        '</div>' +
+        '{{/each}}' +
         '</div>');
     Template.RuleErrorPageContent = ('<div class="rule-details">' +
         '<div class="rule-meta">' +
@@ -51,4 +71,3 @@ var Template = (function () {
     Template.hack_static_run = Template.init();
     return Template;
 })();
-//# sourceMappingURL=Template.js.map

@@ -99,6 +99,7 @@
     <Content Include="visualstudio\rules\1.1.0\index.html" />
     <Content Include="visualstudio\rules\1.2.0\index.html" />
     <Content Include="visualstudio\rules\1.3.0\index.html" />
+    <Content Include="visualstudio\rules\1.4.0\index.html" />
     <Content Include="visualstudio\rules\index.html" />
   </ItemGroup>
   <ItemGroup>
@@ -131,7 +132,9 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.4.0\rules.json" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

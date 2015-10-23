@@ -104,12 +104,9 @@ nav a:hover {
     line-height: 18px;
 }
 
-#content .rule-details {
-    padding: 10px;
-}
-
 #content .rule-description {
     margin-top: 18px;
+    margin-bottom: 40px;
 }
 
 #content .rule-meta .id {
@@ -275,6 +272,63 @@ nav a:hover {
 .release-goto-latest:before{
     content: '\f071';
 }
+
+
+/*tab control*/
+
+.tabs {
+  position: relative;
+  margin: 10px 0;
+}
+.tabs:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+.tab {
+  float: left;
+}
+
+.tab > label {
+    display: inline-block;
+    background: white;
+    padding: 3px 8px;
+    border: 1px solid #e6e6e6;
+    position: relative;
+    margin: 0 5px;
+    cursor: pointer;
+    width: 80px;
+    text-align:center;
+}
+.tab:first-of-type > label {
+  margin-left: 20px;
+}
+.tab > [type=radio] {
+  display: none;
+}
+.tab-content {
+  position: absolute;
+  top: 29px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  border-top: 1px solid #e6e6e6;
+  display: none;
+}
+.tab > [type=radio]:checked ~ label {
+  background: rgb(243, 243, 243);
+  border-bottom: 1px solid rgb(243, 243, 243);
+  z-index: 2;
+  cursor: default;
+}
+
+.tab > input[type=radio]:checked ~ label ~ .tab-content {
+  z-index: 1;
+  display: block;
+}
+
+/*tab control - end */
 
 @media (max-width: 1000px) {
     header, main, footer, #body, section.split, html, body {

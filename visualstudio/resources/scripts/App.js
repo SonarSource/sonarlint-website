@@ -21,4 +21,3 @@ var App = (function () {
 window.onload = function () {
     App.Controller = new Controllers.RuleController();
 };
-//# sourceMappingURL=App.js.map
