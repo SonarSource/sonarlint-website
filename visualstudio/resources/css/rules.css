@@ -59,10 +59,9 @@ nav a:hover {
     margin-left: 370px;
     font-size: 14px;
     padding-top: 40px;
-    padding-bottom: 27px;
+    background: rgb(250,250,250);
 }
 #content:after{
-    background-color: #ddd;
     content: "";
     display: block;
     width: 1px;
@@ -277,8 +276,8 @@ nav a:hover {
 /*tab control*/
 
 .tabs {
-  position: relative;
-  margin: 10px 0;
+    position: relative;
+    margin: 10px 0;
 }
 .tabs:after {
     content: " ";
@@ -291,7 +290,6 @@ nav a:hover {
 
 .tab > label {
     display: inline-block;
-    background: white;
     padding: 3px 8px;
     border: 1px solid #e6e6e6;
     position: relative;
@@ -299,6 +297,10 @@ nav a:hover {
     cursor: pointer;
     width: 80px;
     text-align:center;
+    background: white;
+}
+.tab > label:hover{
+    background: #e6e6e6;
 }
 .tab:first-of-type > label {
   margin-left: 20px;
