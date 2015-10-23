@@ -2,6 +2,24 @@ var Template = (function () {
     function Template() {
     }
     Template.init = function () {
+        Handlebars.registerHelper('language-text', function (num) {
+            if (num == Language.CSharp) {
+                return 'C#';
+            }
+            else if (num == Language.VisualBasic) {
+                return 'VB.Net';
+            }
+            return 'C#/VB.Net';
+        });
+        Handlebars.registerHelper('next-language', function (num) {
+            if (num == Language.CSharp) {
+                return '&language=vbnet';
+            }
+            else if (num == Language.VisualBasic) {
+                return '';
+            }
+            return '&language=cs';
+        });
         Handlebars.registerHelper('rule-tags-visibility', function (tags) {
             if (!tags || tags == "" || (Array.isArray(tags) && tags.length == 0)) {
                 return 'display: none;';
@@ -40,13 +58,17 @@ var Template = (function () {
         return template(context);
     };
     Template.RuleMenuItem = '<li><a  class="rule-link" href="#version={{currentVersion}}&ruleId={{rule.Key}}" title="{{rule.Key}}: {{rule.Data.0.Title}}">{{rule.Key}}: {{rule.Data.0.Title}}</a></li>';
-    Template.RuleMenuHeaderVersion = '<h2>List of rules</h2><span id="rule-version"><a class="rule-link" href="#version={{currentVersion}}">in version {{currentVersion}}</span></a>';
+    Template.RuleMenuHeaderVersion = ('<h2>List of rules</h2>' +
+        '<span id="rule-version">' +
+        '<a class="rule-link" href="#version={{controller.currentVersion}}">in version {{controller.currentVersion}}</a>' +
+        '<a id="language-selector" class="rule-link" href="#version={{controller.currentVersion}}{{next-language language}}" title="Toggle rule language">{{language-text language}}</a>' +
+        '</span>');
     Template.RuleMenuHeaderVersionError = '<span id="rule-version"><a href="#">Go to latest version</span></a>';
     Template.RulePageContent = ('<div class="rule-details-container tabs">' +
         '{{#each Data}}' +
         '<div class="rule-details tab">' +
         '<input type="radio" id="rule-detail-tab-{{../Key}}-{{@index}}" name="rule-detail-tab-group-{{../Key}}" {{{tab-activation @index ../Data.length 0}}}/>' +
-        '<label for="rule-detail-tab-{{../Key}}-{{@index}}">{{Language}}</label>' +
+        '<label for="rule-detail-tab-{{../Key}}-{{@index}}">{{language-text Language}}</label>' +
         '<div class="tab-content">' +
         '<div class="rule-meta">' +
         '<h1 id="rule-title">{{Title}}</h1>' +

@@ -1,13 +1,18 @@
 ﻿class Template {
     static RuleMenuItem: HandlebarsTemplateDelegate = <any>'<li><a  class="rule-link" href="#version={{currentVersion}}&ruleId={{rule.Key}}" title="{{rule.Key}}: {{rule.Data.0.Title}}">{{rule.Key}}: {{rule.Data.0.Title}}</a></li>';
-    static RuleMenuHeaderVersion: HandlebarsTemplateDelegate = <any>'<h2>List of rules</h2><span id="rule-version"><a class="rule-link" href="#version={{currentVersion}}">in version {{currentVersion}}</span></a>';
+    static RuleMenuHeaderVersion: HandlebarsTemplateDelegate = <any>(
+        '<h2>List of rules</h2>' +
+        '<span id="rule-version">' +
+            '<a class="rule-link" href="#version={{controller.currentVersion}}">in version {{controller.currentVersion}}</a>' +
+            '<a id="language-selector" class="rule-link" href="#version={{controller.currentVersion}}{{next-language language}}" title="Toggle rule language">{{language-text language}}</a>' +
+        '</span>');
     static RuleMenuHeaderVersionError: HandlebarsTemplateDelegate = <any>'<span id="rule-version"><a href="#">Go to latest version</span></a>';
     static RulePageContent: HandlebarsTemplateDelegate = <any>(
         '<div class="rule-details-container tabs">' +
             '{{#each Data}}' +
                 '<div class="rule-details tab">' +
                     '<input type="radio" id="rule-detail-tab-{{../Key}}-{{@index}}" name="rule-detail-tab-group-{{../Key}}" {{{tab-activation @index ../Data.length 0}}}/>' +
-                    '<label for="rule-detail-tab-{{../Key}}-{{@index}}">{{Language}}</label>' +
+                    '<label for="rule-detail-tab-{{../Key}}-{{@index}}">{{language-text Language}}</label>' +
                     '<div class="tab-content">' +
                         '<div class="rule-meta">' +
                             '<h1 id="rule-title">{{Title}}</h1>' +
@@ -33,6 +38,22 @@
 
 
     private static init() {
+        Handlebars.registerHelper('language-text', function (num) {
+            if (num == Language.CSharp) {
+                return 'C#';
+            } else if (num == Language.VisualBasic) {
+                return 'VB.Net';
+            }
+            return 'C#/VB.Net';
+        });
+        Handlebars.registerHelper('next-language', function (num) {
+            if (num == Language.CSharp) {
+                return '&language=vbnet';
+            } else if (num == Language.VisualBasic) {
+                return '';
+            }
+            return '&language=cs';
+        });
         Handlebars.registerHelper('rule-tags-visibility', function (tags) {
             if (!tags || tags == "" || (Array.isArray(tags) && (<Array<string>>tags).length == 0)) {
                 return 'display: none;'

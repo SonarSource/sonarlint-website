@@ -3,6 +3,7 @@
     version: string;
     ruleId: string;
     tags: string[];
+    language: Language;
 }
 interface Rule {
     Key: string;
@@ -10,14 +11,18 @@ interface Rule {
 }
 
 interface RuleMeta {
-    Language: string;
+    Language: Language;
     Title: string;
     Description: string;
     IdeSeverity: number;
     Severity: string
     Tags: string[];
 }
-
+enum Language {
+    Both = 0,
+    CSharp = 1,
+    VisualBasic = 2
+}
 
 interface TagFrequency {
     Tag: string;
@@ -34,11 +39,12 @@ module Controllers {
         constructor() {
             var hash = this.getHash(location.hash || '');
             this.openRequestedPage(hash);
-            this.handleSidebarResizing();
-            this.handleFilterToggle();
+            this.subscribeToSidebarResizing();
+            this.subscribeToFilterToggle();
+            this.subscribeToLanguageToggle();
         }
 
-        private handleFilterToggle() {
+        private subscribeToFilterToggle() {
             $('#rule-menu-filter ul').on('change', 'input', (event) => {
                 var item = $(event.currentTarget);
                 var checked = item.prop('checked');
@@ -47,6 +53,16 @@ module Controllers {
                 location.hash = this.changeHash(newHash);
             });
         }
+        private subscribeToLanguageToggle() {
+            var self = this;
+            $('#rule-menu-header').on('click', '#language-selector', function (e) {
+                var item = $(this);
+                var newHash = self.getHash(location.hash || '');
+                newHash.language = (newHash.language + 1) % 3;
+                location.hash = self.changeHash(newHash);
+            });
+        }
+
         private getFilterSettings(): string[] {
             var turnedOnFilters = [];
             var inputs = $('#rule-menu-filter ul input');
@@ -61,7 +77,7 @@ module Controllers {
             return turnedOnFilters;
         }
 
-        private handleSidebarResizing() {
+        private subscribeToSidebarResizing() {
             var min = 150;
             var max = 750;
             var mainmin = 200;
@@ -115,10 +131,12 @@ module Controllers {
         private renderMenu(hash: UrlParams) {
             var menu = $("#rule-menu");
             var currentVersion = menu.attr("data-version");
+            $("#rule-menu-header").html(Template.eval(Template.RuleMenuHeaderVersion, { controller: this, language: hash.language }));
 
             if (currentVersion == this.currentVersion)
             {
                 this.applyFilters(hash);
+
                 return;
             }
 
@@ -134,7 +152,6 @@ module Controllers {
             }
 
             menu.attr("data-version", this.currentVersion);
-            $("#rule-menu-header").html(Template.eval(Template.RuleMenuHeaderVersion, this));
 
             this.renderFilters(hash);
         }
@@ -195,10 +212,21 @@ module Controllers {
                 var rule = <Rule><any>li.data('rule');
                 var liTags = [];
 
+                var languageMatches = false;
                 for (var language = 0; language < rule.Data.length; language++) {
                     for (var i = 0; i < rule.Data[language].Tags.length; i++)
                     {
                         liTags.push(rule.Data[language].Tags[i]);
+                    }
+                }
+                if (hash.language == Language.Both) {
+                    languageMatches = true;
+                } else {
+                    for (var language = 0; language < rule.Data.length; language++) {
+                        if (rule.Data[language].Language == hash.language) {
+                            languageMatches = true;
+                            break;
+                        }
                     }
                 }
 
@@ -207,7 +235,8 @@ module Controllers {
                 var hasNoTags = liTags.length == 0;
                 var showLiWithNoTags = hasNoTags && filterForOthers;
                 var showEverything = tagsToFilterFor.length == 0;
-                li.toggle(commonTags.length > 0 || showLiWithNoTags || showEverything);
+
+                li.toggle((commonTags.length > 0 || showLiWithNoTags || showEverything) && languageMatches);
             });
 
             $('#rule-menu li:visible').filter(':odd').css({ 'background-color': 'rgb(243, 243, 243)' });
@@ -253,7 +282,12 @@ module Controllers {
                 var currentHref = link.attr('href');
                 var newHash = this.getHash(currentHref);
                 newHash.tags = hash.tags;
-
+                if (link.attr('id') != 'language-selector') {
+                    newHash.language = hash.language;
+                }
+                else {
+                    newHash.ruleId = hash.ruleId;
+                }
                 link.attr('href', '#' + this.changeHash(newHash));
             });
         }
@@ -262,7 +296,8 @@ module Controllers {
             var hash: UrlParams = {
                 version: RuleController.defaultVersion,
                 ruleId: null,
-                tags: null
+                tags: null,
+                language: Language.Both
             };
             var parsedHash = RuleController.parseHash(input);
             if (parsedHash.version) {
@@ -279,6 +314,16 @@ module Controllers {
             var emptyIndex = hash.tags.indexOf('');
             if (emptyIndex >= 0) {
                 hash.tags.splice(emptyIndex);
+            }
+            if (parsedHash.language) {
+
+                if (parsedHash.language == 'cs') {
+                    hash.language = Language.CSharp;
+                } else if (parsedHash.language == 'vbnet') {
+                    hash.language = Language.VisualBasic;
+                } else {
+                    hash.language = Language.Both;
+                }
             }
             return hash;
         }
@@ -307,6 +352,13 @@ module Controllers {
                     tags = tags.substr(1);
                 }
                 newHash += '&tags=' + tags;
+            }
+            if (hash.language) {
+                if (hash.language == Language.CSharp) {
+                    newHash += '&language=cs';
+                } else if (hash.language == Language.VisualBasic) {
+                    newHash += '&language=vbnet';
+                }
             }
 
             return newHash;
@@ -337,7 +389,7 @@ module Controllers {
                                 Tags: r.Tags,
                                 Severity: r.Severity,
                                 IdeSeverity: r.IdeSeverity,
-                                Language: 'C#'
+                                Language: Language.CSharp
                             }];
                             r.Title = undefined;
                             r.Description = undefined;
@@ -357,7 +409,7 @@ module Controllers {
                                     Tags: r.Data[language].Tags,
                                     Severity: r.Data[language].Severity,
                                     IdeSeverity: r.Data[language].IdeSeverity,
-                                    Language: language == 'CSharp'?'C#':'VB.Net'
+                                    Language: language == 'CSharp' ? Language.CSharp : Language.VisualBasic
                                 });
                             }
                             r.Data = meta;

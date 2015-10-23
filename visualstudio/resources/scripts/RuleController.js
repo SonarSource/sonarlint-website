@@ -1,13 +1,20 @@
+var Language;
+(function (Language) {
+    Language[Language["Both"] = 0] = "Both";
+    Language[Language["CSharp"] = 1] = "CSharp";
+    Language[Language["VisualBasic"] = 2] = "VisualBasic";
+})(Language || (Language = {}));
 var Controllers;
 (function (Controllers) {
     var RuleController = (function () {
         function RuleController() {
             var hash = this.getHash(location.hash || '');
             this.openRequestedPage(hash);
-            this.handleSidebarResizing();
-            this.handleFilterToggle();
+            this.subscribeToSidebarResizing();
+            this.subscribeToFilterToggle();
+            this.subscribeToLanguageToggle();
         }
-        RuleController.prototype.handleFilterToggle = function () {
+        RuleController.prototype.subscribeToFilterToggle = function () {
             var _this = this;
             $('#rule-menu-filter ul').on('change', 'input', function (event) {
                 var item = $(event.currentTarget);
@@ -15,6 +22,15 @@ var Controllers;
                 var newHash = _this.getHash(location.hash || '');
                 newHash.tags = _this.getFilterSettings();
                 location.hash = _this.changeHash(newHash);
+            });
+        };
+        RuleController.prototype.subscribeToLanguageToggle = function () {
+            var self = this;
+            $('#rule-menu-header').on('click', '#language-selector', function (e) {
+                var item = $(this);
+                var newHash = self.getHash(location.hash || '');
+                newHash.language = (newHash.language + 1) % 3;
+                location.hash = self.changeHash(newHash);
             });
         };
         RuleController.prototype.getFilterSettings = function () {
@@ -29,7 +45,7 @@ var Controllers;
             });
             return turnedOnFilters;
         };
-        RuleController.prototype.handleSidebarResizing = function () {
+        RuleController.prototype.subscribeToSidebarResizing = function () {
             var min = 150;
             var max = 750;
             var mainmin = 200;
@@ -77,6 +93,7 @@ var Controllers;
         RuleController.prototype.renderMenu = function (hash) {
             var menu = $("#rule-menu");
             var currentVersion = menu.attr("data-version");
+            $("#rule-menu-header").html(Template.eval(Template.RuleMenuHeaderVersion, { controller: this, language: hash.language }));
             if (currentVersion == this.currentVersion) {
                 this.applyFilters(hash);
                 return;
@@ -91,7 +108,6 @@ var Controllers;
                 menu.append(li);
             }
             menu.attr("data-version", this.currentVersion);
-            $("#rule-menu-header").html(Template.eval(Template.RuleMenuHeaderVersion, this));
             this.renderFilters(hash);
         };
         RuleController.prototype.renderMainPage = function (hash) {
@@ -142,16 +158,28 @@ var Controllers;
                 var li = $(elem);
                 var rule = li.data('rule');
                 var liTags = [];
+                var languageMatches = false;
                 for (var language = 0; language < rule.Data.length; language++) {
                     for (var i = 0; i < rule.Data[language].Tags.length; i++) {
                         liTags.push(rule.Data[language].Tags[i]);
+                    }
+                }
+                if (hash.language == Language.Both) {
+                    languageMatches = true;
+                }
+                else {
+                    for (var language = 0; language < rule.Data.length; language++) {
+                        if (rule.Data[language].Language == hash.language) {
+                            languageMatches = true;
+                            break;
+                        }
                     }
                 }
                 var commonTags = liTags.intersect(tagsToFilterFor);
                 var hasNoTags = liTags.length == 0;
                 var showLiWithNoTags = hasNoTags && filterForOthers;
                 var showEverything = tagsToFilterFor.length == 0;
-                li.toggle(commonTags.length > 0 || showLiWithNoTags || showEverything);
+                li.toggle((commonTags.length > 0 || showLiWithNoTags || showEverything) && languageMatches);
             });
             $('#rule-menu li:visible').filter(':odd').css({ 'background-color': 'rgb(243, 243, 243)' });
             $('#rule-menu li:visible').filter(':even').css({ 'background-color': 'white' });
@@ -191,6 +219,12 @@ var Controllers;
                 var currentHref = link.attr('href');
                 var newHash = _this.getHash(currentHref);
                 newHash.tags = hash.tags;
+                if (link.attr('id') != 'language-selector') {
+                    newHash.language = hash.language;
+                }
+                else {
+                    newHash.ruleId = hash.ruleId;
+                }
                 link.attr('href', '#' + _this.changeHash(newHash));
             });
         };
@@ -198,7 +232,8 @@ var Controllers;
             var hash = {
                 version: RuleController.defaultVersion,
                 ruleId: null,
-                tags: null
+                tags: null,
+                language: Language.Both
             };
             var parsedHash = RuleController.parseHash(input);
             if (parsedHash.version) {
@@ -215,6 +250,17 @@ var Controllers;
             var emptyIndex = hash.tags.indexOf('');
             if (emptyIndex >= 0) {
                 hash.tags.splice(emptyIndex);
+            }
+            if (parsedHash.language) {
+                if (parsedHash.language == 'cs') {
+                    hash.language = Language.CSharp;
+                }
+                else if (parsedHash.language == 'vbnet') {
+                    hash.language = Language.VisualBasic;
+                }
+                else {
+                    hash.language = Language.Both;
+                }
             }
             return hash;
         };
@@ -241,6 +287,14 @@ var Controllers;
                 }
                 newHash += '&tags=' + tags;
             }
+            if (hash.language) {
+                if (hash.language == Language.CSharp) {
+                    newHash += '&language=cs';
+                }
+                else if (hash.language == Language.VisualBasic) {
+                    newHash += '&language=vbnet';
+                }
+            }
             return newHash;
         };
         RuleController.prototype.hashChanged = function () {
@@ -264,7 +318,7 @@ var Controllers;
                                     Tags: r.Tags,
                                     Severity: r.Severity,
                                     IdeSeverity: r.IdeSeverity,
-                                    Language: 'C#'
+                                    Language: Language.CSharp
                                 }];
                             r.Title = undefined;
                             r.Description = undefined;
@@ -284,7 +338,7 @@ var Controllers;
                                     Tags: r.Data[language].Tags,
                                     Severity: r.Data[language].Severity,
                                     IdeSeverity: r.Data[language].IdeSeverity,
-                                    Language: language == 'CSharp' ? 'C#' : 'VB.Net'
+                                    Language: language == 'CSharp' ? Language.CSharp : Language.VisualBasic
                                 });
                             }
                             r.Data = meta;
