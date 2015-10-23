@@ -222,9 +222,9 @@ nav a:hover {
     content: '\f057';
 }
 
-.rule-details {
+.rule-details-container {
     padding: 10px;
-    background: rgb(243, 243, 243);;
+    background: rgb(243, 243, 243);
 }
 
 
@@ -284,6 +284,11 @@ nav a:hover {
     position: relative;
     margin: 10px 0;
 }
+.rule-details-container.tabs {
+    padding:0;
+    background: rgb(250,250,250);
+}
+
 .tabs:after {
     content: " ";
     display: table;

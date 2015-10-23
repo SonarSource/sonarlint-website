@@ -1,57 +1,59 @@
-﻿<div class="rule-details">
-    <div class="rule-meta">
-        <h1 id="rule-title">SonarLint for Visual Studio - version 1.3.0</h1>
-        <span id="rule-id" class="id" style="visibility:hidden"></span>
-        <div class="rules-detail-properties">
-            <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+﻿<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio - version 1.3.0</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
         </div>
-    </div>
-    <div class="rule-description" id="rule-description">
-        <ul class="release">
-            <li class="release-date">Release date: October 6, 2015</li>
-            <li class="release-notes"><a href="https://github.com/SonarSource/sonarlint-vs/issues?q=milestone:1.3.0" title="Release notes for version 1.3.0">Release notes</a></li>
-            <li class="release-download"><a href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548" title="Download Visual Studio Extension">Download Extension</a></li>
-            <li class="release-download"><a href="https://www.nuget.org/packages/SonarLint/1.3.0" title="Download Nuget package">Download Nuget</a></li>
-        </ul>
-        <p>
-            There are 101 rules in SonarLint for Visual Studio version 1.3.0. Many new since <a href="#version=1.2.0">version 1.2.0</a>:
-            <ul>
-                <li>"params" should be used on overrides - <a class="rule-link" href="#version=1.3.0&ruleId=S3262">Rule S3262</a></li>
-                <li>Inheritance list should not be redundant - <a class="rule-link" href="#version=1.3.0&ruleId=S1939">Rule S1939</a></li>
-                <li>Redundant modifiers should not be used - <a class="rule-link" href="#version=1.3.0&ruleId=S2333">Rule S2333</a></li>
-                <li>Literal suffixes should be upper case - <a class="rule-link" href="#version=1.3.0&ruleId=S818">Rule S818</a></li>
-                <li>Format strings should be passed the correct number of arguments - <a class="rule-link" href="#version=1.3.0&ruleId=S2275">Rule S2275</a></li>
-                <li>"base()" constructor calls should not be explicitly made - <a class="rule-link" href="#version=1.3.0&ruleId=S3253">Rule S3253</a></li>
-                <li>Static fields should appear in the order they must be initialized - <a class="rule-link" href="#version=1.3.0&ruleId=S3263">Rule S3263</a></li>
-                <li>Caller information arguments should not be provided explicitly - <a class="rule-link" href="#version=1.3.0&ruleId=S3236">Rule S3236</a></li>
-                <li>Trivial properties should be auto-implemented - <a class="rule-link" href="#version=1.3.0&ruleId=S2292">Rule S2292</a></li>
-                <li>"Type.IsAssignableFrom()" should not be used to check object type - <a class="rule-link" href="#version=1.3.0&ruleId=S2219">Rule S2219</a></li>
-                <li>Generic type parameters should be co/contravariant when possible - <a class="rule-link" href="#version=1.3.0&ruleId=S3246">Rule S3246</a></li>
+        <div class="rule-description" id="rule-description">
+            <ul class="release">
+                <li class="release-date">Release date: October 6, 2015</li>
+                <li class="release-notes"><a href="https://github.com/SonarSource/sonarlint-vs/issues?q=milestone:1.3.0" title="Release notes for version 1.3.0">Release notes</a></li>
+                <li class="release-download"><a href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548" title="Download Visual Studio Extension">Download Extension</a></li>
+                <li class="release-download"><a href="https://www.nuget.org/packages/SonarLint/1.3.0" title="Download Nuget package">Download Nuget</a></li>
             </ul>
-        </p>
-        <p>
-            Also, we have added a few more code fixes, and fixed issues with the batch fixers. List of rules with new code fixes:
-            <ul>
-                <li>Inheritance list should not be redundant - <a class="rule-link" href="#version=1.3.0&ruleId=S1939">Rule S1939</a></li>
-                <li>Redundant modifiers should not be used - <a class="rule-link" href="#version=1.3.0&ruleId=S2333">Rule S2333</a></li>
-                <li>Literal suffixes should be upper case - <a class="rule-link" href="#version=1.3.0&ruleId=S818">Rule S818</a></li>
-                <li>"base()" constructor calls should not be explicitly made - <a class="rule-link" href="#version=1.3.0&ruleId=S3253">Rule S3253</a></li>
-                <li>"Type.IsAssignableFrom()" should not be used to check object type - <a class="rule-link" href="#version=1.3.0&ruleId=S2219">Rule S2219</a></li>
-                <li>"GetHashCode" should not reference mutable fields - <a class="rule-link" href="#version=1.3.0&ruleId=S2328">Rule S2328</a></li>
-                <li>Property assignments should not be made for "readonly" fields not constrained to reference types - <a class="rule-link" href="#version=1.3.0&ruleId=S2934">Rule S2934</a></li>
-                <li>"Explicit" conversions of "foreach" loops should not be used - <a class="rule-link" href="#version=1.3.0&ruleId=S3217">Rule S3217</a></li>
-                <li>Methods should not be empty - <a class="rule-link" href="#version=1.3.0&ruleId=S1186">Rule S1186</a></li>
-                <li>Empty statements should be removed - <a class="rule-link" href="#version=1.3.0&ruleId=S1116">Rule S1116</a></li>
-            </ul>
-        </p>
-        <p>
-            Finally, there are some bug fixes in this release. We are grateful if you report issues on <a href="https://github.com/SonarSource/sonarlint-vs/issues/new">GitHub</a>,
-            and we do our best to fix issues by the upcoming release. In version 1.3.0, we have fixed issues that were reported by
-            <a href="https://github.com/OsirisTerje">Terje Sandstrom</a>,
-            <a href="https://github.com/jessehouwing">Jesse Houwing</a>,
-            <a href="https://github.com/sergn-n">sergn-n</a>,
-            <a href="https://github.com/jbfraser1">jbfraser1</a>,
-            <a href="https://github.com/duncanpMS">Duncan Pocklington</a>. I hope I haven't missed anyone. Thank you.
-        </p>
+            <p>
+                There are 101 rules in SonarLint for Visual Studio version 1.3.0. Many new since <a href="#version=1.2.0">version 1.2.0</a>:
+                <ul>
+                    <li>"params" should be used on overrides - <a class="rule-link" href="#version=1.3.0&ruleId=S3262">Rule S3262</a></li>
+                    <li>Inheritance list should not be redundant - <a class="rule-link" href="#version=1.3.0&ruleId=S1939">Rule S1939</a></li>
+                    <li>Redundant modifiers should not be used - <a class="rule-link" href="#version=1.3.0&ruleId=S2333">Rule S2333</a></li>
+                    <li>Literal suffixes should be upper case - <a class="rule-link" href="#version=1.3.0&ruleId=S818">Rule S818</a></li>
+                    <li>Format strings should be passed the correct number of arguments - <a class="rule-link" href="#version=1.3.0&ruleId=S2275">Rule S2275</a></li>
+                    <li>"base()" constructor calls should not be explicitly made - <a class="rule-link" href="#version=1.3.0&ruleId=S3253">Rule S3253</a></li>
+                    <li>Static fields should appear in the order they must be initialized - <a class="rule-link" href="#version=1.3.0&ruleId=S3263">Rule S3263</a></li>
+                    <li>Caller information arguments should not be provided explicitly - <a class="rule-link" href="#version=1.3.0&ruleId=S3236">Rule S3236</a></li>
+                    <li>Trivial properties should be auto-implemented - <a class="rule-link" href="#version=1.3.0&ruleId=S2292">Rule S2292</a></li>
+                    <li>"Type.IsAssignableFrom()" should not be used to check object type - <a class="rule-link" href="#version=1.3.0&ruleId=S2219">Rule S2219</a></li>
+                    <li>Generic type parameters should be co/contravariant when possible - <a class="rule-link" href="#version=1.3.0&ruleId=S3246">Rule S3246</a></li>
+                </ul>
+            </p>
+            <p>
+                Also, we have added a few more code fixes, and fixed issues with the batch fixers. List of rules with new code fixes:
+                <ul>
+                    <li>Inheritance list should not be redundant - <a class="rule-link" href="#version=1.3.0&ruleId=S1939">Rule S1939</a></li>
+                    <li>Redundant modifiers should not be used - <a class="rule-link" href="#version=1.3.0&ruleId=S2333">Rule S2333</a></li>
+                    <li>Literal suffixes should be upper case - <a class="rule-link" href="#version=1.3.0&ruleId=S818">Rule S818</a></li>
+                    <li>"base()" constructor calls should not be explicitly made - <a class="rule-link" href="#version=1.3.0&ruleId=S3253">Rule S3253</a></li>
+                    <li>"Type.IsAssignableFrom()" should not be used to check object type - <a class="rule-link" href="#version=1.3.0&ruleId=S2219">Rule S2219</a></li>
+                    <li>"GetHashCode" should not reference mutable fields - <a class="rule-link" href="#version=1.3.0&ruleId=S2328">Rule S2328</a></li>
+                    <li>Property assignments should not be made for "readonly" fields not constrained to reference types - <a class="rule-link" href="#version=1.3.0&ruleId=S2934">Rule S2934</a></li>
+                    <li>"Explicit" conversions of "foreach" loops should not be used - <a class="rule-link" href="#version=1.3.0&ruleId=S3217">Rule S3217</a></li>
+                    <li>Methods should not be empty - <a class="rule-link" href="#version=1.3.0&ruleId=S1186">Rule S1186</a></li>
+                    <li>Empty statements should be removed - <a class="rule-link" href="#version=1.3.0&ruleId=S1116">Rule S1116</a></li>
+                </ul>
+            </p>
+            <p>
+                Finally, there are some bug fixes in this release. We are grateful if you report issues on <a href="https://github.com/SonarSource/sonarlint-vs/issues/new">GitHub</a>,
+                and we do our best to fix issues by the upcoming release. In version 1.3.0, we have fixed issues that were reported by
+                <a href="https://github.com/OsirisTerje">Terje Sandstrom</a>,
+                <a href="https://github.com/jessehouwing">Jesse Houwing</a>,
+                <a href="https://github.com/sergn-n">sergn-n</a>,
+                <a href="https://github.com/jbfraser1">jbfraser1</a>,
+                <a href="https://github.com/duncanpMS">Duncan Pocklington</a>. I hope I haven't missed anyone. Thank you.
+            </p>
+        </div>
     </div>
 </div>
