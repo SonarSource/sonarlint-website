@@ -222,6 +222,11 @@ nav a:hover {
     content: '\f057';
 }
 
+.rule-details {
+    padding: 10px;
+    background: rgb(243, 243, 243);;
+}
+
 
 #rule-menu-header > h2 {
     padding: 10px 5px 5px 5px;
