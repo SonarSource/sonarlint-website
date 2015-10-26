@@ -227,15 +227,24 @@ nav a:hover {
     background: rgb(243, 243, 243);
 }
 
+#rule-menu-header{
+    white-space: normal;
+}
 
 #rule-menu-header > h2 {
-    padding: 10px 5px 5px 5px;
+    padding: 10px 5px 0 5px;
     font-size: 20px;
     display: inline-block;
 }
 
-#rule-menu-header > #rule-version {
+#rule-version-cont {
+
     font-size: 11px;
+}
+
+#rule-version {
+    white-space: nowrap;
+    padding: 0 20px 0 5px;
 }
 
 #sidebar-resizer{
@@ -279,7 +288,7 @@ nav a:hover {
 #language-selector {
     width: 90px;
     font-size: 13px;
-    margin-left: 20px;
+    margin-left: 5px;
     text-align: center;
     display: inline-block;
     color: white;

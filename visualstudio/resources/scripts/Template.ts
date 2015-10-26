@@ -2,11 +2,11 @@
     static RuleMenuItem: HandlebarsTemplateDelegate = <any>'<li><a  class="rule-link" href="#version={{currentVersion}}&ruleId={{rule.Key}}" title="{{rule.Key}}: {{rule.Data.0.Title}}">{{rule.Key}}: {{rule.Data.0.Title}}</a></li>';
     static RuleMenuHeaderVersion: HandlebarsTemplateDelegate = <any>(
         '<h2>List of rules</h2>' +
-        '<span id="rule-version">' +
-            '<a class="rule-link" href="#version={{controller.currentVersion}}">in version {{controller.currentVersion}}</a>' +
+        '<span id="rule-version-cont">' +
+            '<a id="rule-version" href="#version={{controller.currentVersion}}">in version {{controller.currentVersion}}</a>' +
             '<a id="language-selector" class="rule-link" href="#version={{controller.currentVersion}}{{next-language language}}" title="Toggle rule language">{{language-text language}}</a>' +
         '</span>');
-    static RuleMenuHeaderVersionError: HandlebarsTemplateDelegate = <any>'<span id="rule-version"><a href="#">Go to latest version</span></a>';
+    static RuleMenuHeaderVersionError: HandlebarsTemplateDelegate = <any>'<span id="rule-version-cont"><a href="#">Go to latest version</span></a>';
     static RulePageContent: HandlebarsTemplateDelegate = <any>(
         '<div class="rule-details-container tabs">' +
             '{{#each Data}}' +
