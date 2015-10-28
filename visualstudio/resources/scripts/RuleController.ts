@@ -31,7 +31,7 @@ interface TagFrequency {
 
 module Controllers {
     export class RuleController {
-        static defaultVersion: string = '1.3.0';
+        static defaultVersion: string = '1.4.0';
         currentVersion: string;
         currentRules: Rule[];
         currentDefaultContent: string;
@@ -409,7 +409,7 @@ module Controllers {
                                     Tags: r.Data[language].Tags,
                                     Severity: r.Data[language].Severity,
                                     IdeSeverity: r.Data[language].IdeSeverity,
-                                    Language: language == 'CSharp' ? Language.CSharp : Language.VisualBasic
+                                    Language: language == 'cs' ? Language.CSharp : Language.VisualBasic
                                 });
                             }
                             r.Data = meta;

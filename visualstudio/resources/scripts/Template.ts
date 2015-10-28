@@ -28,11 +28,9 @@
             '{{/each}}' +
         '</div>');
     static RuleErrorPageContent: HandlebarsTemplateDelegate = <any>(
-        '<div class="rule-details">' +
-            '<div class="rule-meta">' +
-                '<h1 id="rule-title">Error</h1>' +
-                '<span id="rule-id" class="id">{{message}}</span>' +
-            '</div>' +
+        '<div id="error">' +
+            '<h1 id="rule-title">There was an error while processing your request</h1>' +
+            '<span id="rule-id" class="id">{{message}}</span>' +
         '</div>');
     static RuleFilterElement: HandlebarsTemplateDelegate = <any>'<li><input type="checkbox" checked="checked" id="{{tag}}" /><label for="{{tag}}">{{tag}}</label></li>';
 
@@ -42,9 +40,9 @@
             if (num == Language.CSharp) {
                 return 'C#';
             } else if (num == Language.VisualBasic) {
-                return 'VB.Net';
+                return 'VB.NET';
             }
-            return 'C#/VB.Net';
+            return 'C# + VB.NET';
         });
         Handlebars.registerHelper('next-language', function (num) {
             if (num == Language.CSharp) {

@@ -338,7 +338,7 @@ var Controllers;
                                     Tags: r.Data[language].Tags,
                                     Severity: r.Data[language].Severity,
                                     IdeSeverity: r.Data[language].IdeSeverity,
-                                    Language: language == 'CSharp' ? Language.CSharp : Language.VisualBasic
+                                    Language: language == 'cs' ? Language.CSharp : Language.VisualBasic
                                 });
                             }
                             r.Data = meta;
@@ -418,8 +418,9 @@ var Controllers;
             };
             xobj.send(null);
         };
-        RuleController.defaultVersion = '1.3.0';
+        RuleController.defaultVersion = '1.4.0';
         return RuleController;
     })();
     Controllers.RuleController = RuleController;
 })(Controllers || (Controllers = {}));
+//# sourceMappingURL=RuleController.js.map

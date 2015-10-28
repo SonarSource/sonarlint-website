@@ -34,6 +34,10 @@ nav a:hover {
     border-bottom: 0;
 }
 
+p.leading-vertical-space{
+    padding-top: 15px;
+}
+
 
 #sidebar
 {
@@ -388,6 +392,14 @@ nav a:hover {
 }
 
 /*tab control - end */
+
+#error{
+    background: rgb(243, 243, 243);
+    text-align:center;
+    padding-top: 50px;
+    height: 100%;
+
+}
 
 @media (max-width: 1000px) {
     header, main, footer, #body, section.split, html, body {
