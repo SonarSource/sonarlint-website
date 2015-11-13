@@ -100,6 +100,7 @@ p.leading-vertical-space{
     background-color: white;
 }
 
+#content dd span.param-default,
 #content code {
     font-weight: 600;
     font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
@@ -120,9 +121,51 @@ p.leading-vertical-space{
 }
 
 #content ul {
-    padding-left: 40px;
     list-style: disc;
+    padding-left: 40px;
     margin: 1em 0;
+}
+#content h2.param-header {
+    margin-top: 0;
+}
+
+#content dl{
+    padding-left: 20px;
+    margin: .5em 0 2em 0;
+}
+#content dl:before{
+    content: 'Note: in Visual Studio, parameters cannot be set, so the default values are used.';
+    display: block;
+    margin-bottom: 10px;
+    margin-left: -20px;
+    font-style: italic;
+}
+
+#content dt.param-key{
+    font-weight: bold;
+}
+
+#content dd{
+    padding-left:10px;
+}
+
+#content dd span.param-description{
+    display: block;
+}
+#content dd span.param-type:before{
+    content: 'Type: ';
+}
+#content dd span.param-type{
+    display: none;
+    margin-right: 20px;
+}
+#content dd span.param-default:before{
+    content: 'Default value: ';
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
 }
 
 #sidebar a{
