@@ -4,7 +4,7 @@
     "Data": {
       "cs": {
         "Title": "Class names should comply with a naming convention",
-        "Description": "<h2 class=\"param-header\">Parameters</h2><dl><dt class=\"param-key\">format</dt><dd><span class=\"param-description\">Regular expression used to check the class names against.</span><span class=\"param-type\">STRING</span><span class=\"param-default\">^(?:[A-HJ-Z][a-zA-Z0-9]+|I[a-z0-9][a-zA-Z0-9]*)$</span></dd></dl><p>\r\nSharing some naming conventions is a key point to make it possible for a team to efficiently collaborate.\r\nThis rule allows to check that all class names match a provided regular expression.\r\n</p>\r\n\r\n<h2>Noncompliant Code Example</h2>\r\n<p>With default provided regular expression <code>^(?:[A-HJ-Z][a-zA-Z0-9]+|I[a-z0-9][a-zA-Z0-9]*)$</code>:</p>\r\n<pre>\r\n    class my_class {...}\r\n</pre>\r\n\r\n<h2>Compliant Solution</h2>\r\n\r\n<pre>\r\n    class MyClass {...}\r\n</pre>\r\n",
+        "Description": "<h2 class=\"param-header\">Parameters</h2><dl><dt class=\"param-key\">format</dt><dd><span class=\"param-description\">Regular expression used to check the class names against.</span><span class=\"param-type\">STRING</span><span class=\"param-default\">^([A-HJ-Z][a-zA-Z0-9]+|I[a-z0-9][a-zA-Z0-9]*)$</span></dd></dl><p>\r\nSharing some naming conventions is a key point to make it possible for a team to efficiently collaborate.\r\nThis rule allows to check that all class names match a provided regular expression.\r\n</p>\r\n\r\n<h2>Noncompliant Code Example</h2>\r\n<p>With default provided regular expression <code>^([A-HJ-Z][a-zA-Z0-9]+|I[a-z0-9][a-zA-Z0-9]*)$</code>:</p>\r\n<pre>\r\n    class my_class {...}\r\n</pre>\r\n\r\n<h2>Compliant Solution</h2>\r\n\r\n<pre>\r\n    class MyClass {...}\r\n</pre>\r\n",
         "Severity": "Minor",
         "IdeSeverity": 2,
         "Tags": [
@@ -60,7 +60,7 @@
     "Data": {
       "cs": {
         "Title": "Lines should not be too long",
-        "Description": "<h2 class=\"param-header\">Parameters</h2><dl><dt class=\"param-key\">maximumLineLength</dt><dd><span class=\"param-description\">The maximum authorized line length.</span><span class=\"param-type\">INTEGER</span><span class=\"param-default\">120</span></dd></dl><p>\r\nHaving to scroll horizontally makes it harder to get a quick overview and understanding of any piece of code.\r\n</p>\r\n",
+        "Description": "<h2 class=\"param-header\">Parameters</h2><dl><dt class=\"param-key\">maximumLineLength</dt><dd><span class=\"param-description\">The maximum authorized line length.</span><span class=\"param-type\">INTEGER</span><span class=\"param-default\">200</span></dd></dl><p>\r\nHaving to scroll horizontally makes it harder to get a quick overview and understanding of any piece of code.\r\n</p>\r\n",
         "Severity": "Minor",
         "IdeSeverity": 2,
         "Tags": [
@@ -70,25 +70,11 @@
     }
   },
   {
-    "Key": "S109",
-    "Data": {
-      "cs": {
-        "Title": "Magic numbers should not be used",
-        "Description": "<h2 class=\"param-header\">Parameters</h2><dl><dt class=\"param-key\">exceptions</dt><dd><span class=\"param-description\">Comma separated list of allowed values (excluding '-' and '+' signs)</span><span class=\"param-type\">STRING</span><span class=\"param-default\">0,1,0x0,0x00,.0,.1,0.0,1.0</span></dd></dl><p>\r\n    A magic number is a number that comes out of nowhere, and is directly used in a statement. Magic numbers are often used, for instance to limit the number of iterations of a loops, to test the value of a property, etc.\r\n</p>\r\n\r\n<p>\r\n    Using magic numbers may seem obvious and straightforward when you're writing a piece of code, but they are much less obvious and straightforward at debugging time.\r\n</p>\r\n<p>\r\n    That is why magic numbers must be demystified by first being assigned to clearly named (variables|constants) before being used.\r\n</p>\r\n<p>\r\n    -1, 0 and 1 are not considered magic numbers.\r\n</p>\r\n\r\n<h2>Noncompliant Code Example</h2>\r\n\r\n<pre>\r\npublic static void doSomething() {\r\n  for(int i = 0; i < 4; i++){ //Non-Compliant, 4 is a magic number\r\n    ...\r\n  }\r\n}\r\n</pre>\r\n\r\n<h2>Compliant Solution</h2>\r\n\r\n<pre>\r\npublic const int NUMBER_OF_CYCLES = 4;\r\npublic static void doSomething() {\r\n  for(int i = 0; i < NUMBER_OF_CYCLES ; i++){  //Compliant\r\n    ...\r\n  }\r\n}\r\n</pre>\r\n",
-        "Severity": "Minor",
-        "IdeSeverity": 2,
-        "Tags": [
-          "brain-overload"
-        ]
-      }
-    }
-  },
-  {
     "Key": "S100",
     "Data": {
       "cs": {
         "Title": "Method name should comply with a naming convention",
-        "Description": "<h2 class=\"param-header\">Parameters</h2><dl><dt class=\"param-key\">format</dt><dd><span class=\"param-description\">Regular expression used to check the method names against</span><span class=\"param-type\">STRING</span><span class=\"param-default\">^[A-Z][a-zA-Z0-9]+$</span></dd></dl><p>\r\n    Shared naming conventions allow teams to collaborate efficiently. This rule checks that all method names match a provided\r\n    regular expression.\r\n</p>\r\n\r\n<p>The following code:</p>\r\n\r\n<pre>\r\nvoid foo() // Non-Compliant\r\n{\r\n}\r\n</pre>\r\n\r\n<p>should be refactored into:</p>\r\n\r\n<pre>\r\nvoid Foo() // Compliant\r\n{\r\n}\r\n</pre>\r\n",
+        "Description": "<h2 class=\"param-header\">Parameters</h2><dl><dt class=\"param-key\">format</dt><dd><span class=\"param-description\">Regular expression used to check the method names against</span><span class=\"param-type\">STRING</span><span class=\"param-default\">^[A-Z][a-zA-Z0-9_]*[a-zA-Z0-9]$</span></dd></dl><p>\r\n    Shared naming conventions allow teams to collaborate efficiently. This rule checks that all method names match a provided\r\n    regular expression.\r\n</p>\r\n\r\n<p>The following code:</p>\r\n\r\n<h2>Noncompliant Code Example</h2>\r\n<p>With default provided regular expression <code>^[A-Z][a-zA-Z0-9_]*[a-zA-Z0-9]$</code>:</p>\r\n<pre>\r\npublic int doSomething(){...}\r\n</pre>\r\n\r\n<p>should be refactored into:</p>\r\n\r\n<pre>\r\npublic int DoSomething(){...}\r\n</pre>\r\n",
         "Severity": "Minor",
         "IdeSeverity": 2,
         "Tags": [
@@ -1603,6 +1589,29 @@
         "IdeSeverity": 2,
         "Tags": [
           "convention"
+        ]
+      }
+    }
+  },
+  {
+    "Key": "S1643",
+    "Data": {
+      "cs": {
+        "Title": "Strings should not be concatenated using \"+\" in a loop",
+        "Description": "<p>\r\n    <code>StringBuilder</code> is more efficient than string concatenation, especially when the operator is repeated over and over as in loops.\r\n</p>\r\n\r\n<h2>Noncompliant Code Example</h2>\r\n<pre>\r\nstring str = \"\";\r\nfor (int i = 0; i &lt; arrayOfStrings.Length; ++i)\r\n{\r\n  str = str + arrayOfStrings[i];\r\n}\r\n</pre>\r\n\r\n<h2>Compliant Solution</h2>\r\n\r\n<pre>\r\nStringBuilder bld = new StringBuilder();\r\nfor (int i = 0; i &lt; arrayOfStrings.Length; ++i)\r\n{\r\n  bld.Append(arrayOfStrings[i]);\r\n}\r\nstring str = bld.ToString();\r\n</pre>\r\n",
+        "Severity": "Major",
+        "IdeSeverity": 2,
+        "Tags": [
+          "performance"
+        ]
+      },
+      "vbnet": {
+        "Title": "Strings should not be concatenated using \"+\" in a loop",
+        "Description": "<p>\r\n    <code>StringBuilder</code> is more efficient than string concatenation, especially when the operator is repeated over and over as in loops.\r\n</p>\r\n\r\n<h2>Noncompliant Code Example</h2>\r\n<pre>\r\nModule Module1\r\n    Sub Main()\r\n        Dim foo = \"\"\r\n        foo &amp;= \"Result: \"       ' Compliant - outside of loop\r\n\r\n        For i = 1 To 9\r\n            foo &amp;= i            ' Noncompliant\r\n        Next\r\n    End Sub\r\nEnd Module\r\n</pre>\r\n\r\n<h2>Compliant Solution</h2>\r\n\r\n<pre>\r\nModule Module1\r\n    Sub Main()\r\n        Dim foo = New System.Text.StringBuilder\r\n        foo.Append(\"Result: \")  ' Compliant\r\n\r\n        For i = 1 To 9\r\n            foo.Append(i)       ' Compliant\r\n        Next\r\n    End Sub\r\nEnd Module\r\n</pre>\r\n",
+        "Severity": "Major",
+        "IdeSeverity": 2,
+        "Tags": [
+          "performance"
         ]
       }
     }
