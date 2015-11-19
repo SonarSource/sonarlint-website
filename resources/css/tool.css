@@ -163,6 +163,13 @@ section.split ul {
     padding-top: 20px;
 }
 
+#FAQ ul {
+    text-align: left;
+}
+#FAQ li {
+    padding-top: 20px;
+}
+
 #Description .text {
     padding-top: 40px;
 }

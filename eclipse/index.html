@@ -26,7 +26,7 @@
     <div id="body">
         <header>
             <div id="nav-div">
-                <nav class="five">
+                <nav class="six">
                     <ul>
                         <li>
                             <a href="../index.html" title="SonarLint">
@@ -42,6 +42,7 @@
                         <li><a href="#News">News</a></li>
                         <li><a href="#Contribute">Contribute</a></li>
                         <li><a href="#Rules">Rules</a></li>
+                        <li><a href="#FAQ">FAQ</a></li>
                     </ul>
                 </nav>
             </div>
@@ -102,6 +103,32 @@
                             <span class="bold">Java</span> - <a target="_blank" href="https://update.sonarlint.org/coding_rules#qprofile=java-sonar-way-70060|activation=true">229 Java rules</a>.
                             <span class="bold">JavaScript</span> - <a target="_blank" href="https://update.sonarlint.org/coding_rules#qprofile=js-sonar-way-67165|activation=true">78 JavaScript rules</a>.
                             <span class="bold">PHP</span> - <a target="_blank" href="https://update.sonarlint.org/coding_rules#qprofile=php-sonar-way-38006|activation=true">60 PHP rules</a>.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split" id="FAQ">
+                <div class="text wide">
+                    <h2>FAQ</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">How to enable SonarLint on my project?</span> - Right click on the project -> Configure -> Enable SonarLint
+                        </li>
+                        <li>
+                            <span class="bold">How to start SonarLint analysis?</span> - SonarLint analysis is automatically triggered by a builder (in short: when you save your file). 
+                            You can also run a full analysis of your project: Right click on the project -> SonarLint -> Analyze all files
+                        </li>
+                        <li>
+                            <span class="bold">How to configure rules?</span> - You can't for now. We will make this feature available in upcoming versions, probably by requiring to "link" SonarLint
+                            with an existing SonarQube server instance.
+                        </li>
+                        <li>
+                            <span class="bold">How to exclude files from the analysis?</span> - By default we are excluding derived files. Appart from that all Java, JavaScript and PHP
+                            files are analyzed. Advanced users can configure some properties (either in global or per project SonarLint configuration) like <tt>sonar.exclusions</tt>.
+                        </li>
+                        <li>
+                            <span class="bold">How to update SonarLint?</span> - SonarLint Eclipse Plugin can be updated like any other Eclipse plugin. During the first analysis, it will also download
+                            rule engines from <tt>https://update.sonarlint.org</tt>. Updates of the rule engines will be published on a regular basis. To download latest rule engines use Help -> Update SonarLint menu.
                         </li>
                     </ul>
                 </div>
