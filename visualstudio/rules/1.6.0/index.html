@@ -1,0 +1,38 @@
+﻿<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio - version 1.6.0</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
+        </div>
+        <div class="rule-description" id="rule-description">
+            <ul class="release">
+                <li class="release-date">Release date: December 8, 2015</li>
+                <li class="release-notes"><a href="https://github.com/SonarSource/sonarlint-vs/issues?q=milestone:1.6.0" title="Release notes for version 1.6.0">Release notes</a></li>
+            </ul>
+            <p>
+                We have added 11 new C# rules in this version of SonarLint. We improved <a class="rule-link" href="#version=1.6.0&ruleId=S2971">Rule S2971</a> to handle even more cases
+                where LINQ call chains can be simplified. Additionally, we disabled some rules to improve the out-of-the-box experience, and fixed some false positives reported by the
+                community. Finally, we grouped the rules into logical categories, so the Visual Studio RuleSet editor can now list the rules by categories.
+                Here are the newly added rules since <a href="#version=1.5.0">version 1.5.0</a>:
+            </p>
+            <p class="leading-vertical-space">
+                <ul>
+                    <li>Method overloads with default parameter values should not overlap - <a class="rule-link" href="#version=1.6.0&ruleId=S3427">Rule S3427</a></li>
+                    <li>Method calls should not resolve ambiguously to overloads with "params" - <a class="rule-link" href="#version=1.6.0&ruleId=S3220">Rule S3220</a></li>
+                    <li>"base.Equals" should not be used to check for reference equality in "Equals" if "base" is not "object" - <a class="rule-link" href="#version=1.6.0&ruleId=S3397">Rule S3397</a></li>
+                    <li>Attribute, EventArgs, and Exception type names should end with the type being extended - <a class="rule-link" href="#version=1.6.0&ruleId=S3376">Rule S3376</a></li>
+                    <li>"ConfigureAwait(false)" should be used - <a class="rule-link" href="#version=1.6.0&ruleId=S3216">Rule S3216</a></li>
+                    <li>Culture should be specified for String operations - <a class="rule-link" href="#version=1.6.0&ruleId=S1449">Rule S1449</a></li>
+                    <li>Overflow checking should not be disabled for "Enumerable.Sum" - <a class="rule-link" href="#version=1.6.0&ruleId=S2291">Rule S2291</a></li>
+                    <li>The length returned from a stream read should be checked - <a class="rule-link" href="#version=1.6.0&ruleId=S2674">Rule S2674</a></li>
+                    <li>"async" methods should not return "void" - <a class="rule-link" href="#version=1.6.0&ruleId=S3168">Rule S3168</a></li>
+                    <li>"FIXME" tags should be handled - <a class="rule-link" href="#version=1.6.0&ruleId=S1134">Rule S1134</a></li>
+                    <li>"TODO" tags should be handled - <a class="rule-link" href="#version=1.6.0&ruleId=S1135">Rule S1135</a></li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>
