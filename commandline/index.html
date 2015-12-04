@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../resources/css/reset.css" rel="stylesheet" />
+    <link href="../resources/css/common.css" rel="stylesheet" />
+    <link href="../resources/css/tool.css" rel="stylesheet" />
+    <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
+    <title>SonarLint for Command Line</title>
+    <link rel="icon" type="image/png" href="../resources/images/waves-sonarqube-28.png" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-1880045-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div id="nav-div">
+                <nav class="six">
+                    <ul>
+                        <li>
+                            <a href="../index.html" title="SonarLint">
+                                <img class="nav-icon" src="../resources/images/sonarlint_24.png" alt="SonarLint" />
+                                <span class="nav-home">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <span>Eclipse</span>
+                            </a>
+                        </li>
+                        <li><a href="#News">News</a></li>
+                        <li><a href="#Contribute">Contribute</a></li>
+                        <li><a href="#Rules">Rules</a></li>
+                        <li><a href="#FAQ">FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="header">
+                <div class="logo">
+                    <img src="../resources/images/waves-sonarqube-256.png" title="SonarLint for Command Line" alt="SonarLint for Command Line" />
+                </div>
+                <div class="header-content">
+                    <h1>SonarLint for Command Line</h1>
+                    <div class="short-description">
+                        SonarLint for Command Line provides
+                        <span class="emph">pre-commit feedback</span> to developers on
+                        <span class="emph">new bugs and quality issues</span> injected into code from any language supported by the SonarQube ecosystem.
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="split first" id="Description">
+                <div class="left text">
+                    <p>
+                        SonarLint offers the ability to scan code for issues before checking it in. After installing the plugin on the server, and a SonarQube Scanner locally, you just have to run an analysis.
+                    </p>
+                    <p>
+                        SonarLint for Command Line is free, open source, and available in the SonarQube Update Center.
+                    </p>
+                    <ul>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonar-issues-report-plugin" title="SonarLint for Command Line on GitHub">GitHub</a></li>
+                        <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="left image">
+                    <img src="resources/images/issues-report.png" title="SonarLint for Command Line" alt="SonarLint for Command Line" />
+                </div>
+            </section>
+            <section class="split" id="Requirements">
+                <div class="text wide">
+                    <h2>Requirements</h2>
+                    <p>The tree structure of the source code on your local machine must match the tree structure that has been remotely analyzed by SonarQube</p>
+                </div>
+            </section>
+
+            <section class="split instructions" id="Installation">
+                <div class="text wide">
+                    <h2>Installation</h2>
+                    <ol>
+                        <li>Install the <em>Issues Report</em> plugin through the Update Center or download it into the <em>SONARQUBE_HOME/extensions/plugins</em> directory</li>
+                        <li>Restart the SonarQube server</li>
+                        <li><a href="http://redirect.sonarsource.com/doc/install-configure-scanner.html">Install your favorite scanner</a> (SonarQube Scanner , SonarQube Scanner for Maven or SonarQube Scanner for Ant) on your local machine, and set the <code>sonar.host.url</code> property to point to your remote SonarQube server.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section class="instructions" id="Usage">
+                <div>
+                    <h2>Usage</h2>
+                    <ol>
+                        <li>Copy the configuration file (<em>sonar-project.properties</em>, <em>pom.xml</em>, etc.) used to analyze the project on the remote server to your local machine.</li>
+                        <li>Adjust the values:
+                            <ul>
+                                <li><code>sonar.sources</code> - must refer to the directory containing the source code on your local machine.</li>
+                                <li><code>sonar.issuesReport.html.enable=true</code> - to get reports in HTML format</li>
+                                <li><code>sonar.issuesReport.html.location</code> - to define the output location of the HTML report. May be relative or absolute. The default value is <em>.sonar/issues-report/</em> for the SonarQube Runner and SonarQube Runner for Ant, and <em>target/sonar/issues-report/</em> for SonarQube Runner for Maven.</li>
+                                <li><code>sonar.issuesReport.lightModeOnly=true</code> - to skip full report generation. This may be  useful when working on legacy projects with a lot of issues</li>
+                                <li><code>sonar.issuesReport.console.enable=true</code> - to display a short summary in the console:<br/>
+                                    <img src="resources/images/issues-report-console.png" title="Console summary" alt="Console summary"/>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Run an analysis:<br/>
+                            <code>sonar-runner -Dsonar.analysis.mode=incremental -Dsonar.issuesReport.html.enable=true</code><br/>
+                            or to see all issues:<br/>
+                            <code>sonar-runner -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true</code> 
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <section class="split last">
+                <div class="left text fifty" id="Contribute">
+                    <h2>Contribute</h2>
+                    <p>
+                        SonarLint for Command Line is open source under the LGPL v3 license. You can fork us on GitHub, and submit Pull Requests. Feel free to fix bugs or to implement new features.
+                    </p>
+                    <ul>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonar-issues-report-plugin" title="SonarLint GitHub">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="right text fifty" id="Feedback">
+                    <h2>Feedback</h2>
+                    <p>The preferred way to discuss about SonarLint is by posting on the SonarLint Google Group. We are also constantly monitoring questions posted to
+                    StackOverflow. For faster answers mark your StackOverflow questions with the [SonarLint] tag.</p>
+                     <ul>
+                        <li><a class="button-link google-group" href="https://groups.google.com/a/sonarsource.com/d/forum/sonarlint" title="SonarLint Google Group">Google Group</a></li>
+                        <li><a class="button-link stack-overflow" href="http://stackoverflow.com/search?q=%5Bsonarlint%5D" title="SonarLint StackOverflow">StackOverflow</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>
+                &copy; 2008-2015, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -92,6 +92,35 @@ section.split .right.image img {
     margin-left: -1000px;
 }
 
+section.instructions ul {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    list-style: disc;
+}
+
+section.instructions ol {
+    margin-left: 10px;
+    padding-left: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    list-style: decimal;
+}
+
+section.instructions code {
+    font-family: monospace;
+}
+
+section.instructions em {
+     font-style: italic;
+}
+
+section.instructions h2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 /*header - start*/
 
 #nav-div{
