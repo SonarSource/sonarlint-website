@@ -116,23 +116,36 @@
                     <h2>FAQ</h2>
                     <ul>
                         <li>
+                            <a name="howto_enable_sonarlint"></a>
                             <span class="bold">How to enable SonarLint on my project?</span> - Right click on the project -> Configure -> Enable SonarLint
                         </li>
                         <li>
+                            <a name="howto_start_analysis"></a>
                             <span class="bold">How to start SonarLint analysis?</span> - SonarLint analysis is automatically triggered by a builder (in short: when you save your file). 
                             You can also run a full analysis of your project: Right click on the project -> SonarLint -> Analyze all files
                         </li>
                         <li>
+                            <a name="howto_configure_rules"></a>
                             <span class="bold">How to configure rules?</span> - You can't for now. We will make this feature available in upcoming versions, probably by requiring to "link" SonarLint
                             with an existing SonarQube server instance.
                         </li>
                         <li>
+                            <a name="howto_exclude_files"></a>
                             <span class="bold">How to exclude files from the analysis?</span> - By default we are excluding derived files. Appart from that all Java, JavaScript and PHP
                             files are analyzed. Advanced users can configure some properties (either in global or per project SonarLint configuration) like <tt>sonar.exclusions</tt>.
                         </li>
                         <li>
+                            <a name="howto_update_sonarlint"></a>
                             <span class="bold">How to update SonarLint?</span> - SonarLint Eclipse Plugin can be updated like any other Eclipse plugin. During the first analysis, it will also download
                             rule engines from <tt>https://update.sonarlint.org</tt>. Updates of the rule engines will be published on a regular basis. To download latest rule engines use Help -> Update SonarLint menu.
+                        </li>
+                        <li>
+                            <a name="howto_open_console"></a>
+                            <span class="bold">How to open SonarLint console?</span> - SonarLint console allow to see logs of the analysis. This can be useful to understand some issues. You can open it from standard Eclipse Console views: <img src="resources/images/open-sonarlint-console.png"/>
+                        </li>
+                        <li>
+                            <a name="howto_enable_debug_logs"></a>
+                            <span class="bold">How to enable verbose logs?</span> - By default SonarLint console do not display debug logs. You can enable debug logs from SonarLint console: <img src="resources/images/enable-verbose-output.png"/>
                         </li>
                     </ul>
                 </div>
