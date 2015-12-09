@@ -2,6 +2,10 @@
     max-width: 962px;
 }
 
+code {
+    font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+}
+
 @media (max-width: 1000px) {
     #Description .image img {
         max-width: 100%;

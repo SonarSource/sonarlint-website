@@ -60,7 +60,7 @@ var Template = (function () {
     Template.RuleMenuItem = '<li><a  class="rule-link" href="#version={{currentVersion}}&ruleId={{rule.Key}}" title="{{rule.Key}}: {{rule.Data.0.Title}}">{{rule.Key}}: {{rule.Data.0.Title}}</a></li>';
     Template.RuleMenuHeaderVersion = ('<h2>List of rules</h2>' +
         '<span id="rule-version-cont">' +
-        '<a id="rule-version" href="#version={{controller.currentVersion}}">in version {{controller.currentVersion}}</a>' +
+        '<a id="rule-version" href="#version={{controller.currentVersion}}" title="Reset filters">in version {{controller.currentVersion}}</a>' +
         '<a id="language-selector" class="rule-link" href="#version={{controller.currentVersion}}{{next-language language}}" title="Toggle rule language">{{language-text language}}</a>' +
         '</span>');
     Template.RuleMenuHeaderVersionError = '<span id="rule-version-cont"><a href="#">Go to latest version</span></a>';

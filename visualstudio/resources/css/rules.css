@@ -101,7 +101,8 @@ p.leading-vertical-space{
 }
 
 #content dd span.param-default,
-#content code {
+#content code
+ {
     font-weight: 600;
     font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
     font-size: 12px;
