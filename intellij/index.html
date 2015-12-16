@@ -64,8 +64,8 @@
             <section class="split first" id="Description">
                 <div class="left text">
                     <p>
-                        SonarLint offers a fully-integrated user experience in IntelliJ IDEA. After installing the plugin you'll get a new inspection
-                        called 'SonarLint'.
+                        SonarLint offers a fully-integrated user experience in IntelliJ IDEA. After installing the plugin you'll get a new action
+                        called 'Analyze with SonarLint'.
                     </p>
                     <p>
                         SonarLint is free, open source, and available in the Jetbrains Plugin Repository.
@@ -116,18 +116,18 @@
                     <h2>FAQ</h2>
                     <ul>
                         <li>
-                            <span class="bold">How to enable SonarLint inspection?</span> - SonarLint inspection is enabled by default. You can disable it in your Inspection Profile.
+                            <span class="bold">How to enable SonarLint?</span> - SonarLint is enabled by default and the analysis is triggered manually.
                         </li>
                         <li>
-                            <span class="bold">How to start SonarLint inspection?</span> - SonarLint inspection is automatically triggered "on the fly". 
-                            You can also run a global inspection of your project: Right click on the project -> Analyze -> Run inspection by name...
+                            <span class="bold">How to start SonarLint analysis?</span> - SonarLint analysis are triggered with the action "Analyze this file with SonarLint" (Control+Shift+A).
+                            This action has a configurable key binding (Control + Shift + S by default) and is also available in the SonarLint console and editor popup menu. 
                         </li>
                         <li>
                             <span class="bold">How to configure rules?</span> - You can't for now. We will make this feature available in upcoming versions, probably by requiring to "link" SonarLint
                             with an existing SonarQube server instance.
                         </li>
                         <li>
-                            <span class="bold">How to exclude files from the analysis?</span> - SonarLint inspection is run on every source file by IntelliJ but only Java, JavaScript and PHP
+                            <span class="bold">How to exclude files from the analysis?</span> - SonarLint analysis will run on every source file but only Java, JavaScript and PHP
                             files are processed. Advanced users can configure some properties (File -> Settings -> SonarLint) like <tt>sonar.exclusions</tt>.
                         </li>
                         <li>
