@@ -64,8 +64,8 @@
             <section class="split first" id="Description">
                 <div class="left text">
                     <p>
-                        SonarLint offers a fully-integrated user experience in IntelliJ IDEA. After installing the plugin you'll get a new action
-                        called 'Analyze with SonarLint'.
+                        SonarLint offers a fully-integrated user experience in IntelliJ IDEA. After installing the plugin you'll get on the fly 
+                        analysis of your code and a new action called 'Analyze with SonarLint'.
                     </p>
                     <p>
                         SonarLint is free, open source, and available in the Jetbrains Plugin Repository.
@@ -84,6 +84,11 @@
                 <div class="text wide">
                     <h2>News</h2>
                     <ul>
+                        <li>
+                            <span class="bold">January 13, 2016</span> - Version 1.2 of SonarLint for IntelliJ IDEA is released. 
+                            On the fly analysis is back and enabled by default.
+                            Highlighting of issues is now configurable by severity (including error stripes) and we have now a "NO SONAR" quick fix.
+                        </li>
                         <li>
                             <span class="bold">December 16, 2015</span> - Version 1.1 of SonarLint for IntelliJ IDEA is released. 
                             It features more precise issue locations, improved console and better adaption of markers to code changes. 
@@ -116,10 +121,14 @@
                     <h2>FAQ</h2>
                     <ul>
                         <li>
-                            <span class="bold">How to enable SonarLint?</span> - SonarLint is enabled by default and the analysis is triggered manually.
+                            <span class="bold">How to enable SonarLint?</span> - SonarLint is enabled by default.
                         </li>
                         <li>
-                            <span class="bold">How to start SonarLint analysis?</span> - SonarLint analysis are triggered with the action "Analyze this file with SonarLint" (Control+Shift+A).
+                            <span class="bold">Can I change the highlighting of issues?</span> - Yes, in Settings -> Editor -> Colors & Fonts -> SonarLint.
+                            By default, the highlighting of issues matches the standard warnings and errors, but it can be customized by severity, including the error stripe on the right bar.
+                        </li>
+                        <li>
+                            <span class="bold">How to start SonarLint analysis?</span> - By default, SonarLint analysis are triggered automatically when working on the code (this behaviour can be disabled in the configuration). It can also be launched manually with the action "Analyze this file with SonarLint" (Control+Shift+A).
                             This action has a configurable key binding (Control + Shift + S by default) and is also available in the SonarLint console and editor popup menu. 
                         </li>
                         <li>
