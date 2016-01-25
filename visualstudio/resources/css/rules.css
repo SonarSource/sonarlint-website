@@ -325,7 +325,7 @@ p.leading-vertical-space{
     text-decoration: none;
 }
 .release-notes:before{
-    content: '\f09b';
+    content: '\f016';
 }
 .release-download:before{
     content: '\f019';

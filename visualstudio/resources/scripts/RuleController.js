@@ -418,9 +418,8 @@ var Controllers;
             };
             xobj.send(null);
         };
-        RuleController.defaultVersion = '1.6.0';
+        RuleController.defaultVersion = '1.7.0';
         return RuleController;
     })();
     Controllers.RuleController = RuleController;
 })(Controllers || (Controllers = {}));
-//# sourceMappingURL=RuleController.js.map
