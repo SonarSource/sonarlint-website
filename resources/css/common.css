@@ -129,6 +129,28 @@ h2 {
     font-size: 25px;
 }
 
+h3 {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #495967;
+    
+}
+
+div.code {
+   font-family: Consolas, Monaco, "Courier New", Courier, monospace;
+   background-color: #DAE2EA;
+   margin-left: 3%;
+   min-width: 50%;
+   padding: 0 15px 0 10px;
+   display: inline-block;
+}
+
+p.indented {
+   text-indent: 50px;
+}
+
 
 header .logo {
     padding-top: 20px;
@@ -163,6 +185,11 @@ header .short-description {
 
 .bold{
     font-weight: bold;
+}
+
+span.section {
+    font-weight: bold;
+    margin-top: 50px;
 }
 
 @media (max-width: 1000px) {

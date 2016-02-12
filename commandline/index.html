@@ -55,7 +55,7 @@
                     <div class="short-description">
                         SonarLint for Command Line provides
                         <span class="emph">pre-commit feedback</span> to developers on
-                        <span class="emph">new bugs and quality issues</span> injected into code from any language supported by the SonarQube ecosystem.
+                        <span class="emph">new bugs and quality issues</span> injected into code, with several languages supported and simple usage.
                     </div>
                 </div>
             </div>
@@ -64,13 +64,13 @@
             <section class="split first" id="Description">
                 <div class="left text">
                     <p>
-                        SonarLint offers the ability to scan code for issues before checking it in. After installing the plugin on the server, and a SonarQube Scanner locally, you just have to run an analysis.
+                        SonarLint offers the ability to scan code for issues before checking it in, with minimal configuration. 
                     </p>
                     <p>
-                        SonarLint for Command Line is free, open source, and available in the SonarQube Update Center.
+                        SonarLint for Command Line is free and open source.
                     </p>
                     <ul>
-                        <li><a class="button-link github" href="https://github.com/SonarSource/sonar-issues-report-plugin" title="SonarLint for Command Line on GitHub">GitHub</a></li>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-cli" title="SonarLint for Command Line on GitHub">GitHub</a></li>
                         <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
                     </ul>
                 </div>
@@ -78,44 +78,77 @@
                     <img src="resources/images/issues-report.png" title="SonarLint for Command Line" alt="SonarLint for Command Line" />
                 </div>
             </section>
-            <section class="split" id="Requirements">
-                <div class="text wide">
-                    <h2>Requirements</h2>
-                    <p>The tree structure of the source code on your local machine must match the tree structure that has been remotely analyzed by SonarQube</p>
-                </div>
-            </section>
 
             <section class="split instructions" id="Installation">
                 <div class="text wide">
                     <h2>Installation</h2>
                     <ol>
-                        <li><a href="http://redirect.sonarsource.com/doc/install-configure-scanner.html">Install your favorite scanner</a> (SonarQube Scanner , SonarQube Scanner for Maven or SonarQube Scanner for Ant) on your local machine, and set the <code>sonar.host.url</code> property to point to your remote SonarQube server.</li>
+                        <li>
+                        	Download the <a href="https://github.com/SonarSource/sonarlint-cli/releases">latest release</a> and extract the zip file. 
+                        </li>
+                        <li>
+                            Add <code>&lt;extraction_path&gt;/bin</code> to your PATH.
+                        </li>
                     </ol>
                 </div>
             </section>
-            
             <section class="instructions" id="Usage">
-                <div>
+                <div class="text">
                     <h2>Usage</h2>
-                    <ol>
-                        <li>Copy the configuration file (<em>sonar-project.properties</em>, <em>pom.xml</em>, etc.) used to analyze the project on the remote server to your local machine.</li>
-                        <li>Adjust the values:
+                        With the SonarLint executable in the PATH, simply run on the base directory of your project:
+                        <br/>
+                        <div class="code">sonarlint</div>
+                        <br/>
+                        For Windows:
+                        <br/>
+                        <div class="code">sonarlint.bat</div>
+                        <br/>
+                        SonarLint will produce an <span class="bold">HTML issues report</span> and will show a <span class="bold">short summary in the console</span>:<br/>
+                        <div>
+                            <img style="display:block;" src="resources/images/issues-report-console.png" title="Console summary" alt="Console summary"/>
+                        </div>
+                        <h3 class="bold">SonarLint CLI arguments</h3>
+                        <p>
+                            You can list the accepted arguments with 
+			    		    <div class="code">sonarlint -h</div>
+                        </p>  
+                        <h3>Example</h3>
                             <ul>
-                                <li><code>sonar.sources</code> - must refer to the directory containing the source code on your local machine.</li>
-                                <li><code>sonar.issuesReport.html.enable=true</code> - to get reports in HTML format</li>
-                                <li><code>sonar.issuesReport.html.location</code> - to define the output location of the HTML report. May be relative or absolute. The default value is <em>.sonar/issues-report/</em> for the SonarQube Runner and SonarQube Runner for Ant, and <em>target/sonar/issues-report/</em> for SonarQube Runner for Maven.</li>
-                                <li><code>sonar.issuesReport.lightModeOnly=true</code> - to skip full report generation. This may be  useful when working on legacy projects with a lot of issues</li>
-                                <li><code>sonar.issuesReport.console.enable=true</code> - to display a short summary in the console:<br/>
-                                    <img src="resources/images/issues-report-console.png" title="Console summary" alt="Console summary"/>
-                                </li>
+                                <li><span class="bold"><code>--src</code></span> - refers to the directory containing the source code in your project</li>
                             </ul>
+                        <div class="code">sonarlint --src=my_sources</div>
+                    </p>
+                </div>
+            </section>
+                        <section class="split" id="News">
+                <div class="text wide">
+                    <h2>News</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">February 8, 2016</span> - First release of SonarLint CLI.
                         </li>
-                        <li>Run an analysis:<br/>
-                            <code>sonar-runner -Dsonar.analysis.mode=incremental -Dsonar.issuesReport.html.enable=true</code><br/>
-                            or to see all issues:<br/>
-                            <code>sonar-runner -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true</code> 
+                    </ul>
+                </div>
+            </section>
+            <section class="split" id="FAQ">
+                <div class="text wide">
+                    <h2>FAQ</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">Which languages are supported?</span> - Currently, SonarLint CLI will analyze Java, Javascript, PHP source files.
                         </li>
-                    </ol>
+                        <li>
+                            <span class="bold">How do I configure which files to analyze?</span> - By default, SonarLint analyzes all source code that it finds under the current directory. 
+                            You can configure the location of source and test files using <code>--src</code> and <code>--tests</code>, respectively.
+                        </li>
+                        <li>
+                            <span class="bold">How to configure rules?</span> - You can't for now. We might implement this feature in upcoming versions, probably by allowing to "point" SonarLint
+                            to a SonarQube server instance.
+                        </li>
+                        <li>
+                            <span class="bold">How to keep updated about future releases?</span> - Releases are announced in the <a href="https://groups.google.com/a/sonarsource.com/d/forum/sonarlint">SonarLint group</a>. You can also subscribe to <a href="https://github.com/SonarSource/sonarlint-cli/releases.atom">atom feed</a> on github or to the newsletter in <a href=" http://www.sonarsource.com.">http://www.sonarsource.com</a>.
+                        </li>
+                    </ul>
                 </div>
             </section>
             <section class="split last">
@@ -125,7 +158,7 @@
                         SonarLint for Command Line is open source under the LGPL v3 license. You can fork us on GitHub, and submit Pull Requests. Feel free to fix bugs or to implement new features.
                     </p>
                     <ul>
-                        <li><a class="button-link github" href="https://github.com/SonarSource/sonar-issues-report-plugin" title="SonarLint GitHub">GitHub</a></li>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-cli" title="SonarLint GitHub">GitHub</a></li>
                     </ul>
                 </div>
                 <div class="right text fifty" id="Feedback">
@@ -137,12 +170,12 @@
                         <li><a class="button-link stack-overflow" href="http://stackoverflow.com/search?q=%5Bsonarlint%5D" title="SonarLint StackOverflow">StackOverflow</a></li>
                     </ul>
                 </div>
-            </section>
+            </section>    
         </main>
 
         <footer>
             <div>
-                &copy; 2008-2015, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland
+                &copy; 2008-2016, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland
             </div>
         </footer>
     </div>
