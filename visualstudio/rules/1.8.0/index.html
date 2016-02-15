@@ -1,0 +1,47 @@
+﻿<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio - version 1.8.0</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
+        </div>
+        <div class="rule-description" id="rule-description">
+            <ul class="release">
+                <li class="release-date">Release date: February 15, 2016</li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=12937" title="Release notes for version 1.8.0">Release notes</a></li>
+                <li class="release-download"><a href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548" title="Download Visual Studio Extension">Download Extension</a></li>
+                <li class="release-download"><a href="https://www.nuget.org/packages/SonarLint/1.8.0" title="Download Nuget package">Download Nuget</a></li>
+            </ul>
+            <p>
+                Seven new rules have been added to this version of SonarLint for Visual Studio. Furthermore, several rules have been reworked to not report
+                on controversial cases, or to remove known false positives or bugs. Also, issue messages have been clarified for a few rules so they should be understandable without additional description. 
+                The new rules since <a href="#version=1.7.0">version 1.7.0</a>:
+            </p>
+            <p class="leading-vertical-space">
+                <ul>
+                    <li>"==" should not be used when "Equals" is overridden - <a class="rule-link" href="#version=1.8.0&ruleId=S1698">Rule S1698</a></li>
+                    <li>Parameters with "[DefaultParameterValue]" attributes should also be "[Optional]" - <a class="rule-link" href="#version=1.8.0&ruleId=S3450">Rule S3450</a></li>
+                    <li>"[Optional]" should not be used with "ref" or "out" - <a class="rule-link" href="#version=1.8.0&ruleId=S3447">Rule S3447</a></li>
+                    <li>Optional parameters should have the same default value in overrides - <a class="rule-link" href="#version=1.8.0&ruleId=S1006">Rule S1006</a></li>
+                    <li>Possible loss of fraction - <a class="rule-link" href="#version=1.8.0&ruleId=S2184">Rule S2184</a></li>
+                    <li>"default" clause of a "switch" should not be empty - <a class="rule-link" href="#version=1.8.0&ruleId=S3532">Rule S3532</a></li>
+                    <li>Implementations should be provided for "partial" methods - <a class="rule-link" href="#version=1.8.0&ruleId=S3251">Rule S3251</a></li>
+                </ul>
+            </p>
+            <p>
+                Rules that have been reworked:
+            </p>
+            <p>
+                <ul>
+                    <li><a class="rule-link" href="#version=1.8.0&ruleId=S3236">Rule S3236</a> does not report on cases when the passed value is also a parameter with caller info attribute.</li>
+                    <li><a class="rule-link" href="#version=1.8.0&ruleId=S2219">Rule S2219</a> now reports correctly on <code>IsAssignableFrom</code> calls.</li>
+                    <li><a class="rule-link" href="#version=1.8.0&ruleId=S3217">Rule S3217</a> only reports on <code>foreach</code> statements on generic collections.</li>
+                    <li><a class="rule-link" href="#version=1.8.0&ruleId=S1449">Rule S1449</a> now also handles <code>StringComparison</code> arguments.</li>
+                    <li><a class="rule-link" href="#version=1.8.0&ruleId=S2971">Rule S2971</a> doesn't report false positives on <code>ToList()</code> calls.</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>

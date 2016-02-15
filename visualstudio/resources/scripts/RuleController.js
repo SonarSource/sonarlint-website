@@ -418,7 +418,7 @@ var Controllers;
             };
             xobj.send(null);
         };
-        RuleController.defaultVersion = '1.7.0';
+        RuleController.defaultVersion = '1.8.0';
         return RuleController;
     })();
     Controllers.RuleController = RuleController;
