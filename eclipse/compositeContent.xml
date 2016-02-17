@@ -3,11 +3,12 @@
 <repository name='&quot;SonarLint for Eclipse Update Site&quot;'
     type='org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository' version='1.0.0'>
   <properties size='1'>
-    <property name='p2.timestamp' value='1450263861'/><!-- http://www.epochconverter.com/ or http://www.onlineconversion.com/unix_time.htm -->
+    <property name='p2.timestamp' value='1455719806'/><!-- http://www.epochconverter.com/ or http://www.onlineconversion.com/unix_time.htm -->
   </properties>
   <children size='2'>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/1.0.0/'/>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/1.1.0/'/>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/1.2.0/'/>
+    <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/1.3.0/'/>
   </children>
 </repository>
