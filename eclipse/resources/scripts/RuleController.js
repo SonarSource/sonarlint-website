@@ -133,7 +133,7 @@ var Controllers;
         RuleController.prototype.renderFilters = function (hash) {
             var filterList = $('#rule-menu-filter > ul');
             filterList.empty();
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 20; i++) {
                 var filter = Template.eval(Template.RuleFilterElement, { tag: this.currentAllTags[i].Tag });
                 filterList.append($(filter));
             }
