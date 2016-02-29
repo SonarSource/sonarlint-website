@@ -31,7 +31,7 @@ interface TagFrequency {
 
 module Controllers {
     export class RuleController {
-        static defaultVersion: string = '1.8.0';
+        static defaultVersion: string = '1.9.0';
         currentVersion: string;
         currentRules: Rule[];
         currentDefaultContent: string;

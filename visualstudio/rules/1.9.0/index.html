@@ -1,0 +1,53 @@
+﻿<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio - version 1.9.0</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
+        </div>
+        <div class="rule-description" id="rule-description">
+            <ul class="release">
+                <li class="release-date">Release date: February 29, 2016</li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=12968" title="Release notes for version 1.9.0">Release notes</a></li>
+                <li class="release-download"><a href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548" title="Download Visual Studio Extension">Download Extension</a></li>
+                <li class="release-download"><a href="https://www.nuget.org/packages/SonarLint/1.9.0" title="Download Nuget package">Download Nuget</a></li>
+            </ul>
+            <p>
+                Ten new rules have been added to this version of SonarLint for Visual Studio. Furthermore, some rules have been improved to handle
+                more cases or to filter false positives. Also, two bugs have been found and fixed that caused exceptions in rules when analysing
+                invalid code. Altogether there are 153 C# rules in SonarLint for Visual Sudio. Check the new rules since <a href="#version=1.8.0">version 1.8.0</a>:
+            </p>
+            <p class="leading-vertical-space">
+                <ul>
+                    <li>Interfaces with colliding, inherited members should explicitly redefine interface members - <a class="rule-link" href="#version=1.9.0&ruleId=S3444">Rule S3444</a></li>
+                    <li>Type examining methods should be avoided on "System.Type" instances - <a class="rule-link" href="#version=1.9.0&ruleId=S3443">Rule S3443</a></li>
+                    <li>Inappropriate casts should not be made - <a class="rule-link" href="#version=1.9.0&ruleId=S1944">Rule S1944</a></li>
+                    <li>Optional parameters should be passed to "base" calls - <a class="rule-link" href="#version=1.9.0&ruleId=S3466">Rule S3466</a></li>
+                    <li>Non-flags enums should not be used in bitwise operations - <a class="rule-link" href="#version=1.9.0&ruleId=S3265">Rule S3265</a></li>
+                    <li>"[DefaultValue]" should not be used when "[DefaultParameterValue]" is meant - <a class="rule-link" href="#version=1.9.0&ruleId=S3451">Rule S3451</a></li>
+                    <li>Right operands of shift operators should be integers - <a class="rule-link" href="#version=1.9.0&ruleId=S3449">Rule S3449</a></li>
+                    <li>Limit nesting depth of control flow statements in functions - <a class="rule-link" href="#version=1.9.0&ruleId=S134">Rule S134</a></li>
+                    <li>Redundant property names should be omitted in anonymous classes - <a class="rule-link" href="#version=1.9.0&ruleId=S3441">Rule S3441</a></li>
+                    <li>Redundancies in declarations - <a class="rule-link" href="#version=1.9.0&ruleId=S3257">Rule S3257</a></li>
+                </ul>
+            </p>
+            <p>
+                Rules that have been reworked:
+            </p>
+            <p>
+                <ul>
+                    <li><a class="rule-link" href="#version=1.9.0&ruleId=S2333">Rule S2333</a> has been changed to not report on <code>virtual</code> keywords,
+                    and at the same time it now looks for redundant <code>unsafe</code> keywords.</li>
+                    <li><a class="rule-link" href="#version=1.9.0&ruleId=S1698">Rule S1698</a> now doesn't report on cases when the <code>Equals</code> override is known to perform a reference equality check.</li>
+                    <li><a class="rule-link" href="#version=1.9.0&ruleId=S2184">Rule S2184</a> also reports on returned integer divisions and lambda return values.</li>
+                    <li><a class="rule-link" href="#version=1.9.0&ruleId=S2737">Rule S2737</a> not only checks the last <code>catch</code> block, but all redundant ones.</li>
+                </ul>
+            </p>
+            <p>
+                Finally, I'd like to thank the contribution from <a href="https://github.com/p3pijn">Pepijn van de Kamp</a>, who implemented <a class="rule-link" href="#version=1.9.0&ruleId=S134">Rule S134</a>. Great job!
+            </p>
+        </div>
+    </div>
+</div>
