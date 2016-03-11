@@ -500,8 +500,16 @@ module Controllers {
                 var link = $(elem);
                 var currentHref = link.attr('href');
                 var newUrlParameters = this.getQueryParameters(currentHref);
-                newUrlParameters.tags = urlParameters.tags;
-                if (link.attr('id') != 'language-selector' && link.closest('div').attr('id') != 'sonarlint-version-summary') {
+
+                if (link.closest('div').attr('id') != 'sonarlint-version-summary') {
+                    newUrlParameters.tags = urlParameters.tags;
+                }
+                else {
+                    newUrlParameters.tags = null;
+                }
+
+                if (link.attr('id') != 'language-selector' &&
+                    link.closest('div').attr('id') != 'sonarlint-version-summary') {
                     newUrlParameters.language = urlParameters.language;
                 }
                 else {
