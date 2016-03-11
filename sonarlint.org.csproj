@@ -151,6 +151,7 @@
     <TypeScriptCompile Include="resources\scripts\RuleController.ts" />
     <TypeScriptCompile Include="resources\scripts\typings\handlebars\handlebars.d.ts" />
     <TypeScriptCompile Include="resources\scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="resources\scripts\typings\google.analytics\ga.d.ts" />
     <TypeScriptCompile Include="visualstudio\resources\scripts\App.ts" />
     <TypeScriptCompile Include="resources\scripts\Array.ts" />
     <TypeScriptCompile Include="visualstudio\resources\scripts\RuleController.ts" />

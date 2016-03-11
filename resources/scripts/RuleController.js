@@ -365,6 +365,9 @@ var Controllers;
             });
         };
         RulePageControllerBase.prototype.hashChanged = function () {
+            var url = window.location.pathname + window.location.search + window.location.hash;
+            ga('set', 'page', url);
+            ga('send', 'pageview');
             var queryParameters = this.getQueryParameters(location.hash || '');
             this.openRequestedPage(queryParameters);
         };

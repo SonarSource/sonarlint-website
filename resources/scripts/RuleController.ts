@@ -439,6 +439,10 @@ module Controllers {
         }
 
         public hashChanged() {
+            var url = window.location.pathname + window.location.search + window.location.hash;
+            ga('set', 'page', url);
+            ga('send', 'pageview');
+
             var queryParameters = this.getQueryParameters(location.hash || '');
             this.openRequestedPage(queryParameters);
         }
