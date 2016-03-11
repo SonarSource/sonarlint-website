@@ -78,9 +78,6 @@ var Helpers;
         UrlParameters.prototype.getHash = function () {
             return this.getVersionStringForHash() + this.getContentStringForHash();
         };
-        UrlParameters.prototype.getHomeLink = function () {
-            return '#' + this.getVersionStringForHash();
-        };
         return UrlParameters;
     })();
     Helpers.UrlParameters = UrlParameters;
@@ -110,6 +107,21 @@ var Helpers;
         }
         ContentRenderer.prototype.renderMainPage = function () {
             this.renderMainContent(this.sonarlintVersionDescription.defaultContent);
+            //inject generic version information:
+            var languages = this.pageController.displayedVersion.getSupportedLanguages();
+            var counts = {};
+            for (var i = 0; i < languages.length; i++) {
+                counts[languages[i]] = 0;
+            }
+            for (var i = 0; i < this.pageController.displayedVersion.rules.length; i++) {
+                for (var j = 0; j < this.pageController.displayedVersion.rules[i].implementations.length; j++) {
+                    var implementation = this.pageController.displayedVersion.rules[i].implementations[j];
+                    counts[implementation.language]++;
+                }
+            }
+            var versionInfo = Template.eval(Template.VersionInfo, { controller: this.pageController, details: counts });
+            document.getElementById("sonarlint-version-summary").innerHTML = versionInfo;
+            this.pageController.fixRuleLinks(this.urlParameters);
         };
         ContentRenderer.prototype.renderRulePage = function () {
             for (var i = 0; i < this.sonarlintVersionDescription.rules.length; i++) {
@@ -161,7 +173,6 @@ var Helpers;
                 nextLanguage = currentindex == languages.length - 1 ? null : languages[currentindex + 1];
             }
             $("#rule-menu-header").html(Template.eval(Template.RuleMenuHeaderVersion, {
-                homeLink: this.urlParameters.getHomeLink(),
                 controller: this.pageController,
                 language: currentLanguage,
                 nextLanguage: nextLanguage
@@ -390,7 +401,7 @@ var Controllers;
                 var currentHref = link.attr('href');
                 var newUrlParameters = _this.getQueryParameters(currentHref);
                 newUrlParameters.tags = urlParameters.tags;
-                if (link.attr('id') != 'language-selector') {
+                if (link.attr('id') != 'language-selector' && link.closest('div').attr('id') != 'sonarlint-version-summary') {
                     newUrlParameters.language = urlParameters.language;
                 }
                 else {
@@ -483,4 +494,3 @@ var Controllers;
     })(RulePageControllerBase);
     Controllers.RulePageController = RulePageController;
 })(Controllers || (Controllers = {}));
-//# sourceMappingURL=RuleController.js.map

@@ -4,4 +4,3 @@ var sonarLintSonarAnalyzerMappings = [
 window.onload = function () {
     App.Controller = new Controllers.VisualStudioRulePageController('1.9.0');
 };
-//# sourceMappingURL=App.js.map

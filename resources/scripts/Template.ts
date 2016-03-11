@@ -1,7 +1,7 @@
 ﻿class Template {
     static RuleMenuItem: HandlebarsTemplateDelegate = <any>'<li><a  class="rule-link" href="#version={{currentVersion}}&ruleId={{rule.key}}" title="{{rule.key}}: {{rule.title}}">{{rule.title}}</a></li>';
     static RuleMenuHeaderVersion: HandlebarsTemplateDelegate = <any>(
-        '<a id="version-home" href="{{{homeLink}}}">go to version home</a>' +
+        '<a id="version-home" class="rule-link" href="#version={{controller.displayedVersion.version}}">go to version home</a>' +
         '<h2>List of rules</h2>' +
         '<span id="rule-version-cont">' +
             '<a id="language-selector" class="rule-link" href="#version={{controller.displayedVersion.version}}{{next-language nextLanguage}}" title="Toggle rule language">{{language-text language}}</a>' +
@@ -33,6 +33,14 @@
             '<span id="rule-id" class="id">{{message}}</span>' +
         '</div>');
     static RuleFilterElement: HandlebarsTemplateDelegate = <any>'<li><input type="checkbox" checked="checked" id="{{tag}}" /><label for="{{tag}}">{{tag}}</label></li>';
+
+    static VersionInfo: HandlebarsTemplateDelegate = <any>(
+        '<p>Version summary:</p>' +
+        '<ul>' +
+        '{{#each details}}' +
+            '<li><a class="rule-link" href="#version={{../controller.displayedVersion.version}}&language={{@key}}">{{this}} rules for {{@key}}</a></li>' +
+        '{{/each}}' +
+        '</ul>');
 
 
     private static init() {
@@ -79,6 +87,7 @@
         Template.RulePageContent = Handlebars.compile(Template.RulePageContent);
         Template.RuleErrorPageContent = Handlebars.compile(Template.RuleErrorPageContent);
         Template.RuleFilterElement = Handlebars.compile(Template.RuleFilterElement);
+        Template.VersionInfo = Handlebars.compile(Template.VersionInfo);
     }
 
     static eval(template: HandlebarsTemplateDelegate, context: any): string {

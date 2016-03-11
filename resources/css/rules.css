@@ -451,6 +451,26 @@ p.leading-vertical-space{
 
 }
 
+#sonarlint-version-summary {
+    margin-bottom: 1em;
+}
+
+#sonarlint-version-summary p,
+#sonarlint-version-summary ul,
+#sonarlint-version-summary li {
+    display: inline-block;
+}
+
+#sonarlint-version-summary ul {
+    list-style-type: none;
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+#sonarlint-version-summary li {
+    list-style-type: none;
+    margin: 0 15px 0 5px;
+}
+
 @media (max-width: 1000px) {
     header, main, footer, #body, section.split, html, body {
         width: 1000px;

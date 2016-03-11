@@ -31,9 +31,6 @@
             return this.getVersionStringForHash() + this.getContentStringForHash();
         }
 
-        public getHomeLink(): string {
-            return '#' + this.getVersionStringForHash();
-        }
 
         private static getSonarLintVersion(sonarAnalyzerVersion: string): string {
             for (var i = 0; i < sonarLintSonarAnalyzerMappings.length; i++) {

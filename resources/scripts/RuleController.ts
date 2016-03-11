@@ -107,10 +107,6 @@ module Helpers {
         public getHash(): string {
             return this.getVersionStringForHash() + this.getContentStringForHash();
         }
-
-        public getHomeLink(): string {
-            return '#' + this.getVersionStringForHash();
-        }
     }
 
     export class FileLoader {
@@ -143,6 +139,24 @@ module Helpers {
 
         public renderMainPage() {
             this.renderMainContent(this.sonarlintVersionDescription.defaultContent);
+
+            //inject generic version information:
+            var languages = this.pageController.displayedVersion.getSupportedLanguages();
+            var counts = {};
+            for (var i = 0; i < languages.length; i++) {
+                counts[languages[i]] = 0;
+            }
+            for (var i = 0; i < this.pageController.displayedVersion.rules.length; i++) {
+                for (var j = 0; j < this.pageController.displayedVersion.rules[i].implementations.length; j++) {
+                    var implementation = this.pageController.displayedVersion.rules[i].implementations[j];
+                    counts[implementation.language]++;
+                }
+            }
+
+            var versionInfo = Template.eval(Template.VersionInfo, { controller: this.pageController, details: counts });
+            document.getElementById("sonarlint-version-summary").innerHTML = versionInfo;
+
+            this.pageController.fixRuleLinks(this.urlParameters);
         }
         public renderRulePage() {
             for (var i = 0; i < this.sonarlintVersionDescription.rules.length; i++) {
@@ -200,7 +214,6 @@ module Helpers {
                 nextLanguage = currentindex == languages.length - 1 ? null : languages[currentindex + 1];
             }
             $("#rule-menu-header").html(Template.eval(Template.RuleMenuHeaderVersion, {
-                homeLink: this.urlParameters.getHomeLink(),
                 controller: this.pageController,
                 language: currentLanguage,
                 nextLanguage: nextLanguage
@@ -273,7 +286,7 @@ module SonarLint {
         public version: string;
         public rules: Rule.Meta[];
         public defaultContent: string;
-        public supportedLanguages: string[] = null;
+        supportedLanguages: string[] = null;
         public tagFrequencies: Rule.TagFrequency[] = null;
 
         getSupportedLanguages(): string[] {
@@ -477,7 +490,7 @@ module Controllers {
                 var currentHref = link.attr('href');
                 var newUrlParameters = this.getQueryParameters(currentHref);
                 newUrlParameters.tags = urlParameters.tags;
-                if (link.attr('id') != 'language-selector') {
+                if (link.attr('id') != 'language-selector' && link.closest('div').attr('id') != 'sonarlint-version-summary') {
                     newUrlParameters.language = urlParameters.language;
                 }
                 else {

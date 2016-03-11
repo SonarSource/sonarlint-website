@@ -41,12 +41,13 @@ var Template = (function () {
         Template.RulePageContent = Handlebars.compile(Template.RulePageContent);
         Template.RuleErrorPageContent = Handlebars.compile(Template.RuleErrorPageContent);
         Template.RuleFilterElement = Handlebars.compile(Template.RuleFilterElement);
+        Template.VersionInfo = Handlebars.compile(Template.VersionInfo);
     };
     Template.eval = function (template, context) {
         return template(context);
     };
     Template.RuleMenuItem = '<li><a  class="rule-link" href="#version={{currentVersion}}&ruleId={{rule.key}}" title="{{rule.key}}: {{rule.title}}">{{rule.title}}</a></li>';
-    Template.RuleMenuHeaderVersion = ('<a id="version-home" href="{{{homeLink}}}">go to version home</a>' +
+    Template.RuleMenuHeaderVersion = ('<a id="version-home" class="rule-link" href="#version={{controller.displayedVersion.version}}">go to version home</a>' +
         '<h2>List of rules</h2>' +
         '<span id="rule-version-cont">' +
         '<a id="language-selector" class="rule-link" href="#version={{controller.displayedVersion.version}}{{next-language nextLanguage}}" title="Toggle rule language">{{language-text language}}</a>' +
@@ -76,7 +77,12 @@ var Template = (function () {
         '<span id="rule-id" class="id">{{message}}</span>' +
         '</div>');
     Template.RuleFilterElement = '<li><input type="checkbox" checked="checked" id="{{tag}}" /><label for="{{tag}}">{{tag}}</label></li>';
+    Template.VersionInfo = ('<p>Version summary:</p>' +
+        '<ul>' +
+        '{{#each details}}' +
+        '<li><a class="rule-link" href="#version={{../controller.displayedVersion.version}}&language={{@key}}">{{this}} rules for {{@key}}</a></li>' +
+        '{{/each}}' +
+        '</ul>');
     Template.hack_static_run = Template.init();
     return Template;
 })();
-//# sourceMappingURL=Template.js.map

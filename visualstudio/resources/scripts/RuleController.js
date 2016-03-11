@@ -32,9 +32,6 @@ var VisualStudio;
         UrlParameters.prototype.getHash = function () {
             return this.getVersionStringForHash() + this.getContentStringForHash();
         };
-        UrlParameters.prototype.getHomeLink = function () {
-            return '#' + this.getVersionStringForHash();
-        };
         UrlParameters.getSonarLintVersion = function (sonarAnalyzerVersion) {
             for (var i = 0; i < sonarLintSonarAnalyzerMappings.length; i++) {
                 if (sonarLintSonarAnalyzerMappings[i].sonarAnalyzerVersion == sonarAnalyzerVersion) {
@@ -75,4 +72,3 @@ var Controllers;
     })(Controllers.RulePageControllerBase);
     Controllers.VisualStudioRulePageController = VisualStudioRulePageController;
 })(Controllers || (Controllers = {}));
-//# sourceMappingURL=RuleController.js.map
