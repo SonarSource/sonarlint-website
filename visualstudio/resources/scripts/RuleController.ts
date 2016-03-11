@@ -7,8 +7,8 @@
         protected loadFromObject(parsedHash: any) {
             super.loadFromObject(parsedHash);
 
-            if (parsedHash.sonarLintVersion) {
-                this.sonarLintVersion = parsedHash.sonarLintVersion;
+            if (parsedHash.sonarlintversion) {
+                this.sonarLintVersion = parsedHash.sonarlintversion;
                 this.version = UrlParameters.getSonarAnalyzerVersion(this.sonarLintVersion);
             }
             else

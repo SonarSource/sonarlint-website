@@ -12,8 +12,8 @@ var VisualStudio;
         }
         UrlParameters.prototype.loadFromObject = function (parsedHash) {
             _super.prototype.loadFromObject.call(this, parsedHash);
-            if (parsedHash.sonarLintVersion) {
-                this.sonarLintVersion = parsedHash.sonarLintVersion;
+            if (parsedHash.sonarlintversion) {
+                this.sonarLintVersion = parsedHash.sonarlintversion;
                 this.version = UrlParameters.getSonarAnalyzerVersion(this.sonarLintVersion);
             }
             else {

@@ -16,8 +16,8 @@ var Helpers;
             if (parsedHash.version) {
                 this.version = parsedHash.version;
             }
-            if (parsedHash.ruleId) {
-                this.ruleId = parsedHash.ruleId;
+            if (parsedHash.ruleid) {
+                this.ruleId = parsedHash.ruleid;
             }
             if (parsedHash.language) {
                 this.language = parsedHash.language;
@@ -39,7 +39,7 @@ var Helpers;
             var hash = inputHash.replace(/^#/, '').split('&'), parsed = {};
             for (var i = 0, el; i < hash.length; i++) {
                 el = hash[i].split('=');
-                parsed[el[0]] = el[1];
+                parsed[el[0].toLowerCase()] = el[1];
             }
             return parsed;
         };
@@ -125,7 +125,7 @@ var Helpers;
         };
         ContentRenderer.prototype.renderRulePage = function () {
             for (var i = 0; i < this.sonarlintVersionDescription.rules.length; i++) {
-                if (this.sonarlintVersionDescription.rules[i].key == this.urlParameters.ruleId) {
+                if (this.sonarlintVersionDescription.rules[i].key.toLowerCase() == this.urlParameters.ruleId.toLowerCase()) {
                     var rule = this.sonarlintVersionDescription.rules[i];
                     //sort implementations
                     rule.implementations.sort(function (a, b) {
@@ -147,7 +147,7 @@ var Helpers;
             $('#rule-menu li:visible').each(function (index, elem) {
                 var li = $(elem);
                 var rule = li.data('rule');
-                if (rule.key == ruleId) {
+                if (rule.key.toLowerCase() == ruleId.toLowerCase()) {
                     li.css({ 'background-color': '#C9E6FF' });
                 }
             });
@@ -163,13 +163,15 @@ var Helpers;
             var menu = $("#rule-menu");
             var currentVersion = menu.attr("data-version");
             var languages = this.sonarlintVersionDescription.getSupportedLanguages();
+            var loweredLanguages = languages.map(function (l) { return l.toLowerCase(); });
             var currentLanguage = this.urlParameters.language;
             var nextLanguage = null;
             if (currentLanguage == null) {
                 nextLanguage = languages[0];
             }
             else {
-                var currentindex = languages.indexOf(currentLanguage);
+                var currentindex = loweredLanguages.indexOf(currentLanguage.toLowerCase());
+                currentLanguage = languages[currentindex];
                 nextLanguage = currentindex == languages.length - 1 ? null : languages[currentindex + 1];
             }
             $("#rule-menu-header").html(Template.eval(Template.RuleMenuHeaderVersion, {
@@ -377,8 +379,9 @@ var Controllers;
                 return;
             }
             this.getContentsForVersion(requestedVersion, function () {
-                var languages = _this.displayedVersion.getSupportedLanguages();
-                if (languages.indexOf(urlParameters.language) == -1) {
+                var languages = _this.displayedVersion.getSupportedLanguages().map(function (l) { return l.toLowerCase(); });
+                if (!urlParameters.language ||
+                    languages.indexOf(urlParameters.language.toLowerCase()) == -1) {
                     urlParameters.language = null;
                 }
                 var renderer = new _this.contentRendererType(urlParameters, _this);
@@ -411,14 +414,15 @@ var Controllers;
             });
         };
         RulePageControllerBase.prototype.applyFilters = function (urlParameters) {
+            var inputTagsLowered = urlParameters.tags.map(function (t) { return t.toLowerCase(); });
             $('#rule-menu-filter input').each(function (index, elem) {
                 var input = $(elem);
-                input.prop('checked', $.inArray(input.attr('id'), urlParameters.tags) != -1);
+                input.prop('checked', $.inArray(input.attr('id'), inputTagsLowered) != -1);
             });
-            var tagsToFilterFor = urlParameters.getTagsToFilterFor();
+            var tagsToFilterFor = urlParameters.getTagsToFilterFor().map(function (t) { return t.toLowerCase(); });
             var tagsWithOwnCheckbox = $('#rule-menu-filter input').map(function (index, element) { return $(element).attr('id'); }).toArray();
             tagsWithOwnCheckbox.splice(tagsWithOwnCheckbox.indexOf('others'), 1);
-            var filterForOthers = urlParameters.tags.indexOf('others') != -1;
+            var filterForOthers = inputTagsLowered.indexOf('others') != -1;
             var tagFrequencies = this.displayedVersion.getTagFrequencies();
             if (filterForOthers) {
                 tagsToFilterFor.splice(tagsToFilterFor.indexOf('others'), 1);
@@ -431,14 +435,14 @@ var Controllers;
                 var liTags = [];
                 var languageMatches = false;
                 for (var tagIndex = 0; tagIndex < rule.tags.length; tagIndex++) {
-                    liTags.push(rule.tags[tagIndex]);
+                    liTags.push(rule.tags[tagIndex].toLowerCase());
                 }
                 if (urlParameters.language == null) {
                     languageMatches = true;
                 }
                 else {
                     for (var implementationIndex = 0; implementationIndex < rule.implementations.length; implementationIndex++) {
-                        if (rule.implementations[implementationIndex].language == urlParameters.language) {
+                        if (rule.implementations[implementationIndex].language.toLowerCase() == urlParameters.language.toLowerCase()) {
                             languageMatches = true;
                             break;
                         }

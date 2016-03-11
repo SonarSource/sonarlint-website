@@ -39,8 +39,8 @@ module Helpers {
             if (parsedHash.version) {
                 this.version = parsedHash.version;
             }
-            if (parsedHash.ruleId) {
-                this.ruleId = parsedHash.ruleId;
+            if (parsedHash.ruleid) {
+                this.ruleId = parsedHash.ruleid;
             }
             if (parsedHash.language) {
                 this.language = parsedHash.language;
@@ -64,7 +64,7 @@ module Helpers {
 
             for (var i = 0, el; i < hash.length; i++) {
                 el = hash[i].split('=')
-                parsed[el[0]] = el[1];
+                parsed[el[0].toLowerCase()] = el[1];
             }
             return parsed;
         }
@@ -160,7 +160,7 @@ module Helpers {
         }
         public renderRulePage() {
             for (var i = 0; i < this.sonarlintVersionDescription.rules.length; i++) {
-                if (this.sonarlintVersionDescription.rules[i].key == this.urlParameters.ruleId) {
+                if (this.sonarlintVersionDescription.rules[i].key.toLowerCase() == this.urlParameters.ruleId.toLowerCase()) {
 
                     var rule = this.sonarlintVersionDescription.rules[i];
 
@@ -185,7 +185,7 @@ module Helpers {
             $('#rule-menu li:visible').each((index, elem) => {
                 var li = $(elem);
                 var rule = <Rule.Meta><any>li.data('rule');
-                if (rule.key == ruleId) {
+                if (rule.key.toLowerCase() == ruleId.toLowerCase()) {
                     li.css({ 'background-color': '#C9E6FF' });
                 }
             });
@@ -204,13 +204,15 @@ module Helpers {
             var menu = $("#rule-menu");
             var currentVersion = menu.attr("data-version");
             var languages = this.sonarlintVersionDescription.getSupportedLanguages();
+            var loweredLanguages = languages.map(l=> l.toLowerCase());
             var currentLanguage = this.urlParameters.language;
             var nextLanguage = null;
             if (currentLanguage == null) {
                 nextLanguage = languages[0];
             }
             else {
-                var currentindex = languages.indexOf(currentLanguage);
+                var currentindex = loweredLanguages.indexOf(currentLanguage.toLowerCase());
+                currentLanguage = languages[currentindex];
                 nextLanguage = currentindex == languages.length - 1 ? null : languages[currentindex + 1];
             }
             $("#rule-menu-header").html(Template.eval(Template.RuleMenuHeaderVersion, {
@@ -257,8 +259,6 @@ module Helpers {
             }
             this.pageController.applyFilters(this.urlParameters);
         }
-
-
 
         public displayRuleIdError(hasMenuIssueToo: boolean) {
             if (hasMenuIssueToo) {
@@ -460,8 +460,9 @@ module Controllers {
 
             this.getContentsForVersion(requestedVersion, () => {
 
-                var languages = this.displayedVersion.getSupportedLanguages();
-                if (languages.indexOf(urlParameters.language) == -1) {
+                var languages = this.displayedVersion.getSupportedLanguages().map(l=> l.toLowerCase());
+                if (!urlParameters.language ||
+                    languages.indexOf(urlParameters.language.toLowerCase()) == -1) {
                     urlParameters.language = null;
                 }
 
@@ -502,16 +503,19 @@ module Controllers {
 
 
         public applyFilters(urlParameters: Helpers.UrlParameters) {
+
+            var inputTagsLowered = urlParameters.tags.map(t=> t.toLowerCase());
+
             $('#rule-menu-filter input').each((index, elem) => {
                 var input = $(elem);
-                input.prop('checked', $.inArray(input.attr('id'), urlParameters.tags) != -1);
+                input.prop('checked', $.inArray(input.attr('id'), inputTagsLowered) != -1);
             });
 
-            var tagsToFilterFor = urlParameters.getTagsToFilterFor();
+            var tagsToFilterFor = urlParameters.getTagsToFilterFor().map(t=> t.toLowerCase());
             var tagsWithOwnCheckbox = <string[]>$('#rule-menu-filter input').map((index, element) => { return $(element).attr('id'); }).toArray();
             tagsWithOwnCheckbox.splice(tagsWithOwnCheckbox.indexOf('others'), 1);
 
-            var filterForOthers = urlParameters.tags.indexOf('others') != -1;
+            var filterForOthers = inputTagsLowered.indexOf('others') != -1;
             var tagFrequencies = this.displayedVersion.getTagFrequencies();
             if (filterForOthers) {
                 tagsToFilterFor.splice(tagsToFilterFor.indexOf('others'), 1);
@@ -526,14 +530,14 @@ module Controllers {
 
                 var languageMatches = false;
                 for (var tagIndex = 0; tagIndex < rule.tags.length; tagIndex++) {
-                    liTags.push(rule.tags[tagIndex]);
+                    liTags.push(rule.tags[tagIndex].toLowerCase());
                 }
 
                 if (urlParameters.language == null) {
                     languageMatches = true;
                 } else {
                     for (var implementationIndex = 0; implementationIndex < rule.implementations.length; implementationIndex++) {
-                        if (rule.implementations[implementationIndex].language == urlParameters.language) {
+                        if (rule.implementations[implementationIndex].language.toLowerCase() == urlParameters.language.toLowerCase()) {
                             languageMatches = true;
                             break;
                         }
