@@ -15,6 +15,9 @@ var VisualStudio;
             if (parsedHash.sonarlintversion) {
                 this.sonarLintVersion = parsedHash.sonarlintversion;
                 this.version = UrlParameters.getSonarAnalyzerVersion(this.sonarLintVersion);
+                if (!this.version) {
+                    this.version = this.sonarLintVersion;
+                }
             }
             else {
                 var sonarLintVersion = UrlParameters.getSonarLintVersion(this.version);
