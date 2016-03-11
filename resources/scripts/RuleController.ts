@@ -182,7 +182,6 @@ module Helpers {
                         var ruleLanguages = rule.implementations.map(i=> i.language.toLowerCase());
                         var index = ruleLanguages.indexOf(lang);
                         if (index != -1) {
-                            console.log(index);
                             $($('div.rule-details-container.tabs input[type=radio]')[index]).prop("checked", true);
                         }
                     }

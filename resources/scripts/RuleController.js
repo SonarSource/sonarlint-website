@@ -143,7 +143,6 @@ var Helpers;
                         var ruleLanguages = rule.implementations.map(function (i) { return i.language.toLowerCase(); });
                         var index = ruleLanguages.indexOf(lang);
                         if (index != -1) {
-                            console.log(index);
                             $($('div.rule-details-container.tabs input[type=radio]')[index]).prop("checked", true);
                         }
                     }
