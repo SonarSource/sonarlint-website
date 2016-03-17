@@ -97,6 +97,7 @@
     <Content Include="resources\images\waves-sonarqube-28.png" />
     <Content Include="resources\scripts\App.js" />
     <Content Include="resources\scripts\RuleController.js" />
+    <Content Include="visualstudio\faq.html" />
     <Content Include="visualstudio\index.html" />
     <Content Include="resources\css\common.css" />
     <Content Include="resources\css\font-awesome.min.css" />
@@ -104,8 +105,13 @@
     <Content Include="resources\fonts\fontawesome-webfont.svg" />
     <Content Include="visualstudio\resources\css\rules_override.css" />
     <Content Include="visualstudio\resources\images\akka.png" />
+    <Content Include="visualstudio\resources\images\connected_bind.png" />
+    <Content Include="visualstudio\resources\images\connected.png" />
+    <Content Include="visualstudio\resources\images\connected_error.png" />
+    <Content Include="visualstudio\resources\images\connected_settings.png" />
     <Content Include="visualstudio\resources\images\dasblog.png" />
     <Content Include="visualstudio\resources\images\roslyn.png" />
+    <Content Include="visualstudio\resources\images\ruleset.png" />
     <Content Include="visualstudio\resources\images\vs.png" />
     <Content Include="visualstudio\resources\scripts\App.js" />
     <Content Include="resources\scripts\Array.js" />
