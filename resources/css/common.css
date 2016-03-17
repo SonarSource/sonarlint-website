@@ -105,7 +105,10 @@ nav a:hover {
     width: auto;
     margin-top: 7px;
 }
-.nav-home{
+.nav-wide{
+    display: inline-block;
+}
+.nav-tight{
     display: none;
 }
 
@@ -135,7 +138,7 @@ h3 {
     margin-bottom: 5px;
     font-weight: bold;
     color: #495967;
-    
+
 }
 
 div.code {
@@ -198,10 +201,10 @@ span.section {
         font-size: 32px;
         line-height: 1.05em;
     }
-    .nav-icon {
+    .nav-wide {
         display: none;
     }
-    .nav-home{
+    .nav-tight{
         display: inline-block;
     }
 }

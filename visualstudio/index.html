@@ -31,19 +31,25 @@
                     <ul>
                         <li>
                             <a href="../index.html" title="SonarLint">
-                                <img class="nav-icon" src="../resources/images/sonarlint_24.png" alt="SonarLint" />
-                                <span class="nav-home">Home</span>
+                                <img class="nav-wide nav-icon" src="../resources/images/sonarlint_24.png" alt="SonarLint" />
+                                <span class="nav-tight">Home</span>
                             </a>
                         </li>
                         <li>
                             <a href="index.html">
-                                <span>Visual Studio</span>
+                                <span class="nav-wide">Visual Studio</span>
+                                <span class="nav-tight">VS</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Connected">
+                                <span class="nav-wide">Connected Mode</span>
+                                <span class="nav-tight">Connected</span>
                             </a>
                         </li>
                         <li><a href="#News">News</a></li>
-                        <li><a href="#Samples">Samples</a></li>
-                        <li><a href="#Contribute">Contribute</a></li>
                         <li><a href="rules/index.html">Rules</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
                     </ul>
                 </nav>
             </div>
@@ -84,6 +90,22 @@
             <section class="split">
                 <div class='video-container'>
                     <iframe src="https://player.vimeo.com/video/142231578?byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            </section>
+            <section class="split" id="Connected">
+                <div class="left text">
+                    <h2>Connected Mode</h2>
+                    <p>
+                        With version 2.0 you can now establish a connection to a SonarQube server and bind your Visual Studio solution to a SonarQube project. This operation automatically updates
+                        the rulesets of the solution and attaches the solution to the required Roslyn analyzers.
+                        <ul style="margin-top: 50px">
+                            <li><a class="button-link" href="rules/index.html#sonarLintVersion=2.0.0" title="SonarLint Connected Mode">Release notes</a></li>
+                            <li><a class="button-link" href="faq.html#q2" title="SonarLint Connected Mode FAQ">How to</a></li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="left image">
+                    <img src="resources/images/connected.png" title="Connected Mode" alt="Connected Mode" />
                 </div>
             </section>
             <section class="split" id="News">
