@@ -11,7 +11,6 @@ header:after {
 
 #header {
     max-width: 1000px;
-    min-height: 240px;
     margin: 50px auto 100px auto;
 }
 
@@ -80,12 +79,7 @@ footer {
 }
 
 @media (max-width: 600px) {
-    h1 {
-        font-size: 32px;
-        line-height: 1.05em;
-    }
     #header {
-        min-height: 130px;
         margin: 10px auto 30px auto;
     }
     header .logo{

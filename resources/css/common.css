@@ -156,15 +156,12 @@ p.indented {
 
 
 header .logo {
-    padding-top: 20px;
-    padding-left: 15px;
-    float: left;
-    width: 256px;
+    text-align: center;
 }
 
 header .logo img {
-    width: 220px;
-    height: 220px;
+    width: 256px;
+    height: 68px;
 }
 
 .header-content {

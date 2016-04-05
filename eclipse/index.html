@@ -8,9 +8,10 @@
     <link href="../resources/css/reset.css" rel="stylesheet" />
     <link href="../resources/css/common.css" rel="stylesheet" />
     <link href="../resources/css/tool.css" rel="stylesheet" />
+    <link href="resources/css/tool_override.css" rel="stylesheet" />
     <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
     <title>SonarLint for Eclipse</title>
-    <link rel="icon" type="image/png" href="../resources/images/waves-sonarqube-28.png" />
+    <link rel="icon" type="image/png" href="../resources/images/ico-sonarlint-32.png" />
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -39,17 +40,19 @@
                                 <span>Eclipse</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="#Connected">
+                                <span class="nav-wide">Connected Mode</span>
+                                <span class="nav-tight">Connected</span>
+                            </a>
+                        </li>
                         <li><a href="#News">News</a></li>
-                        <li><a href="#Contribute">Contribute</a></li>
                         <li><a href="rules/index.html">Rules</a></li>
                         <li><a href="#FAQ">FAQ</a></li>
                     </ul>
                 </nav>
             </div>
             <div id="header">
-                <div class="logo">
-                    <img src="../resources/images/waves-sonarqube-256.png" title="SonarLint for Eclipse" alt="SonarLint for Eclipse" />
-                </div>
                 <div class="header-content">
                     <h1>SonarLint for Eclipse</h1>
                     <div class="short-description">
@@ -77,13 +80,56 @@
                     </ul>
                 </div>
                 <div class="left image">
-                    <img src="resources/images/screenshot-1.3.png" title="SonarLint in Eclipse" alt="SonarLint in Eclipse" />
+                    <img src="resources/images/screenshot-2.0.png" title="SonarLint in Eclipse" alt="SonarLint in Eclipse" />
+                </div>
+            </section>
+            <section class="split connected" id="Connected">
+                <div class="text wide">
+                    <h2>Connected Mode</h2>
+                    <p>
+                        With version 2.0 you can now establish a connection to a SonarQube server (5.2+) and bind your Eclipse project to a SonarQube project. This operation will make SonarLint use
+                        the analyzers, quality profiles and settings defined on your SonarQube server.
+                    </p>
+                    <p>First step is to connect to your SonarQube server:</p>
+                        <ul>
+                            <li>In SonarQube server view, right click and choose 
+                        "New -> Server connection", or directly do "File -> New -> Other... -> SonarLint -> New Server".</li>
+                            <li>Complete connection details (URL and credentials).</li>
+                            <li>Test connection</li>
+                            <li>Click "Finish" to close the wizard and start updating configuration from the server (may take a while)</li>
+                        </ul>
+                    </p>
+                    <img src="resources/images/connected-add-server.png"/>
+                    <p>
+                        You can manage your SonarQube server connections in the "SonarQube Servers" view.
+                        To manually trigger an update of local configuration (if remote SonarQube configuration has changed): right click on a server and use the "update" action.
+                    </p>
+                    <img src="resources/images/connected-update-config.png"/>
+                    <p>
+                        Now you can bind one or more Eclipse project(s) to their remote SonarQube pair. Right click on project -> "SonarLint -> Bind with remote SonarQube server..."
+                    </p>
+                    <p>
+                        You can now use the wizard to find the matching SonarQube project. First try the "auto-bind" feature that will try to find best match based on Eclipse project name.
+                        If auto-bind fail you can manually search for a project.
+                    </p>
+                    <img src="resources/images/connected-binding-search.png"/>
+                    <p>
+                        Click on "Finish" to persist the binding. You should now show SonarQube overlay on your bound project icon.
+                    </p>
+                    <img src="resources/images/connected-overlay-icon.png"/>
+                    <p>
+                        That's it, you can now code and see SonarLint reporting issues based on remote SonarQube configuration.
+                    </p>
                 </div>
             </section>
             <section class="split" id="News">
                 <div class="text wide">
                     <h2>News</h2>
                     <ul>
+                        <li>
+                            <span class="bold">April 4, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=12957" target="_blank">version 2.0.0</a> of SonarLint for Eclipse with ability to connect to a SonarQube server.
+                            We have also updated Java and JavaScript analyzers to their latest version (Java 3.12 and JavaScript 2.11).
+                        </li>
                         <li>
                             <span class="bold">March 2, 2016</span> - We released bugfix <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=12997" target="_blank">version 1.3.1</a> of SonarLint for Eclipse.
                         </li>
@@ -107,42 +153,47 @@
                     </ul>
                 </div>
             </section>
-            <section class="split" id="FAQ">
+            <section class="split faq" id="FAQ">
                 <div class="text wide">
-                    <h2>FAQ</h2>
+                    <h2>Frequently Asked Questions</h2>
                     <ul>
                         <li>
-                            <a name="howto_start_analysis"></a>
-                            <span class="bold">How to start SonarLint analysis?</span> - SonarLint analysis is automatically triggered by a builder (in short: when a file is modified) and also when you open a file.<br/>
-                            If you want to disable the builder got to project properties: Right click on the project -> SonarLint and uncheck "Run SonarLint automatically"<br/>
-                            If builder is disabled you can manually run SonarLint analysis using context menu on file: <img src="resources/images/run-analysis-menu.png"/>
+                            <span class="question" id="howto_start_analysis">How to start SonarLint analysis?</span>
+                            <div class="answer">
+                              <p>SonarLint analysis is automatically triggered by a builder (in short: when a file is modified) and also when you open a file.</p>
+                              <p>If you want to disable the builder got to project properties: Right click on the project -> SonarLint and uncheck "Run SonarLint automatically"</p>
+                              <p>If builder is disabled you can manually run SonarLint analysis using context menu on file: <img src="resources/images/run-analysis-menu.png"/></p>
+                            </div>
                         </li>
                         <li>
                             <a name="howto_connect"></a>
-                            <span class="bold">How can I connect SonarLint to my SonarQube server?</span> - At the moment, SonarLint works entirely offline (locally), embedding all analyzers and settings needed, and it's not possible to connect it to a SonarQube server. Soon it will be possible to link SonarLint to a SonarQube server instance to use its analyzers, configured rules, etc.
+                            <span class="bold">How can I connect SonarLint to my SonarQube server?</span> - Please use <a href="#Connected">connected mode</a> to connect with a SonarQube server.
                         </li>
                         <li>
-                            <a name="howto_configure_rules"></a>
-                            <span class="bold">How to configure rules?</span> - You can't for now. We will make this feature available in upcoming versions, probably by requiring to "connect" SonarLint
-                            with an existing SonarQube server instance.
+                            <span class="question" id="howto_see_rule_description">How to see rule description?</span>
+                            <div class="answer">
+                                <p>Full rule description is available in a dedicated view. You can open it using the context menu in the issues view:
+                                <img src="resources/images/open-rule-description.png"/></p>
+                            </div>
                         </li>
                         <li>
-                            <a name="howto_see_rule_description"></a>
-                            <span class="bold">How to see rule description?</span> - Full rule description is available in a dedicated view. You can open it using the context menu in the issues view:
-                            <img src="resources/images/open-rule-description.png"/>
+                            <span class="question" id="howto_exclude_files">How to exclude files from the analysis?</span>
+                            <div class="answer">
+                                <p>By default we are excluding derived files. Appart from that all Java, JavaScript and PHP
+                            files are analyzed, and even some XML files.</p>
+                            </div>
                         </li>
                         <li>
-                            <a name="howto_exclude_files"></a>
-                            <span class="bold">How to exclude files from the analysis?</span> - By default we are excluding derived files. Appart from that all Java, JavaScript and PHP
-                            files are analyzed, and even some XML files.
+                            <span class="question" id="howto_open_console">How to open SonarLint console?</span>
+                            <div class="answer">
+                                <p>SonarLint console allow to see logs of the analysis. This can be useful to understand some technical issues. You can open it from standard Eclipse Console views: <img src="resources/images/open-sonarlint-console.png"/></p>
+                            </div>
                         </li>
                         <li>
-                            <a name="howto_open_console"></a>
-                            <span class="bold">How to open SonarLint console?</span> - SonarLint console allow to see logs of the analysis. This can be useful to understand some technical issues. You can open it from standard Eclipse Console views: <img src="resources/images/open-sonarlint-console.png"/>
-                        </li>
-                        <li>
-                            <a name="howto_enable_debug_logs"></a>
-                            <span class="bold">How to enable verbose logs?</span> - By default SonarLint console will not display debug logs. You can enable debug logs from SonarLint console: <img src="resources/images/enable-verbose-output.png"/>
+                            <span class="question" id="howto_enable_debug_logs">How to enable verbose logs?</span>
+                            <div class="answer">
+                                <p>By default SonarLint console will not display debug logs. You can enable debug logs from SonarLint console: <img src="resources/images/enable-verbose-output.png"/></p>
+                            </div>
                         </li>
                     </ul>
                 </div>
