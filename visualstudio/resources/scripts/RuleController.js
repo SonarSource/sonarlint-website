@@ -75,4 +75,3 @@ var Controllers;
     })(Controllers.RulePageControllerBase);
     Controllers.VisualStudioRulePageController = VisualStudioRulePageController;
 })(Controllers || (Controllers = {}));
-//# sourceMappingURL=RuleController.js.map

@@ -515,4 +515,3 @@ var Controllers;
     })(RulePageControllerBase);
     Controllers.RulePageController = RulePageController;
 })(Controllers || (Controllers = {}));
-//# sourceMappingURL=RuleController.js.map
