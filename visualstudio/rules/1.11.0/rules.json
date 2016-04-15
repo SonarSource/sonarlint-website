@@ -2507,7 +2507,7 @@
     },
     {
       "key": "S2201",
-      "title": "\"=+\" should not be used instead of \"+=\"",
+      "title": "Return values should not be ignored when function calls don't have any side effects",
       "tags": [
         "bug",
         "cert",
@@ -2517,7 +2517,7 @@
         {
           "key": "S2201",
           "language": "C#",
-          "title": "\"=+\" should not be used instead of \"+=\"",
+          "title": "Return values should not be ignored when function calls don't have any side effects",
           "description": "<p>\r\n    When the call to a function doesn't have any side effects, what is the point of making the call if the results are\r\n    ignored? In such case, either the function call is useless and should be dropped or the source code doesn't behave\r\n    as expected.\r\n</p>\r\n<p>\r\n    To prevent generating any false-positives, this rule triggers an issues only when the results of the following methods\r\n    are ignored:\r\n    <ul>\r\n        <li>LINQ method,</li>\r\n        <li><code>[Pure]</code> method,</li>\r\n        <li>any method on <code>string</code>, <code>int</code>, ...,\r\n        <code>System.Collections.Immutable.ImmutableArray&lt;T&gt;</code>, <code>ImmutableHashSet&lt;T&gt;</code>, ...</li>\r\n    </ul>\r\n</p>\r\n\r\n<h2>Noncompliant Code Example</h2>\r\n<pre>\r\ncoll.Where(i => i &gt; 5).Select(i => i*i); // Noncompliant\r\n\"this string\".Equals(\"other string\"); // Noncompliant\r\n</pre>\r\n\r\n<h2>Compliant Solution</h2>\r\n<pre>\r\nvar res = coll.Where(i => i &gt; 5).Select(i => i*i); // Noncompliant\r\nvar isEqual = \"this string\".Equals(\"other string\"); // Noncompliant\r\n</pre>\r\n\r\n<h2>Exceptions</h2>\r\n<p>\r\n    This rule doesn't report issues on method calls with <code>out</code> or <code>ref</code> arguments.\r\n</p>\r\n\r\n<h2>See</h2>\r\n<p>\r\n    <ul>\r\n        <li>MISRA C:2012, 17.7 - The value returned by a function having non-void return type shall be used</li>\r\n        <li><a href=\"https://www.securecoding.cert.org/confluence/x/9YIRAQ\">CERT, EXP12-C.</a> - Do not ignore values returned by functions</li>\r\n        <li><a href=\"https://www.securecoding.cert.org/confluence/x/eoAyAQ\">CERT, EXP12-CPP.</a> - Do not ignore values returned by functions or methods</li>\r\n        <li><a href=\"https://www.securecoding.cert.org/confluence/x/9gEqAQ\">CERT, EXP00-J.</a> - Do not ignore values returned by methods</li>\r\n    </ul>\r\n</p>",
           "severity": "Critical",
           "tags": [
