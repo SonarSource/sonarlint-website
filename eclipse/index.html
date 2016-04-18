@@ -170,6 +170,13 @@
                             <span class="bold">How can I connect SonarLint to my SonarQube server?</span> - Please use <a href="#Connected">connected mode</a> to connect with a SonarQube server.
                         </li>
                         <li>
+                            <span class="question" id="connect_supported_plugins">In connected mode will all plugins installed on SonarQube be executed in SonarLint?</span>
+                            <div class="answer">
+                              <p>SonarLint 2.0 supports only the SonarSource Java, JavaScript and PHP plugins. We plan to quickly add support for more SonarSource analyzers, and also support custom rules extending those analyzers.</p>
+                              <p>We don't plan to support plugins running third-party analyzers in order to keep SonarLint as fast as possible.</p>
+                            </div>
+                        </li>
+                        <li>
                             <span class="question" id="howto_see_rule_description">How to see rule description?</span>
                             <div class="answer">
                                 <p>Full rule description is available in a dedicated view. You can open it using the context menu in the issues view:
