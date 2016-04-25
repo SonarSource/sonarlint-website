@@ -83,13 +83,10 @@ footer {
         margin: 10px auto 30px auto;
     }
     header .logo{
-        width: 130px;
-        padding-top: 5px;
-        padding-left: 5px;
+        max-width:100%;
     }
-    header .logo img{
-        width: 110px;
-        height: 110px;
+    header .logo img {
+        max-width: 100%;
     }
     .header-content h1 {
         padding: 0 0 15px 0;
