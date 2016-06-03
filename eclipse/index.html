@@ -87,7 +87,7 @@
                 <div class="text wide">
                     <h2>Connected Mode</h2>
                     <p>
-                        With version 2.0 you can now establish a connection to a SonarQube server (5.2+) and bind your Eclipse project to a SonarQube project. This operation will make SonarLint use
+                        With version 2.0+ you can now establish a connection to a SonarQube server (4.5.4+) and bind your Eclipse project to a SonarQube project. This operation will make SonarLint use
                         the analyzers, quality profiles and settings defined on your SonarQube server.
                     </p>
                     <p>First step is to connect to your SonarQube server:</p>
@@ -127,6 +127,10 @@
                     <h2>News</h2>
                     <ul>
                         <li>
+                            <span class="bold">June 3, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13022" target="_blank">version 2.1.0</a> of SonarLint for Eclipse with extended support of SonarQube 4.5.4+ in connected mode. Some SonarSource commercial plugins are also supported.
+                            We have also updated Java and JavaScript analyzers to their latest version (Java 3.14 and JavaScript 2.12).
+                        </li>
+                        <li>
                             <span class="bold">April 4, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=12957" target="_blank">version 2.0.0</a> of SonarLint for Eclipse with ability to connect to a SonarQube server.
                             We have also updated Java and JavaScript analyzers to their latest version (Java 3.12 and JavaScript 2.11).
                         </li>
@@ -161,8 +165,8 @@
                             <span class="question" id="howto_start_analysis">How to start SonarLint analysis?</span>
                             <div class="answer">
                               <p>SonarLint analysis is automatically triggered by a builder (in short: when a file is modified) and also when you open a file.</p>
-                              <p>If you want to disable the builder got to project properties: Right click on the project -> SonarLint and uncheck "Run SonarLint automatically"</p>
-                              <p>If builder is disabled you can manually run SonarLint analysis using context menu on file: <img src="resources/images/run-analysis-menu.png"/></p>
+                              <p>If you want to disable the automatic analysis go to project properties: Right click on the project -> SonarLint and uncheck "Run SonarLint automatically"</p>
+                              <p>If automatic analysis is disabled you can manually run SonarLint analysis using context menu on file: <img src="resources/images/run-analysis-menu.png"/></p>
                             </div>
                         </li>
                         <li>
