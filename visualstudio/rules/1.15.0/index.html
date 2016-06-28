@@ -10,12 +10,27 @@
         <div class="rule-description" id="rule-description">
 
             <ul class="release">
-                <li class="release-date">Release date: June 27, 2016</li>
+                <li class="release-date">Release date: June 28, 2016</li>
                 <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11242&version=13312" title="Release notes for SonarLint">Release notes for SonarLint</a></li>
                 <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=13281" title="Release notes for C#">Release notes for C#</a></li>
+                <li class="release-download"><a href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548" title="Download Visual Studio Extension">Download Extension</a></li>
             </ul>
             <div id="sonarlint-version-summary">
             </div>
+            <p>
+                SonarLint for Visual Studio version 2.4 adds two new rules and some improvements to the product. The improvements include the extension of
+                <a class="rule-link" href="#version=1.15.0&ruleId=S1172">Rule S1172</a> to report on parameters whose value is never used because of assignments on all execution paths.
+                <a class="rule-link" href="#version=1.15.0&ruleId=S1854">Rule S1854</a> has been fixed to not report on variables that are captured in lambdas.
+                Also, the issue location of <a class="rule-link" href="#version=1.15.0&ruleId=S1854">Rule S1854</a> and <a class="rule-link" href="#version=1.15.0&ruleId=S1481">Rule S1481</a> have been improved
+                to not report on the same declaration.
+                Finally, here are the new rules since <a href="#sonarLintVersion=2.3.0">version 2.3</a>:
+            </p>
+            <p class="leading-vertical-space">
+                <ul>
+                    <li>Null pointers should not be dereferenced - <a class="rule-link" href="#version=1.15.0&ruleId=S2259">Rule S2259</a></li>
+                    <li>Conditions should not unconditionally evaluate to "true" or to "false" - <a class="rule-link" href="#version=1.15.0&ruleId=S2583">Rule S2583</a></li>
+                </ul>
+            </p>
         </div>
     </div>
 </div>
