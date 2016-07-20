@@ -162,6 +162,13 @@
                     <h2>Frequently Asked Questions</h2>
                     <ul>
                         <li>
+                            <span class="question" id="which_languages_supported">Which languages are supported?</span>
+                            <div class="answer">
+                              <p>Java, JavaScript, PHP</p>
+                              <p>With the <a href="#Connected">Connected Mode</a>, it adds: ABAP, COBOL, PL/SQL, Python, Swift</p>
+                            </div>
+                        </li>                        
+                        <li>
                             <span class="question" id="howto_start_analysis">How to start SonarLint analysis?</span>
                             <div class="answer">
                               <p>SonarLint analysis is automatically triggered by a builder (in short: when a file is modified) and also when you open a file.</p>
@@ -174,9 +181,9 @@
                             <span class="bold">How can I connect SonarLint to my SonarQube server?</span> - Please use <a href="#Connected">connected mode</a> to connect with a SonarQube server.
                         </li>
                         <li>
-                            <span class="question" id="connect_supported_plugins">In connected mode will all plugins installed on SonarQube be executed in SonarLint?</span>
+                            <span class="question" id="connect_supported_plugins">In Connected Mode will all plugins installed on SonarQube be executed in SonarLint?</span>
                             <div class="answer">
-                              <p>SonarLint 2.0 supports only the SonarSource Java, JavaScript and PHP plugins. We plan to quickly add support for more SonarSource analyzers, and also support custom rules extending those analyzers.</p>
+                              <p>SonarLint supports only the SonarSource Analyzers. We plan to quickly add support for custom rules extending the Java, JavaScript and PHP Analyzers.</p>
                               <p>We don't plan to support plugins running third-party analyzers in order to keep SonarLint as fast as possible.</p>
                             </div>
                         </li>
