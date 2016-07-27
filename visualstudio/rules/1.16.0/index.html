@@ -11,9 +11,26 @@
 
             <ul class="release">
                 <li class="release-date">Release date: July 27, 2016</li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11242&version=13345" title="Release notes for SonarLint">Release notes for SonarLint</a></li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=13247" title="Release notes for C#">Release notes for C#</a></li>
+                <li class="release-download"><a href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548" title="Download Visual Studio Extension">Download Extension</a></li>
             </ul>
             <div id="sonarlint-version-summary">
             </div>
+            <p>
+                One new rule and several improvements were added to SonarLint for Visual Studio version 2.5. The improvements include the extension of
+                <a class="rule-link" href="#version=1.16.0&ruleId=S1944">Rule S1944</a> to report on nullable casts that definitely fail due to the nullness of the operand.
+                User reported false positives were handled, for example
+                <a class="rule-link" href="#version=1.16.0&ruleId=S1858">Rule S1858</a> doesn't report on <code>struct</code>s anymore,
+                <a class="rule-link" href="#version=1.16.0&ruleId=S3459">Rule S3459</a> doesn't report on <code>fixed</code> arrays anymore.
+                Also, the symbolic execution engine was improved to propagate knowledge through complex expressions.
+                Finally, here is the new rule since <a href="#sonarLintVersion=2.4.0">version 2.4</a>:
+            </p>
+            <p class="leading-vertical-space">
+                <ul>
+                    <li>Empty nullable value should not be accessed - <a class="rule-link" href="#version=1.16.0&ruleId=S3655">Rule S3655</a></li>
+                </ul>
+            </p>
         </div>
     </div>
 </div>
