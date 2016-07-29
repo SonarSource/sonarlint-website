@@ -127,6 +127,9 @@
                     <h2>News</h2>
                     <ul>
                         <li>
+                            <span class="bold">July 29, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13248" target="_blank">version 2.2.0</a> of SonarLint for Eclipse with many improvements: Support of Python and updated Java and JavaScript analyzers. File/issue exclusions configured on SonarQube server are now taken into account (in connected mode). Support of custom rules (but plugins have to be updated).
+                        </li>
+                        <li>
                             <span class="bold">June 3, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13022" target="_blank">version 2.1.0</a> of SonarLint for Eclipse with extended support of SonarQube 4.5.4+ in connected mode. Some SonarSource commercial plugins are also supported.
                             We have also updated Java and JavaScript analyzers to their latest version (Java 3.14 and JavaScript 2.12).
                         </li>
@@ -164,14 +167,14 @@
                         <li>
                             <span class="question" id="which_languages_supported">Which languages are supported?</span>
                             <div class="answer">
-                              <p>Java, JavaScript, PHP</p>
-                              <p>With the <a href="#Connected">Connected Mode</a>, it adds: ABAP, COBOL, PL/SQL, Python, Swift</p>
+                              <p>Out of the box: Java, JavaScript, PHP and Python</p>
+                              <p>With the <a href="#Connected">Connected Mode</a>, it adds: ABAP, COBOL, PL/SQL, Swift</p>
                             </div>
                         </li>                        
                         <li>
                             <span class="question" id="howto_start_analysis">How to start SonarLint analysis?</span>
                             <div class="answer">
-                              <p>SonarLint analysis is automatically triggered by a builder (in short: when a file is modified) and also when you open a file.</p>
+                              <p>SonarLint analysis is automatically triggered by a resource change listener (in short: when a file is modified) and also when you open a file.</p>
                               <p>If you want to disable the automatic analysis go to project properties: Right click on the project -> SonarLint and uncheck "Run SonarLint automatically"</p>
                               <p>If automatic analysis is disabled you can manually run SonarLint analysis using context menu on file: <img src="resources/images/run-analysis-menu.png"/></p>
                             </div>
@@ -197,8 +200,7 @@
                         <li>
                             <span class="question" id="howto_exclude_files">How to exclude files from the analysis?</span>
                             <div class="answer">
-                                <p>By default we are excluding derived files. Appart from that all Java, JavaScript and PHP
-                            files are analyzed, and even some XML files.</p>
+                                <p>By default we are excluding derived files. Apart from that all files recognized as a supported language are analyzed. In connected mode you can configure some exlusions on server side.</p>
                             </div>
                         </li>
                         <li>
