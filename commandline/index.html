@@ -118,10 +118,55 @@
                     </p>
                 </div>
             </section>
-                        <section class="split" id="News">
+            <section class="instructions" id="Connected">
+                <div class="text">
+                    <h2>Connected mode</h2>
+                    <h3>Goal</h3>
+                    SonarLint CLI can be bound to remote projects in SonarQube servers to use the same settings as those projects. 
+                    SonarLint will download from the SonarQube server the analyzer plugins, rules, settigns and quality profiles associated to the remote project.
+                    This allows to use customized configuration of rules (quality profiles) and also certain settings, for example, issue and file exclusion.
+                    <br/>
+                    <h3>Global configuration</h3>
+                    SonarQube servers are defined globally in the following file: <span class="bold">{home}/.sonarlint/conf/global.json</span>
+                    <br/> 
+                    In it, you define how SonarLint CLI connects to SonarQube servers:
+                    <br/>
+                    <pre>
+{
+  servers: [
+    {
+      "id": "local",
+      "url": "http://localhost:9000",
+      "token": "mytoken"
+    }
+  ]
+}</pre>
+<br/>
+                    Several server configurations can be defined. It's also possible to define a login and password instead of a token.
+                    <br/>
+                    
+                    <h3>Per-project configuration</h3>
+                    Each project can be bound to a specific remote project in a SonarQube server defined in the global configuration file.
+                    <br/>
+                    The project key and the server id should be defined in the following file: <span class="bold">{project_base_dir}/sonarlint.json</span>
+                    <br/>
+                    Here is an example:
+                    <br/>
+                    <pre>
+{
+  "serverId": "local",
+  "projectKey": "my.organization:project1"
+}</pre>
+<br/>
+                    
+                </div>
+            </section>
+            <section class="split" id="News">
                 <div class="text wide">
                     <h2>News</h2>
                     <ul>
+                        <li>
+                            <span class="bold">August 10, 2016</span> - SonarLint CLI 2.0 is released, featuring the "connected mode", which allows to point SonarLint CLI to a remote project in a SonarQube server.
                         <li>
                             <span class="bold">February 12, 2016</span> - First release of SonarLint CLI.
                         </li>
@@ -133,15 +178,14 @@
                     <h2>FAQ</h2>
                     <ul>
                         <li>
-                            <span class="bold">Which languages are supported?</span> - Currently, SonarLint CLI will analyze Java, Javascript, PHP source files.
+                            <span class="bold">Which languages are supported?</span> - Out of the box, SonarLint CLI will analyze Java, Javascript, PHP source files. If you bind SonarLint CLI to a SonarQube server, other analyzer plugins installed in the server will be downloaded and executed.
                         </li>
                         <li>
                             <span class="bold">How do I configure which files to analyze?</span> - By default, SonarLint analyzes all source code that it finds under the current directory.
                             You can configure the location of source and test files using <code>--src</code> and <code>--tests</code>, respectively.
                         </li>
                         <li>
-                            <span class="bold">How to configure rules?</span> - You can't for now. We might implement this feature in upcoming versions, probably by allowing to "point" SonarLint
-                            to a SonarQube server instance.
+                            <span class="bold">How to configure rules?</span> - When SonarLint is bound to a project in a SonarQube server, the Quality Profile of that project is used. For more information, read the section about the connected mode.
                         </li>
                         <li>
                             <span class="bold">How to keep updated about future releases?</span> - Releases are announced in the <a href="https://groups.google.com/a/sonarsource.com/d/forum/sonarlint">SonarLint group</a>. You can also subscribe to <a href="https://github.com/SonarSource/sonarlint-cli/releases.atom">atom feed</a> on github or to the newsletter in <a href=" http://www.sonarsource.com.">http://www.sonarsource.com</a>.
