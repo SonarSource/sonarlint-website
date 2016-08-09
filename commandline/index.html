@@ -121,7 +121,6 @@
             <section class="instructions" id="Connected">
                 <div class="text">
                     <h2>Connected mode</h2>
-                    <h3>Goal</h3>
                     SonarLint CLI can be bound to remote projects in SonarQube servers to use the same settings as those projects. 
                     SonarLint will download from the SonarQube server the analyzer plugins, rules, settigns and quality profiles associated to the remote project.
                     This allows to use customized configuration of rules (quality profiles) and also certain settings, for example, issue and file exclusion.
@@ -142,7 +141,7 @@
   ]
 }</pre>
 <br/>
-                    Several server configurations can be defined. It's also possible to define a login and password instead of a token.
+                    Several server configurations should be defined. It's also possible to define a login and password instead of a token.
                     <br/>
                     
                     <h3>Per-project configuration</h3>
@@ -159,10 +158,10 @@
 }</pre>
 <br/>
                     <h3>Force the update of the binding</h3>
-                    All the binding data is downloaded from the SonarQube server if it's not present in the local storage. Subsequent analysis with the same settings will reuse the local storage,
-                    not requiring a network connection to the SonarQube server.
-                    However, if any configuration changes in the SonarQube server (for example, analyzer plugins, rules, quality profiles, ..), an update of the SonarLint's storage is needed to have those changes reflected
-                    locally. It is triggered manually with the parameter "-u":
+                    All the binding data is downloaded from the SonarQube server if it's not present locally. Subsequent analysis with the same settings will 
+                    reuse the local data, not requiring a network connection to the SonarQube server.
+                    However, if any configuration changes in the SonarQube server (for example, analyzer plugins, rules, quality profiles, ..), 
+                    an update is needed to have those changes reflected locally. It has to be triggered manually with the parameter "-u":
                     <br/>
                     <div class="code">sonarlint -u</div>
                     <br/>
