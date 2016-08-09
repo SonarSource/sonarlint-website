@@ -158,6 +158,14 @@
   "projectKey": "my.organization:project1"
 }</pre>
 <br/>
+                    <h3>Force the update of the binding</h3>
+                    All the binding data is downloaded from the SonarQube server if it's not present in the local storage. Subsequent analysis with the same settings will reuse the local storage,
+                    not requiring a network connection to the SonarQube server.
+                    However, if any configuration changes in the SonarQube server (for example, analyzer plugins, rules, quality profiles, ..), an update of the SonarLint's storage is needed to have those changes reflected
+                    locally. It is triggered manually with the parameter "-u":
+                    <br/>
+                    <div class="code">sonarlint -u</div>
+                    <br/>
                     
                 </div>
             </section>
