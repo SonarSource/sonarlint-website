@@ -9,5 +9,6 @@ var sonarLintSonarAnalyzerMappings = [
     { sonarLintVersion: '2.6.0', sonarAnalyzerVersion: '1.17.0' }
 ];
 window.onload = function () {
-    App.Controller = new Controllers.VisualStudioRulePageController('1.16.0');
+    App.Controller = new Controllers.VisualStudioRulePageController('1.17.0');
 };
+//# sourceMappingURL=App.js.map

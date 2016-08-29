@@ -15,5 +15,5 @@ var sonarLintSonarAnalyzerMappings: SonarLintSonarAnalyzerMapping[] = [
 ];
 
 window.onload = () => {
-    App.Controller = new Controllers.VisualStudioRulePageController('1.16.0');
+    App.Controller = new Controllers.VisualStudioRulePageController('1.17.0');
 }
