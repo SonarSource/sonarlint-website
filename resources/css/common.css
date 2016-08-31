@@ -31,13 +31,14 @@ body {
 }
 
 footer {
-    height: 27px;
+    /*height: 27px;*/
+    
     padding-top: 3px;
-    padding-bottom: 3px;
+    padding-bottom: 5px;
     line-height: 1.5;
     border-top: 1px solid #e6e6e6;
     color: #444;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
 }
 
