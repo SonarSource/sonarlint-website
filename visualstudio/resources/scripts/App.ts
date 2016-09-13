@@ -12,7 +12,7 @@ var sonarLintSonarAnalyzerMappings: SonarLintSonarAnalyzerMapping[] = [
     { sonarLintVersion: '2.4.0', sonarAnalyzerVersion: '1.15.0' },
     { sonarLintVersion: '2.5.0', sonarAnalyzerVersion: '1.16.0' },
     { sonarLintVersion: '2.6.0', sonarAnalyzerVersion: '1.17.0' },
-    { sonarLintVersion: '2.7.0', sonarAnalyzerVersion: '1.18.0.0' }
+    { sonarLintVersion: '2.7.0', sonarAnalyzerVersion: '1.18.0.0' /* this additional .0 is on purpose */ }
 ];
 
 window.onload = () => {
