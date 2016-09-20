@@ -79,7 +79,7 @@ var Helpers;
             return this.getVersionStringForHash() + this.getContentStringForHash();
         };
         return UrlParameters;
-    })();
+    }());
     Helpers.UrlParameters = UrlParameters;
     var FileLoader = (function () {
         function FileLoader() {
@@ -96,7 +96,7 @@ var Helpers;
             xobj.send(null);
         };
         return FileLoader;
-    })();
+    }());
     Helpers.FileLoader = FileLoader;
     var ContentRenderer = (function () {
         function ContentRenderer(urlParameters, pageController) {
@@ -237,7 +237,7 @@ var Helpers;
             $('#rule-menu-filter').html('');
         };
         return ContentRenderer;
-    })();
+    }());
     Helpers.ContentRenderer = ContentRenderer;
 })(Helpers || (Helpers = {}));
 var SonarLint;
@@ -304,7 +304,7 @@ var SonarLint;
             return this.tagFrequencies;
         };
         return VersionDescription;
-    })();
+    }());
     SonarLint.VersionDescription = VersionDescription;
 })(SonarLint || (SonarLint = {}));
 var Controllers;
@@ -503,7 +503,7 @@ var Controllers;
             successCallback();
         };
         return RulePageControllerBase;
-    })();
+    }());
     Controllers.RulePageControllerBase = RulePageControllerBase;
     var RulePageController = (function (_super) {
         __extends(RulePageController, _super);
@@ -512,7 +512,6 @@ var Controllers;
             _super.call(this, toolName, defaultVersion, numberOfTagsToDisplay, Helpers.UrlParameters, Helpers.ContentRenderer);
         }
         return RulePageController;
-    })(RulePageControllerBase);
+    }(RulePageControllerBase));
     Controllers.RulePageController = RulePageController;
 })(Controllers || (Controllers = {}));
-//# sourceMappingURL=RuleController.js.map
