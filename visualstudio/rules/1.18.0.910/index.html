@@ -1,0 +1,71 @@
+﻿<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio version 2.7</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
+        </div>
+        <div class="rule-description" id="rule-description">
+
+            <ul class="release">
+                <li class="release-date">Release date: September 20, 2016</li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11242&version=13388" title="Release notes for SonarLint">Release notes for SonarLint</a></li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=13380" title="Release notes for the rules">Release notes for rules</a></li>
+                <li class="release-download"><a href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548" title="Download Visual Studio Extension">Download Extension</a></li>
+            </ul>
+            <div id="sonarlint-version-summary">
+            </div>
+            <p>
+                This version of SonarLint brings many VB.NET rules to the IDE. We took the time to reimplement all SonarQube VB.NET rules. These rules
+                now use the Roslyn compiler platform, so they could be made available inside the IDE. Furthermore, rules that were not available previously
+                in SonarQube have also been added. Finally, the symbolic execution engine for C# was improved to better handle expressions of value types.
+                Here are the new rules (for VB.NET) since <a href="#sonarLintVersion=2.6.0">version 2.6</a>:
+            </p>
+            <p class="leading-vertical-space">
+                <ul>
+                    <li>Identical expressions should not be used on both sides of a binary operator - <a class="rule-link" href="#version=1.18.0.910&ruleId=S1764">Rule S1764</a></li>
+                    <li>Two branches in the same conditional structure should not have exactly the same implementation - <a class="rule-link" href="#version=1.18.0.910&ruleId=S1871">Rule S1871</a></li>
+                    <li>Variables should not be self-assigned - <a class="rule-link" href="#version=1.18.0.910&ruleId=S1656">Rule S1656</a></li>
+                    <li>Related "If/ElseIf" statements should not have the same condition - <a class="rule-link" href="#version=1.18.0.910&ruleId=S1862">Rule S1862</a></li>
+
+                    <li>Functions should not be too complex - <a class="rule-link" href="#version=1.18.0.910&ruleId=S1541">Rule S1541</a></li>
+                    <li>Expressions should not be too complex - <a class="rule-link" href="#version=1.18.0.910&ruleId=S1067">Rule S1067</a></li>
+
+                    <li>Files should not have too many lines - <a class="rule-link" href="#version=1.18.0.910&ruleId=S104">Rule S104</a></li>
+                    <li>Lines should not be too long - <a class="rule-link" href="#version=1.18.0.910&ruleId=S103">Rule S103</a></li>
+
+                    <li>"With" statements should be used for a series of calls to the same object - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2375">Rule S2375</a></li>
+
+                    <li>Comments should not be located at the end of lines of code - <a class="rule-link" href="#version=1.18.0.910&ruleId=S139">Rule S139</a></li>
+                </ul>
+                <span>New naming rules:</span>
+                <ul>
+                    <li>Namespace names should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2304">Rule S2304</a></li>
+                    <li>Class names should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S101">Rule S101</a></li>
+                    <li>Interface names should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S114">Rule S114</a></li>
+                    <li>Method parameters should follow a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S1654">Rule S1654</a></li>
+                    <li>Generic type parameter names should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2373">Rule S2373</a></li>
+                    <li>Indexed properties should be named "Item" - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2353">Rule S2353</a></li>
+                    <li>Function names should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S1542">Rule S1542</a></li>
+                    <li>Properties should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2366">Rule S2366</a></li>
+                    <li>Enumeration types should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2342">Rule S2342</a></li>
+                    <li>Enumeration values should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2343">Rule S2343</a></li>
+                    <li>Event handlers should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2347">Rule S2347</a></li>
+                    <li>Events should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2348">Rule S2348</a></li>
+                    <li>Non-private constants should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2367">Rule S2367</a></li>
+                    <li>Private constants should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2362">Rule S2362</a></li>
+                    <li>Local variable and function parameter names should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S117">Rule S117</a></li>
+                    <li>Non-private "Shared ReadOnly" fields should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2370">Rule S2370</a></li>
+                    <li>"Private Shared ReadOnly" fields should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2363">Rule S2363</a></li>
+                    <li>Non-private fields should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2369">Rule S2369</a></li>
+                    <li>"Private" fields should comply with a naming convention - <a class="rule-link" href="#version=1.18.0.910&ruleId=S2364">Rule S2364</a></li>
+                </ul>
+            </p>
+            <p>
+                Finally, we'd like to thank <a href="https://github.com/overeemm">Michiel Overeem</a> and <a href="https://github.com/erik-am">Erik Ammerlaan</a> for their contributions.
+            </p>
+        </div>
+    </div>
+</div>

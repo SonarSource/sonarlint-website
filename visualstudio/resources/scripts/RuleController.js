@@ -52,7 +52,7 @@ var VisualStudio;
             return null;
         };
         return UrlParameters;
-    })(Helpers.UrlParameters);
+    }(Helpers.UrlParameters));
     VisualStudio.UrlParameters = UrlParameters;
     var ContentRenderer = (function (_super) {
         __extends(ContentRenderer, _super);
@@ -60,7 +60,7 @@ var VisualStudio;
             _super.apply(this, arguments);
         }
         return ContentRenderer;
-    })(Helpers.ContentRenderer);
+    }(Helpers.ContentRenderer));
     VisualStudio.ContentRenderer = ContentRenderer;
 })(VisualStudio || (VisualStudio = {}));
 var Controllers;
@@ -72,7 +72,6 @@ var Controllers;
             _super.call(this, 'VisualStudio', defaultVersion, numberOfTagsToDisplay, VisualStudio.UrlParameters, VisualStudio.ContentRenderer);
         }
         return VisualStudioRulePageController;
-    })(Controllers.RulePageControllerBase);
+    }(Controllers.RulePageControllerBase));
     Controllers.VisualStudioRulePageController = VisualStudioRulePageController;
 })(Controllers || (Controllers = {}));
-//# sourceMappingURL=RuleController.js.map

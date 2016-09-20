@@ -25,7 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -152,6 +152,7 @@
     <Content Include="visualstudio\rules\1.11.0\index.html" />
     <Content Include="visualstudio\rules\1.15.0\index.html" />
     <Content Include="visualstudio\rules\1.16.0\index.html" />
+    <Content Include="visualstudio\rules\1.18.0.910\index.html" />
     <Content Include="visualstudio\rules\1.18.0.0\index.html" />
     <Content Include="visualstudio\rules\1.17.0\index.html" />
     <Content Include="visualstudio\rules\1.2.0\index.html" />
@@ -271,6 +272,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="visualstudio\rules\1.18.0.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.18.0.910\rules.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
