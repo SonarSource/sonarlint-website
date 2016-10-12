@@ -8,7 +8,8 @@ var sonarLintSonarAnalyzerMappings = [
     { sonarLintVersion: '2.5.0', sonarAnalyzerVersion: '1.16.0' },
     { sonarLintVersion: '2.6.0', sonarAnalyzerVersion: '1.17.0' },
     { sonarLintVersion: '2.7.0-RC1', sonarAnalyzerVersion: '1.18.0.0' },
-    { sonarLintVersion: '2.7.0', sonarAnalyzerVersion: '1.18.0.910' }
+    { sonarLintVersion: '2.7.0', sonarAnalyzerVersion: '1.18.0.910' },
+    { sonarLintVersion: 'none.1', sonarAnalyzerVersion: '1.19.0.1021' }
 ];
 window.onload = function () {
     App.Controller = new Controllers.VisualStudioRulePageController('1.18.0.910');
