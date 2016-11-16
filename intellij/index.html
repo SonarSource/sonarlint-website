@@ -71,7 +71,7 @@
                         analysis of your code and a new action called 'Analyze with SonarLint'.
                     </p>
                     <p>
-                        SonarLint is free, open source, and available in the Jetbrains Plugin Repository. Note that it <strong>requires Java 8</strong> to run. The connected mode is compatible with SonarQube &gt; 5.6.
+                        SonarLint is free, open source, and available in the Jetbrains Plugin Repository. Note that it <strong>requires Java 8</strong> to run. The connected mode is compatible with SonarQube 5.6+.
                     </p>
                     <ul>
                         <li><a class="button-link download" href="https://plugins.jetbrains.com/plugin/7973" title="Download SonarLint from Jetbrains plugin repository">Download</a></li>
@@ -91,7 +91,7 @@
                             <span class="bold">November 15, 2016</span> -  Due to a bug, v2.4 is not able to analyze Javascript files in the standalone mode. Fixed with the release of <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13490">version 2.4.1</a>.
                         </li>
                         <li>
-                            <span class="bold">November 11, 2016</span> -  <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13365">version 2.4</a> released. SonarLint will now hide issues marked as resolved in SonarQube (when using the connected mode). Numerous other improvements and bugfixes are also included. Starting from this version, <span class="bold">SonarLint is only compatible with SonarQube &gt; 5.6</span> (current LTS).
+                            <span class="bold">November 11, 2016</span> -  <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13365">version 2.4</a> released. SonarLint will now hide issues marked as resolved in SonarQube (when using the connected mode). Numerous other improvements and bugfixes are also included. Starting from this version, <span class="bold">SonarLint is only compatible with SonarQube 5.6+</span> (current LTS).
                         </li>
                         <li>
                             <span class="bold">September 7, 2016</span> - Bugfix <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13395">version 2.3.2</a> released, fixing "disable automatic analysis" configuration not persisted, and classpath issue.
@@ -174,13 +174,13 @@
                 <div class="text wide">
                     <h2>Connected Mode</h2>
                     <p>
-                        You can bind IntelliJ projects to a SonarQube project (supporting SonarQube servers 4.5.4+). This operation will make SonarLint use
+                        You can bind IntelliJ projects to a SonarQube project (supporting SonarQube servers 5.6+). This operation will make SonarLint use
                         the analyzers, quality profiles and settings defined on your SonarQube server. This is a convenient way of customizing the rules used by SonarLint.
                     </p>
                     <p>First step is to <span class="bold">configure the SonarQube server</span>:</p>
                         <ul>
                             <li>In the SonarLint Global Settings, click in the add icon;</li>
-                            <li>Configure the server. For servers 5.4+, it is recommended to use authentication token, which can be created from your profile page in SonarQube;</li>
+                            <li>Configure the server. It is recommended to use authentication token, which can be created from your profile page in SonarQube;</li>
                         </ul>
                     <img src="resources/images/connected_add_server.png"/>
                     
