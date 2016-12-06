@@ -86,3 +86,4 @@ var Template = (function () {
     Template.hack_static_run = Template.init();
     return Template;
 }());
+//# sourceMappingURL=Template.js.map
