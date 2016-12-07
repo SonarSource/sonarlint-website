@@ -192,8 +192,8 @@
                             <span class="bold">Which languages are supported?</span> - Out of the box, SonarLint CLI will analyze Java, Javascript, PHP source files. If you bind SonarLint CLI to a SonarQube server, other analyzer plugins installed in the server will be downloaded and executed.
                         </li>
                         <li>
-                            <span class="bold">How do I configure which files to analyze?</span> - By default, SonarLint analyzes all source code that it finds under the current directory.
-                            You can configure the location of source and test files using <code>--src</code> and <code>--tests</code>, respectively.
+                            <span class="bold">How do I configure which files to analyze?</span> - By default, SonarLint analyzes all source code that it finds under the current directory, and consider everything as production code.
+                            You can configure the location of source code using <code>--src</code> and distinguish test code from production code using <code>--tests</code>. For example:<br/> <code>sonarlint --src src/** --tests src/test/**</code>
                         </li>
                         <li>
                             <span class="bold">How to configure rules?</span> - When SonarLint is bound to a project in a SonarQube server, the Quality Profile of that project is used. For more information, read the section about the connected mode.
