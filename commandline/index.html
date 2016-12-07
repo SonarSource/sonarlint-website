@@ -110,11 +110,15 @@
                             You can list the accepted arguments with
 			    		    <div class="code">sonarlint -h</div>
                         </p>
-                        <h3>Example</h3>
+                        <h3>Examples</h3>
                             <ul>
-                                <li><span class="bold"><code>--src</code></span> - refers to the directory containing the source code in your project</li>
+                                <li><span class="bold"><code>--src</code></span> - allow to restrict source set to be analyzed (default is to analyze all supported files)</li>
                             </ul>
-                        <div class="code">sonarlint --src **/my_source_dir/**</div>
+                        <div class="code">sonarlint --src src/**</div>
+                            <ul>
+                                <li><span class="bold"><code>--tests</code></span> - mark some files <strong>already included in the source set</strong> as test files. Test files are analyzed with different rules.</li>
+                            </ul>
+                        <div class="code">sonarlint --src src/** --tests src/tests/**</div>
                     </p>
                 </div>
             </section>
