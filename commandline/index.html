@@ -114,11 +114,11 @@
                             <ul>
                                 <li><span class="bold"><code>--src</code></span> - allow to restrict source set to be analyzed (default is to analyze all supported files)</li>
                             </ul>
-                        <div class="code">sonarlint --src src/**</div>
+                        <div class="code">sonarlint --src "src/**"</div>
                             <ul>
                                 <li><span class="bold"><code>--tests</code></span> - mark some files <strong>already included in the source set</strong> as test files. Test files are analyzed with different rules.</li>
                             </ul>
-                        <div class="code">sonarlint --src src/** --tests src/tests/**</div>
+                        <div class="code">sonarlint --src "src/**" --tests "src/tests/**"</div>
                     </p>
                 </div>
             </section>
@@ -193,7 +193,7 @@
                         </li>
                         <li>
                             <span class="bold">How do I configure which files to analyze?</span> - By default, SonarLint analyzes all source code that it finds under the current directory, and consider everything as production code.
-                            You can configure the location of source code using <code>--src</code> and distinguish test code from production code using <code>--tests</code>. For example:<br/> <code>sonarlint --src src/** --tests src/test/**</code>
+                            You can configure the location of source code using <code>--src</code> and distinguish test code from production code using <code>--tests</code>. For example: <pre>sonarlint --src "src/**" --tests "src/test/**"</pre>
                         </li>
                         <li>
                             <span class="bold">How to configure rules?</span> - When SonarLint is bound to a project in a SonarQube server, the Quality Profile of that project is used. For more information, read the section about the connected mode.
