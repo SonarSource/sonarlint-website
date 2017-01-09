@@ -114,7 +114,7 @@ module Helpers {
             var xobj = new XMLHttpRequest();
             xobj.open('GET', path, true);
             xobj.onload = function () {
-                if (this.status != 200) {
+                if ((<any>this).status != 200) {
                     errorCallback();
                 }
                 successCallback(xobj.responseText);

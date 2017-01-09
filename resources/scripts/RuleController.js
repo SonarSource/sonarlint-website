@@ -509,7 +509,7 @@ var Controllers;
         __extends(RulePageController, _super);
         function RulePageController(toolName, defaultVersion, numberOfTagsToDisplay) {
             if (numberOfTagsToDisplay === void 0) { numberOfTagsToDisplay = 10; }
-            _super.call(this, toolName, defaultVersion, numberOfTagsToDisplay, Helpers.UrlParameters, Helpers.ContentRenderer);
+            return _super.call(this, toolName, defaultVersion, numberOfTagsToDisplay, Helpers.UrlParameters, Helpers.ContentRenderer) || this;
         }
         return RulePageController;
     }(RulePageControllerBase));
