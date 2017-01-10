@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../resources/css/reset.css" rel="stylesheet" />
+    <link href="../resources/css/common.css" rel="stylesheet" />
+    <link href="../resources/css/tool.css" rel="stylesheet" />
+    <link href="resources/css/tool_override.css" rel="stylesheet" />
+    <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
+    <title>SonarLint for Visual Studio</title>
+    <link rel="icon" type="image/png" href="../resources/images/ico-sonarlint-32.png" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-1880045-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div id="nav-div">
+                <nav class="six">
+                    <ul>
+                        <li>
+                            <a href="../index.html" title="SonarLint">
+                                <img class="nav-wide nav-icon" src="../resources/images/sonarlint_24.png" alt="SonarLint" />
+                                <span class="nav-tight">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <span class="nav-wide">Visual Studio</span>
+                                <span class="nav-tight">VS</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Connected">
+                                <span class="nav-wide">Connected Mode</span>
+                                <span class="nav-tight">Connected</span>
+                            </a>
+                        </li>
+                        <li><a href="#News">News</a></li>
+                        <li><a href="rules/index.html">Rules</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="header">
+                <div class="header-content">
+                    <h1>SonarLint for Visual Studio</h1>
+                    <div class="short-description">
+                        SonarLint is a Visual Studio 2015 extension that provides
+                        <span class="emph">on-the-fly feedback</span> to developers on
+                        <span class="emph">new bugs and quality issues</span> injected into .NET code.
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="split first" id="Description">
+                <div class="left text">
+                    <p>
+                        SonarLint for Visual Studio is based on and benefits from the .NET Compiler Platform ("Roslyn") and its code analysis API
+                        to provide a fully-integrated user experience in Visual Studio 2015.
+                    </p>
+                    <p>
+                        SonarLint is free, open source, and available in the Visual Studio Gallery.
+                    </p>
+                    <ul>
+                        <li><a class="button-link download" href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548" title="Download SonarLint from Visual Studio Gallery">Download</a></li>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-vs" title="SonarLint on GitHub">GitHub</a></li>
+                        <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="left image">
+                    <img src="resources/images/vs.png" title="SonarLint in Visual Studio" alt="SonarLint in Visual Studio" />
+                </div>
+            </section>
+            <section class="split">
+                <div class='video-container'>
+                    <iframe src="https://player.vimeo.com/video/142231578?byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            </section>
+            <section class="split" id="Connected">
+                <div class="left text">
+                    <h2>Connected Mode</h2>
+                    <p>
+                        With version 2.0 you can now establish a connection to a SonarQube server and bind your Visual Studio solution to a SonarQube project. This operation automatically updates
+                        the rulesets of the solution and attaches the solution to the required Roslyn analyzers.
+                        <ul style="margin-top: 50px">
+                            <li><a class="button-link" href="faq.html#q2" title="SonarLint Connected Mode FAQ">How to</a></li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="left image">
+                    <img src="resources/images/connected.png" title="Connected Mode" alt="Connected Mode" />
+                </div>
+            </section>
+            <section class="split" id="News">
+                <div class="text wide">
+                    <h2>News</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">December 6, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.8.1" title="Go to version 2.8.1">Version 2.8.1</a> fixes
+                            an issue with the connected mode.
+                        </li>
+                        <li>
+                            <span class="bold">November 5, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.8.0" title="Go to version 2.8">Version 2.8</a> brings
+                            the Connected Mode to VB.NET. The symbolic execution engine for C# was updated to support transitive relationship evaluation.
+                            Furthermore, in-source issue suppressions are being tracked by <a class="rule-link" href="#version=1.20.0.1206&ruleId=S1309">Rule S1309</a>.
+                            Go check out the fill list of changes in the release notes.
+
+                        </li>
+                        <li>
+                            <span class="bold">September 20, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.7.0" title="Go to version 2.7">Version 2.7</a> was
+                            released. This release brings many VB.NET rules to the product and at the same time improves C# rules that are based on the symbolic execution
+                            engine. Check out the release notes for the full list of changes.
+                        </li>
+                        <li>
+                            <span class="bold">August 29, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.6.0" title="Go to version 2.6">Version 2.6</a> was
+                            released. This release further improves the data flow analysis engine, support for relational operators was added. Furthermore, the information on
+                            equality-like (<code>==</code>, <code>!=</code>) relationships is combined with the results of value and reference equality method calls.
+                            Don't forget to check out the release notes for the full list of changes, and let us know what you think.
+                        </li>
+                        <li>
+                            <span class="bold">July 27, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.5.0" title="Go to version 2.5">Version 2.5</a> was
+                            released. We have improved our data flow analysis engine to evaluate expressions. Now four rules are based on this symbolic execution engine, all of them
+                            benefit from this improvement. We also added a new rule (<a class="rule-link" href="rules/index.html#version=1.16.0&ruleId=S3655">Rule S3655</a>)
+                            to report on <code>Nullable&lt;T&gt;.Value</code> accesses when the nullable is known to be empty.
+                            Check out the release notes for the full list of changes, and let us know what you think.
+                        </li>
+                        <li>
+                            <span class="bold">June 28, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.4.0" title="Go to version 2.4">Version 2.4</a> was
+                            released. We have implemented the first version of our data flow analysis engine, and two new rules have been implemented on top of it.
+                            Check out the release notes for the full list of changes, and let us know what you think.
+                        </li>
+                        <li>
+                            <span class="bold">June 9, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.3.0" title="Go to version 2.3">Version 2.3</a> was
+                            released today. In this version we have added three new rules and improved the dead store rule (<a class="rule-link" href="rules/index.html#version=1.14.0&ruleId=S1854">Rule S1854</a>)
+                            to not have false negatives. Check out the release notes for the full list of changes, and let us know what you think.
+                        </li>
+                        <li>
+                            <span class="bold">May 18, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.2.1" title="Go to version 2.2.1">Version 2.2.1</a> was
+                            released today. This version is a minor bug fix/improvement release. Small inconveniences have been fixed in the connected mode. Furthermore,
+                            several rules have been improved to handle more cases and not report false positives. The release notes contain detailed information on all the
+                            changes.
+                        </li>
+                        <li>
+                            <span class="bold">May 4, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.2.0" title="Go to version 2.2">Version 2.2</a> was
+                            released today. We improved functionality for the connected mode with notification when the local quality profile is out-of-date.
+                            Also 8 new C# rules have been added to the product and many have been improved.
+                            Check out the release notes for the full list of changes, and let us know what you think.
+                        </li>
+                        <li>
+                            <span class="bold">April 13, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.1.0" title="Go to version 2.1">Version 2.1</a> was
+                            released with improved functionality for the connected mode, and also 6 new C# rules have been added to the product.
+                            Check out the release notes for the full list of changes, and let us know what you think.
+                        </li>
+                        <li>
+                            <span class="bold">March 17, 2016</span> - <a href="rules/index.html#sonarLintVersion=2.0.0" title="Go to version 2.0">Version 2.0</a> was
+                            released with the ability to establish a connection to a SonarQube server and bind your Visual Studio solution to a SonarQube project. This
+                            operation automatically updates the rulesets of the solution and attaches the required Roslyn analyzers to the solution.
+                        </li>
+                        <li>
+                            <span class="bold">February 29, 2016</span> - <a href="rules/index.html#version=1.9.0" title="Go to version 1.9.0">Version 1.9.0</a> was
+                            released with ten new C# rules and several code fixes. We've fixed some rules to handle more cases and reduced the number of reported false positives.
+                            Let us know if you like this new version. And don't forget to check out the full release notes
+                            <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=12968" title="Release notes">here</a>.
+                        </li>
+                        <li>
+                            <span class="bold">February 15, 2016</span> - <a href="rules/index.html#version=1.8.0" title="Go to version 1.8.0">Version 1.8.0</a> was
+                            released with seven new C# rules, which makes it 142 C# rules altogether. One of the most valuable rules is <a class="rule-link" href="rules/index.html#version=1.8.0&ruleId=S1698">Rule S1698</a>,
+                            which looks for possibly mistaken <code>==</code> usages instead of <code>Equals</code> calls. Don't forget to check out the full release notes in
+                            <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=12937" title="Release notes">JIRA</a> if you are interested in all changes.
+                        </li>
+                        <li>
+                            <span class="bold">February 10, 2016</span> - A new post was released on the SonarQube blog, where we highlighted a couple of issues found recently in Roslyn project.
+                            Go check out the <a href="http://www.sonarqube.org/sonarlint-for-visual-studio-lets-fix-some-real-issues-in-code/">post</a>, it shows the value of SonarLint. If you are convinced, download the
+                            product from the <a href="https://visualstudiogallery.msdn.microsoft.com/47d1049d-bb27-454e-aab8-24566c85e548">Visual Studio Gallery</a>.
+                        </li>
+                        <li>
+                            <span class="bold">January 25, 2016</span> - <a href="rules/index.html#version=1.7.0" title="Go to version 1.7.0">Version 1.7.0</a> was
+                            released with 5 new C# rules and several code fixes. We've fixed all known bugs and rules that reported false positives, so the overall developer experience improved a lot.
+                            Let us know if you like this new version. And don't forget to check out the full release notes, which was moved to
+                            <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=12921" title="Release notes">JIRA</a>.
+                        </li>
+                        <li>
+                            <span class="bold">December 9, 2015</span> - SonarLint for Visual Studio <a href="rules/index.html#version=1.6.0" title="Go to version 1.6.0">Version 1.6.0</a> was
+                            released with 11 new C# rules and many nice enhancements. We've put effort into finding method overloads that might not behave as expected. Specifically
+                            <a class="rule-link" href="rules/index.html#version=1.6.0&ruleId=S3427">Rule S3427</a> checks for overloads where default parameter values are hidden by other overloads, and
+                            <a class="rule-link" href="rules/index.html#version=1.6.0&ruleId=S3220">Rule S3220</a> reports on method calls that resolve to methods with <code>params</code>, but could also
+                            match another overload of the same method. Check out the release notes for the full list of new rules, and let us know what you think.
+                        </li>
+                        <li>
+                            <span class="bold">November 16, 2015</span> - SonarLint for Visual Studio <a href="rules/index.html#version=1.5.0" title="Go to version 1.5.0">Version 1.5.0</a> was released with
+                            12 C# and 10 Visual Basic .NET rules. Feel free to come back to us with suggestions and feedbacks.
+                        </li>
+                        <li>
+                            <span class="bold">October 28, 2015</span> - SonarLint for Visual Studio <a href="rules/index.html#version=1.4.0" title="Go to version 1.4.0">Version 1.4.0</a> has been released with
+                            20 Visual Basic .NET rules. 7 of these are also implemented for C#, and 5 have code fixes. Let us know what you think about the new release.
+                        </li>
+                        <li>
+                            <span class="bold">October 6, 2015</span> - <a href="rules/index.html#version=1.3.0" title="Go to version 1.3.0">Version 1.3.0</a> of SonarLint for Visual Studio was released today.
+                            With 11 new rules and 10 new code fixes, there are now more than 100 rules for C# available out of the box and 28 of them have code fixes.
+                            As usual your feedback is highly welcome on this new version. We'll be back in few weeks with version 1.4.0 containing some rules for VB.NET.
+                        </li>
+                        <li>
+                            <span class="bold">August 24, 2015</span> - Today we released <a href="rules/index.html#version=1.2.0" title="Go to version 1.2.0">Version 1.2.0</a> of SonarLint for Visual Studio.
+                            This is our first release with codefixes; we have added almost 20 of them. If you want to <a href="#Contribute" title="How to contribute">contribute</a>, code
+                            fixes are the easiest ways to get started. Two new rules were also added to SonarLint for Visual Studio during the sprint.
+                        </li>
+                        <li>
+                            <span class="bold">August 7, 2015</span> - <a href="rules/index.html#version=1.1.0" title="Go to version 1.1.0">Version 1.1.0</a> with 13 new rules was released today.
+                            In addition to the new rules, we focused mainly on user experience. Unused or unneeded code is faded out in the IDE, so low severity warnings
+                            don't pollute the Error Window any more. We also fixed a few false positives. Don't forget to check out the
+                            <a href="https://github.com/SonarSource/sonarlint-vs/issues?q=milestone:1.1.0" title="Release notes for version 1.1.0">release notes</a>.
+                        </li>
+                        <li>
+                            <span class="bold">July 20, 2015</span> - <a href="http://www.sonarsource.com" title="SonarSource website">SonarSource</a> is pleased to announce the release of
+                            <a href="rules/index.html#version=1.0.0" title="Go to version 1.0.0">Version 1.0.0</a> of SonarLint for Visual Studio. This is the first major version of the product,
+                            released on the same day as Visual Studio 2015. This initial version of the product contains 76 rules.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split sample first" id="Samples">
+                <div class="right text">
+                    <h2>Real Bugs in Real Projects</h2>
+                    Using the same value on either side of a binary operator is almost always a mistake. In the case of logical operators, it is either a copy-paste error and
+                    therefore a bug, or it is simply wasted code, and should be simplified. <a href="rules/index.html#ruleId=S1764">Rule S1764</a>
+                    <span class="sample-external">Found in <a href="https://github.com/dotnet/roslyn/pull/2237">Roslyn</a>, <a href="https://github.com/NuGet/NuGet3/pull/41">Nuget</a></span>
+                </div>
+                <div class="right image">
+                    <img src="resources/images/roslyn.png" title="Identical sub-expression in binary operation" alt="Identical sub-expression in binary operation" />
+                </div>
+            </section>
+            <section class="split sample">
+                <div class="right text">
+                    Performing a null-check before referencing an object is a good practice, but when either the equality operator in the null test or the logical operator that
+                    follows it is reversed, it leads to a guaranteed null pointer dereference. <a href="rules/index.html#ruleId=S1697">Rule S1697</a>
+                    <span class="sample-external">Found in <a href="https://github.com/shanselman/dasblog/pull/9">DasBlog</a></span>
+                </div>
+                <div class="right image">
+                    <img src="resources/images/dasblog.png" title="Null dereferencing" alt="Null dereferencing" />
+                </div>
+            </section>
+            <section class="split sample last">
+                <div class="right text">
+                    A static field of a generic class is not shared among instances of different close-constructed types. So using such a field might result in unexpected behavior.
+                    <a href="rules/index.html#ruleId=S2743">Rule S2743</a>
+                    <span class="sample-external">Found in <a href="https://github.com/akkadotnet/akka.net/blob/928ff2b3b23457ea1e4e1d9f0819fca945506a1b/src/contrib/testkits/Akka.TestKit.Xunit/Internals/AkkaAssertEqualityComparer.cs">Akka.NET</a></span>
+                </div>
+                <div class="right image">
+                    <img src="resources/images/akka.png" title="Static field of a generic class" alt="Static field of a generic class" />
+                </div>
+            </section>
+            <section class="split last">
+                <div class="left text fifty" id="Contribute">
+                    <h2>Contribute</h2>
+                    <p>
+                        SonarLint for Visual Studio is open source under the LGPL v3 license. You can fork us on GitHub, and submit Pull Requests. Feel free to fix bugs or to implement new features.
+                    </p>
+                    <ul>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-vs" title="SonarLint GitHub">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="right text fifty" id="Feedback">
+                    <h2>Feedback</h2>
+                    <p>The preferred way to discuss about SonarLint is by posting on the SonarLint Google Group. We are also constantly monitoring questions posted to
+                    StackOverflow. For faster answers mark your StackOverflow questions with [SonarLint] and [C#] tags.</p>
+                     <ul>
+                        <li><a class="button-link google-group" href="https://groups.google.com/forum/#!forum/sonarlint" title="SonarLint Google Group">Google Group</a></li>
+                        <li><a class="button-link stack-overflow" href="http://stackoverflow.com/search?q=%5Bsonarlint%5D%2C+%5Bc%23%5D" title="SonarLint StackOverflow">StackOverflow</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>
+              &copy; 2008-2017, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland. All content is copyright protected. SONARLINT, SONARQUBE and SONARSOURCE are trademarks of SonarSource SA.
+              <br/>All other trademarks and copyrights are the property of their respective owners. All rights are expressly reserved.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

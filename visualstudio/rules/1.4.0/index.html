@@ -1,0 +1,58 @@
+﻿<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio - version 1.4.0</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
+        </div>
+        <div class="rule-description" id="rule-description">
+            <ul class="release">
+                <li class="release-date">Release date: October 28, 2015</li>
+                <li class="release-notes"><a href="https://github.com/SonarSource/sonarlint-vs/issues?q=milestone:1.4.0" title="Release notes for version 1.4.0">Release notes</a></li>
+                <li class="release-goto-latest"><a href="#">Go to latest version</a></li>
+            </ul>
+            <p>
+                We have started working on Visual Basic .NET support in SonarLint for Visual Studio. As a first step, we have added <span class="bold">20 VB.NET rules</span>, some of them already have codefixes.
+                Also, 7 of these rules were implemented for C# too, so there are <span class="bold">108 C# rules</span> altogether in this version. Here are the main changes since <a href="#version=1.3.0">version 1.3.0</a>:
+            </p>
+            <p class="leading-vertical-space">
+                VB.NET rules:
+                <ul>
+                    <li>Properties should not be based on arrays - <a class="rule-link" href="#version=1.4.0&ruleId=S2365">Rule S2365</a></li>
+                    <li>Method parameters should not be reassigned - <a class="rule-link" href="#version=1.4.0&ruleId=S1226">Rule S1226</a></li>
+                    <li>Indexed properties with more than one parameter should not be used - <a class="rule-link" href="#version=1.4.0&ruleId=S2352">Rule S2352</a></li>
+                    <li>Arrays should be initialized using the "... = {}" syntax - <a class="rule-link" href="#version=1.4.0&ruleId=S2351">Rule S2351</a></li>
+                    <li>"Select" statements should end with a "Case Else" clause - <a class="rule-link" href="#version=1.4.0&ruleId=S131">Rule S131</a></li>
+                    <li>End statements should not be used - <a class="rule-link" href="#version=1.4.0&ruleId=S1147">Rule S1147</a></li>
+                    <li>Signed types should be preferred to unsigned ones - <a class="rule-link" href="#version=1.4.0&ruleId=S2374">Rule S2374</a></li>
+                    <li>Tabulation characters should not be used - <a class="rule-link" href="#version=1.4.0&ruleId=S105">Rule S105</a></li>
+                    <li>"On Error" statements should not be used - <a class="rule-link" href="#version=1.4.0&ruleId=S2359">Rule S2359</a></li>
+                </ul>
+            </p>
+            <p>
+                VB.NET rules with codefixes:
+                <ul>
+                    <li>"IsNot" should be used instead of "Not ... Is ..." - <a class="rule-link" href="#version=1.4.0&ruleId=S2358">Rule S2358</a></li>
+                    <li>Array designators "()" should be on the type, not the variable - <a class="rule-link" href="#version=1.4.0&ruleId=S1197">Rule S1197</a></li>
+                    <li>Array literals should be used instead of array creation expressions - <a class="rule-link" href="#version=1.4.0&ruleId=S2355">Rule S2355</a></li>
+                    <li>The "&amp;" operator should be used to concatenate strings - <a class="rule-link" href="#version=1.4.0&ruleId=S1645">Rule S1645</a></li>
+                    <li>Multiple variables should not be declared on the same line - <a class="rule-link" href="#version=1.4.0&ruleId=S1659">Rule S1659</a> (for C# too)</li>
+                </ul>
+            </p>
+            <p>
+                Rules supporting both C# and VB.NET:
+                <ul>
+                    <li>Write-only properties should not be used - <a class="rule-link" href="#version=1.4.0&ruleId=S2376">Rule S2376</a></li>
+                    <li>Exceptions should not be thrown from property getters - <a class="rule-link" href="#version=1.4.0&ruleId=S2372">Rule S2372</a></li>
+                    <li>Public methods should not have multidimensional array parameters - <a class="rule-link" href="#version=1.4.0&ruleId=S2368">Rule S2368</a></li>
+                    <li>Multiple variables should not be declared on the same line - <a class="rule-link" href="#version=1.4.0&ruleId=S1659">Rule S1659</a></li>
+                    <li>Flags enumerations zero-value members should be named "None" - <a class="rule-link" href="#version=1.4.0&ruleId=S2346">Rule S2346</a></li>
+                    <li>Flags enumerations should explicitly initialize all their members - <a class="rule-link" href="#version=1.4.0&ruleId=S2345">Rule S2345</a></li>
+                    <li>Enumeration type names should not have "Flags" or "Enum" suffixes - <a class="rule-link" href="#version=1.4.0&ruleId=S2344">Rule S2344</a></li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>

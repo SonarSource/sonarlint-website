@@ -1,0 +1,50 @@
+﻿<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio version 2.0</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
+        </div>
+        <div class="rule-description" id="rule-description">
+
+            <ul class="release">
+                <li class="release-date">Release date: March 17, 2016</li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11242&version=12987" title="Release notes for version 1.10.0">Release notes</a></li>
+                <li class="release-goto-latest"><a href="#">Go to latest version</a></li>
+            </ul>
+            <div id="sonarlint-version-summary">
+            </div>
+
+            <p>
+                With SonarLint for Visual Studio 2.0 you can now establish a connection to a SonarQube server and bind your Visual Studio solution to a SonarQube project. This operation automatically updates
+                the rulesets of the solution and attaches the required Roslyn analyzers to the solution. This connected mode requires the SonarQube C# plugin 5.0+ on the SonarQube server. Check out a short
+                introduction on how to use this feature in the <a href="../faq.html#q2">FAQ</a>.
+            </p>
+            <p style="margin-top: 15px;">
+                The 2.0 version is the output of a tight collaboration between Microsoft and SonarSource. The SonarSource team would like to offer warm thanks to the Microsoft Visual Studio ALM team in Cambridge.
+            </p>
+            <p style="margin-top: 15px;">
+                SonarLint relies on the new SonarAnalyzer C# and VB.NET Nuget packages, which were previously shipped as a single
+                <a href="https://www.nuget.org/packages/SonarLint">SonarLint Nuget</a> package. To avoid any further confusion from now on we are refering to the Nuget packages by the name
+                SonarAnalyzer (for C#, for VB.NET), and to the Visual Studio extension by SonarLint.
+            </p>
+
+
+            <h3>SonarAnalyzer 1.10.0</h3>
+            <ul class="release">
+                <li class="release-date">Release date: March 3, 2016</li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=12993" title="Release notes for C#">Release notes for C#</a></li>
+                <li class="release-download"><a href="https://www.nuget.org/packages/SonarAnalyzer.CSharp/1.10.0" title="Download C# Nuget package">Download C# Nuget</a></li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11243&version=12991" title="Release notes for VB.NET">Release notes for VB.NET</a></li>
+                <li class="release-download"><a href="https://www.nuget.org/packages/SonarAnalyzer.VisualBasic/1.10.0" title="Download VB.NET Nuget package">Download VB.NET Nuget</a></li>
+            </ul>
+
+            <p>
+                SonarAnalyzer 1.10.0 is a purely technical release to enable SonarLint for Visual Studio version 2.0 to turn off analysis whenever both the VSIX and the Nuget
+                packages are present in a project. The rules are the same as in <a href="#version=1.9.0">version 1.9.0</a>.
+            </p>
+        </div>
+    </div>
+</div>

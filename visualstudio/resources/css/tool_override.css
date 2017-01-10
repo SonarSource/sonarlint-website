@@ -1,0 +1,53 @@
+﻿#Description .image img {
+    max-width: 962px;
+}
+
+code {
+    font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+}
+
+@media (max-width: 1000px) {
+    #Description .image img {
+        max-width: 100%;
+    }
+}
+
+section.faq {
+ border-bottom: 0px;
+}
+
+section.faq ul {
+    text-align: left;
+    counter-reset: item;
+}
+
+section.faq ul li { display: inline-block; }
+
+section.faq ul li:before {
+    content: counter(item) ". ";
+    counter-increment: item;
+    font-weight: bold;
+}
+
+section.faq .question {
+    display: inline-block;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+section.faq .answer {
+    padding-bottom: 20px;
+}
+
+section.faq .answer p {
+    padding-top: 0px;
+    padding-bottom: 10px
+}
+
+section.faq .answer img {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

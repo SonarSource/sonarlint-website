@@ -1,0 +1,36 @@
+﻿<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio version 2.2.1</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
+        </div>
+        <div class="rule-description" id="rule-description">
+
+            <ul class="release">
+                <li class="release-date">Release date: May 18, 2016</li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11242&version=13234" title="Release notes for SonarLint">Release notes for SonarLint</a></li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=13222" title="Release notes for C#">Release notes for C#</a></li>
+                <li class="release-goto-latest"><a href="#">Go to latest version</a></li>
+            </ul>
+            <div id="sonarlint-version-summary">
+            </div>
+            <p>
+                This version adds some small improvements to the connected mode, such as SonarQube porject list scrolling in the binding view.
+                Also, SonarLint version 2.2.1 adds one new rule to the product, and 17 many rules were improved or fixed to not report false positives and handle more cases.
+                Here are the major changes since <a href="#sonarLintVersion=2.2.0">version 2.2</a>:
+            </p>
+            <p class="leading-vertical-space">
+                <ul>
+                    <li>Nullable type comparison should not be redundant - <a class="rule-link" href="#version=1.13.0&ruleId=S3610">Rule S3610</a> (new)</li>
+                    <li>Redundant casts should not be used (<a class="rule-link" href="#version=1.13.0&ruleId=S1905">Rule S1905</a>) handles casts with <code>as</code></li>
+                    <li>Runtime type checking should be simplified (<a class="rule-link" href="#version=1.13.0&ruleId=S2219">Rule S2219</a>) adds support for <code>as</code> and <code>is</code></li>
+                    <li>Method overrides should not change parameter defaults (<a class="rule-link" href="#version=1.13.0&ruleId=S1006">Rule S1006</a>) correctly handles explicit interface implementations</li>
+                    <li>Inheritance list should not be redundant (<a class="rule-link" href="#version=1.13.0&ruleId=S1939">Rule S1939</a>) doesn't report false positives</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>

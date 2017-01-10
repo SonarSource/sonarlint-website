@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../resources/css/reset.css" rel="stylesheet" />
+    <link href="../resources/css/common.css" rel="stylesheet" />
+    <link href="../resources/css/tool.css" rel="stylesheet" />
+    <link href="resources/css/tool_override.css" rel="stylesheet" />
+    <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
+    <title>SonarLint for IntelliJ IDEA</title>
+    <link rel="icon" type="image/png" href="../resources/images/ico-sonarlint-32.png" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-1880045-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div id="nav-div">
+                <nav class="six">
+                    <ul>
+                        <li>
+                            <a href="../index.html" title="SonarLint">
+                                <img class="nav-wide nav-icon" src="../resources/images/sonarlint_24.png" alt="SonarLint" />
+                                <span class="nav-tight">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <span>IntelliJ</span>
+                            </a>
+                        </li>
+                        <li><a href="#News">News</a></li>
+                        <li>
+                            <a href="#Connected">
+                                <span class="nav-wide">Connected Mode</span>
+                                <span class="nav-tight">Connected</span>
+                            </a>
+                        </li>
+                        <li><a href="rules/index.html">Rules</a></li>
+                        <li><a href="#FAQ">FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="header">
+                <div class="header-content">
+                    <h1>SonarLint for IntelliJ IDEA</h1>
+                    <div class="short-description">
+                        SonarLint is an IntelliJ IDEA plugin that provides
+                        <span class="emph">on-the-fly feedback</span> to developers on
+                        <span class="emph">new bugs and quality issues</span> injected into Java, JavaScript and PHP code.
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="split first" id="Description">
+                <div class="left text">
+                    <p>
+                        SonarLint offers a fully-integrated user experience in IntelliJ IDEA. After installing the plugin you'll get on the fly
+                        analysis of your code and a new action called 'Analyze with SonarLint'.
+                    </p>
+                    <p>
+                        SonarLint is free, open source, and available in the Jetbrains Plugin Repository. Note that it <strong>requires Java 8</strong> to run. The connected mode is compatible with SonarQube 5.6+.
+                    </p>
+                    <ul>
+                        <li><a class="button-link download" href="https://plugins.jetbrains.com/plugin/7973" title="Download SonarLint from Jetbrains plugin repository">Download</a></li>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-intellij" title="SonarLint on GitHub">GitHub</a></li>
+                        <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="left image">
+                    <img src="resources/images/intellij.png" title="SonarLint in IntelliJ IDEA" alt="SonarLint in IntelliJ IDEA" />
+                </div>
+            </section>
+            <section class="split" id="News">
+                <div class="text wide">
+                    <h2>News</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">December 21, 2016</span> -  SonarLint IntelliJ  <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13620">version 2.6</a> is out. The main new feature is that it supports the configuration of the validation of SSL certificates, done in IntelliJ. It contains many others small improvements and bug fixes and the embedded code analyzers were upgraded: Java 4.3.0.7717 and PHP 2.9.1.1705.
+                        </li>
+                        <li>
+                            <span class="bold">December 7, 2016</span> -  With  <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13479">version 2.5</a>, it is now possible to analyze all files in the VCS change set and do pre-commit checks. You will now also get notifications when an update for a binding is available. Bugfixes and improvements in performance are also included.
+                        </li>
+                        <li>
+                            <span class="bold">November 23, 2016</span> -  Another bug fix  <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13500">version 2.4.3</a> is out. It fixes hiding resolved issues on Windows in nested multi-module projects.
+                        </li>
+                        <li>
+                            <span class="bold">November 21, 2016</span> -  Another bug fix  <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13493">version 2.4.2</a> is out. It fixes hiding resolved issues on Windows and authentication problems when using login/password instead of tokens.
+                        </li>
+                        <li>
+                            <span class="bold">November 15, 2016</span> -  Due to a bug, v2.4 is not able to analyze Javascript files in the standalone mode. Fixed with the release of <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13490">version 2.4.1</a>.
+                        </li>
+                        <li>
+                            <span class="bold">November 11, 2016</span> -  <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13365">version 2.4</a> released. SonarLint will now hide issues marked as resolved in SonarQube (when using the connected mode). Numerous other improvements and bugfixes are also included. Starting from this version, <span class="bold">SonarLint is only compatible with SonarQube 5.6+</span> (current LTS).
+                        </li>
+                        <li>
+                            <span class="bold">September 7, 2016</span> - Bugfix <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13395">version 2.3.2</a> released, fixing "disable automatic analysis" configuration not persisted, and classpath issue.
+                        </li>
+                        <li>
+                            <span class="bold">August 26, 2016</span> - Bugfix <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13382">version 2.3.1</a> released, fixing an analysis configuration problem introduced in 2.3 and performance issues. It also includes the new embedded analyzers Java v4.2 and Javascript v2.15.
+                        </li>
+                        <li>
+                            <span class="bold">August 5, 2016</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13256">version 2.3</a> released, introducing the support of exclusions in connected mode. It also contains numerous bug fixes. Starting from this version, <span class="bold">Java 8 is required</span> to run SonarLint.
+                        </li>
+                        <li>
+                            <span class="bold">June 3, 2016</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&amp;version=13237">version 2.2</a> extends support of connected mode to SonarQube 4.5.4+. Some SonarSource commercial languages are also supported.
+                        </li>
+                        <li>
+                            <span class="bold">May 13, 2016</span> - v2.1 contains a bug that prevents it from starting in PHPStorm. 
+                            A bugfix version <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=13245">version 2.1.1</a> was released to fix the problem.
+                        </li>
+                        <li>
+                            <span class="bold">May 12, 2016</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=13054">version 2.1</a> of SonarLint for IntelliJ IDEA is released.
+                            It contains numerous improvements and bug fixes. The embedded analyzers were upgraded - Java v3.13.1 and Javascript v2.12.
+                        </li>
+                        <li>
+                            <span class="bold">April 29, 2016</span> - Another bug fix version released: <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=13231">version 2.0.2</a>.
+                        </li>
+                        <li>
+                            <span class="bold">April 20, 2016</span> - Important bug fixes released with <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=13120">version 2.0.1</a>.
+                        </li>
+                        <li>
+                            <span class="bold">April 15, 2016</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=12958">Version 2.0</a> of SonarLint for IntelliJ IDEA is released.
+                            Connected mode has arrived! It's now possible to connect to a SonarQube server to use the rules of a specific SonarQube project.
+                        </li>
+                        <li>
+                            <span class="bold">March 4, 2016</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=12943">Version 1.5</a> of SonarLint for IntelliJ IDEA is released.
+                            Issues panel shows the age of the issues since Intellij was restarted, sorting them by the most recent first.
+                        </li>
+                        <li>
+                            <span class="bold">February 18, 2016</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=12932">Version 1.4</a> of SonarLint for IntelliJ IDEA is released.
+                            The plugin is now fully standalone: there is no more dependency on http://update.sonarlint.org. We removed the quick fix // NOSONAR that was too controversial. Java analyzer is updated to its latest version (3.10). Some rules were added on pom.xml files. Several bug fixes are included too.
+                        </li>
+                        <li>
+                            <span class="bold">January 29, 2016</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=12928">Version 1.3</a> of SonarLint for IntelliJ IDEA is released.
+                            The main new feature is a view with the issues in SonarLint's tool window. There are also other UI improvements.
+                        </li>
+                        <li>
+                            <span class="bold">January 15, 2016</span> - We have updated Java and JavaScript analyzers to their latest version (Java 3.9 and JavaScript 2.10). Use Help -> Update SonarLint analyzers menu to get them.
+                        </li>
+                        <li>
+                            <span class="bold">January 13, 2016</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=12854">Version 1.2</a> of SonarLint for IntelliJ IDEA is released.
+                            On the fly analysis is back and enabled by default.
+                            Highlighting of issues is now configurable by severity (including error stripes) and we have now a "NO SONAR" quick fix.
+                        </li>
+                        <li>
+                            <span class="bold">December 16, 2015</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11131&version=12764">Version 1.1</a> of SonarLint for IntelliJ IDEA is released.
+                            It features more precise issue locations, improved console and better adaption of markers to code changes.
+                            The analysis is now triggered manually with actions, available directly through key bindings and the editor menu.
+                        </li>
+                        <li>
+                            <span class="bold">December 7, 2015</span> - We published updated versions of Java, JavaScript and PHP analyzers. Few more rules and many improvements to existing ones. Use Help -> Update SonarLint
+                            menu to get new analyzers.
+                        </li>
+                        <li>
+                            <span class="bold">October 9, 2015</span> - Today we released Version 1.0 of SonarLint for IntelliJ IDEA. Java, JavaScript and PHP are supported.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split" id="Rules">
+                <div class="text wide">
+                    <h2>Rules</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">Java</span> - <a target="_blank" href="rules/index.html#language=java">Java rules</a>.
+                            <span class="bold">JavaScript</span> - <a target="_blank" href="rules/index.html#language=js">JavaScript rules</a>.
+                            <span class="bold">PHP</span> - <a target="_blank" href="rules/index.html#language=php">PHP rules</a>.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split connected" id="Connected">
+                <div class="text wide">
+                    <h2>Connected Mode</h2>
+                    <p>
+                        You can bind IntelliJ projects to a SonarQube project (supporting SonarQube servers 5.6+). This operation will make SonarLint use
+                        the analyzers, quality profiles and settings defined on your SonarQube server. This is a convenient way of customizing the rules used by SonarLint.
+                    </p>
+                    <p>First step is to <span class="bold">configure the SonarQube server</span>:</p>
+                        <ul>
+                            <li>In the SonarLint Global Settings, click in the add icon;</li>
+                            <li>Configure the server. It is recommended to use authentication token, which can be created from your profile page in SonarQube;</li>
+                        </ul>
+                    <img src="resources/images/connected_add_server.png"/>
+                    
+                    <p>After adding a new SonarQube server configuration, a local update will immediately be triggered.
+                       To manually trigger an update of a local configuration at any later time (for example, if the remote SonarQube configuration changes), 
+                       click in the "Update binding" button.
+                    </p>
+                    
+                    <p>
+                      Once this initial update is done, you can <span class="bold">bind the IntelliJ project to a SonarQube project</span> in the SonarLint Project Settings:
+                        <ul>
+                            <li>Enable binding by selecting the check box;</li>
+                            <li>Select the SonarQube server to be used. A warning will be displayed if the local data is not updated;</li>
+                            <li>Select the SonarQube project. SonarLint will use the quality profile and settings from this project;</li>
+                        </ul>
+                    </p>
+                    <img src="resources/images/connected_bind_project.png"/>
+                            
+                    <p>
+                        That's it, you can now code and see SonarLint reporting issues based on the remote SonarQube configuration.
+                    </p>
+                </div>
+            </section>
+            
+            <section class="split" id="FAQ">
+                <div class="text wide">
+                    <h2>Frequently Asked Questions</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">How to enable SonarLint?</span> - SonarLint is enabled by default.
+                        </li>
+                        <li>
+                            <span class="bold">Which languages are supported?</span> - Java, JavaScript, PHP and Python. With the <a href="#Connected">Connected Mode</a>, it adds: ABAP, COBOL, PL/SQL, Swift.
+                        </li>
+                        <li>
+                            <span class="bold">How can I connect SonarLint to my SonarQube server?</span> - Check the <a href="#Connected">Connected Mode</a> section. This allows to configure rules and settings, but there is no tracking of issues yet.
+                        </li>
+                        <li>
+                            <span class="bold">Where can I find logs of analysis or about the configuration that SonarLint is using?</span> - In the 'logs' tab of SonarLint tool window.
+                            You can configure it to display <b>verbose</b> and/or <b>analysis</b> logs.
+                            <img class="center" src="resources/images/logs.png"/>
+                        </li>
+                              <p>SonarLint supports the SonarSource Analyzers (SonarJava, SonarJS, ...) and also custom rules extending these SonarSource analyzers.</p>
+                              <p>We don't plan to support plugins running third-party analyzers (like PMD, Android Lint, JSLint...). Most of the time those analyzers already have dedicated IDE integration.</p>
+                            </div>
+                        </li>
+                        <li>
+                         <span class="bold">In Connected Mode, will all plugins installed on SonarQube be executed in SonarLint?</span>
+                         - SonarLint supports the SonarSource Analyzers (SonarJava, SonarJS, ...) and also custom rules extending these SonarSource analyzers.<br/>
+                         We don't plan to support plugins running third-party analyzers (like PMD, Android Lint, JSLint...). Most of the time those analyzers already have dedicated IDE integration.
+                        </li>
+                        <li>
+                            <span class="bold">How to start SonarLint analysis?</span> - By default, SonarLint analysis are triggered automatically when working on the code (this behaviour can be disabled in the configuration). It can also be launched manually with the action "Analyze this file with SonarLint" (Control+Shift+A).
+                            This action has a configurable key binding (Control + Shift + S by default) and is also available in the SonarLint console and editor popup menu.
+                        </li>
+                        <li>
+                            <span class="bold">How to configure rules?</span> - Check the <a href="#Connected">Connected Mode</a> section. When not connected to a SonarQube server, <a href="rules/index.html">these</a> are the rules used by SonarLint.
+                        </li>
+                        <li>
+                            <span class="bold">Can I change the highlighting of issues?</span> - Yes, in Settings -> Editor -> Colors & Fonts -> SonarLint.
+                            By default, the highlighting of issues matches the standard warnings and errors, but it can be customized by severity, including the error stripe on the right bar.
+                        	<img class="center" src="resources/images/edit_highlight.png"/>
+                        </li>
+                        <li>
+                            <span class="bold">How to exclude files from the analysis?</span> - SonarLint analysis will run on every source file but only Java, JavaScript and PHP
+                            files are processed. Advanced users can configure some properties (File -> Settings -> SonarLint) like <tt>sonar.exclusions</tt>.
+                        </li>
+                        <li>
+                            <span class="bold">How to update SonarLint?</span> - SonarLint IntelliJ Plugin can be updated like any other IntelliJ plugin. Updates are done regularly, which include sometimes new analyzers with improved rule engines.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split last">
+                <div class="left text fifty" id="Contribute">
+                    <h2>Contribute</h2>
+                    <p>
+                        SonarLint for IntelliJ IDEA is open source under the LGPL v3 license. You can fork us on GitHub, and submit Pull Requests. Feel free to fix bugs or to implement new features.
+                    </p>
+                    <ul>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-intellij" title="SonarLint GitHub">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="right text fifty" id="Feedback">
+                    <h2>Feedback</h2>
+                    <p>The preferred way to discuss about SonarLint is by posting on the SonarLint Google Group. We are also constantly monitoring questions posted to
+                    StackOverflow. For faster answers mark your StackOverflow questions with [SonarLint] and [IntelliJ] tags.</p>
+                    <ul>
+                        <li><a class="button-link google-group" href="https://groups.google.com/forum/#!forum/sonarlint" title="SonarLint Google Group">Google Group</a></li>
+                        <li><a class="button-link stack-overflow" href="http://stackoverflow.com/search?q=%5Bsonarlint%5D%2C+%5Bintellij%5D" title="SonarLint StackOverflow">StackOverflow</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>
+              &copy; 2008-2017, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland. All content is copyright protected. SONARLINT, SONARQUBE and SONARSOURCE are trademarks of SonarSource SA.
+              <br/> All other trademarks and copyrights are the property of their respective owners. All rights are expressly reserved.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

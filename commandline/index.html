@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../resources/css/reset.css" rel="stylesheet" />
+    <link href="../resources/css/common.css" rel="stylesheet" />
+    <link href="../resources/css/tool.css" rel="stylesheet" />
+    <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
+    <title>SonarLint for Command Line</title>
+    <link rel="icon" type="image/png" href="../resources/images/waves-sonarqube-28.png" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-1880045-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div id="nav-div">
+                <nav class="six">
+                    <ul>
+                        <li>
+                            <a href="../index.html" title="SonarLint">
+                                <img class="nav-wide nav-icon" src="../resources/images/sonarlint_24.png" alt="SonarLint" />
+                                <span class="nav-tight">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <span>Command Line</span>
+                            </a>
+                        </li>
+                        <li><a href="#News">News</a></li>
+                        <li><a href="#Contribute">Contribute</a></li>
+                        <li><a href="#FAQ">FAQ</a></li>
+                        <li></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="header">
+                <div class="header-content">
+                    <h1>SonarLint for Command Line</h1>
+                    <div class="short-description">
+                        SonarLint for Command Line provides
+                        <span class="emph">pre-commit feedback</span> to developers on
+                        <span class="emph">new bugs and quality issues</span> injected into code, with several languages supported and simple usage.
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="split first" id="Description">
+                <div class="left text">
+                    <p>
+                        SonarLint offers the ability to scan code for issues before checking it in, with minimal configuration.
+                    </p>
+                    <p>
+                        SonarLint for Command Line is free and open source.
+                    </p>
+                    <ul>
+                        <li><a href='https://bintray.com/sonarsource/Distribution/org.sonarsource.sonarlint-cli/_latestVersion'><img src='https://api.bintray.com/packages/sonarsource/Distribution/org.sonarsource.sonarlint-cli/images/download.svg'></a></li>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-cli" title="SonarLint for Command Line on GitHub">GitHub</a></li>
+                        <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="left image">
+                    <img src="resources/images/issues-report.png" title="SonarLint for Command Line" alt="SonarLint for Command Line" />
+                </div>
+            </section>
+
+            <section class="split instructions" id="Installation">
+                <div class="text wide">
+                    <h2>Installation</h2>
+                    <ol>
+                        <li>
+                        	Download the <a href="https://bintray.com/sonarsource/Distribution/org.sonarsource.sonarlint-cli/_latestVersion">latest release</a> and extract the zip file.
+                        </li>
+                        <li>
+                            Add <code>&lt;extraction_path&gt;/bin</code> to your PATH.
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <section class="instructions" id="Usage">
+                <div class="text">
+                    <h2>Usage</h2>
+                        With the SonarLint executable in the PATH, simply run on the base directory of your project:
+                        <br/>
+                        <div class="code">sonarlint</div>
+                        <br/>
+                        For Windows:
+                        <br/>
+                        <div class="code">sonarlint.bat</div>
+                        <br/>
+                        SonarLint will produce an <span class="bold">HTML issues report</span> and will show a <span class="bold">short summary in the console</span>:<br/>
+                        <div>
+                            <img style="display:block;" src="resources/images/issues-report-console.png" title="Console summary" alt="Console summary"/>
+                        </div>
+                        <h3 class="bold">SonarLint CLI arguments</h3>
+                        <p>
+                            You can list the accepted arguments with
+			    		    <div class="code">sonarlint -h</div>
+                        </p>
+                        <h3>Examples</h3>
+                            <ul>
+                                <li><span class="bold"><code>--src</code></span> - allow to restrict source set to be analyzed (default is to analyze all supported files)</li>
+                            </ul>
+                        <div class="code">sonarlint --src "src/**"</div>
+                            <ul>
+                                <li><span class="bold"><code>--tests</code></span> - mark some files <strong>already included in the source set</strong> as test files. Test files are analyzed with different rules.</li>
+                            </ul>
+                        <div class="code">sonarlint --src "src/**" --tests "src/tests/**"</div>
+                    </p>
+                </div>
+            </section>
+            <section class="instructions" id="Connected">
+                <div class="text">
+                    <h2>Connected mode</h2>
+                    SonarLint CLI can be bound to remote projects in SonarQube servers to use the same settings as those projects. 
+                    SonarLint will download from the SonarQube server the analyzer plugins, rules, settigns and quality profiles associated to the remote project.
+                    This allows to use customized configuration of rules (quality profiles) and also certain settings, for example, issue and file exclusion.
+                    <br/>
+                    <h3>Global configuration</h3>
+                    SonarQube servers are defined globally in the following file: <span class="bold">{home}/.sonarlint/conf/global.json</span>
+                    <br/> 
+                    In it, you define how SonarLint CLI connects to SonarQube servers:
+                    <br/>
+                    <pre>
+{
+  servers: [
+    {
+      "id": "local",
+      "url": "http://localhost:9000",
+      "token": "mytoken"
+    }
+  ]
+}</pre>
+<br/>
+                    Several server configurations should be defined. It's also possible to define a login and password instead of a token.
+                    <br/>
+                    
+                    <h3>Per-project configuration</h3>
+                    Each project can be bound to a specific remote project in a SonarQube server defined in the global configuration file.
+                    <br/>
+                    The project key and the server id should be defined in the following file: <span class="bold">{project_base_dir}/sonarlint.json</span>
+                    <br/>
+                    Here is an example:
+                    <br/>
+                    <pre>
+{
+  "serverId": "local",
+  "projectKey": "my.organization:project1"
+}</pre>
+<br/>
+                    <h3>Force the update of the binding</h3>
+                    All the binding data is downloaded from the SonarQube server if it's not present locally. Subsequent analysis with the same settings will 
+                    reuse the local data, not requiring a network connection to the SonarQube server.
+                    However, if any configuration changes in the SonarQube server (for example, analyzer plugins, rules, quality profiles, ..), 
+                    an update is needed to have those changes reflected locally. It has to be triggered manually with the parameter "-u":
+                    <br/>
+                    <div class="code">sonarlint -u</div>
+                    <br/>
+                    
+                </div>
+            </section>
+            <section class="split" id="News">
+                <div class="text wide">
+                    <h2>News</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">August 12, 2016</span> - SonarLint CLI 2.0 is released, featuring the "connected mode", which allows to point SonarLint CLI to a remote project in a SonarQube server.
+                        <li>
+                            <span class="bold">February 12, 2016</span> - First release of SonarLint CLI.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split" id="FAQ">
+                <div class="text wide">
+                    <h2>FAQ</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">Which languages are supported?</span> - Out of the box, SonarLint CLI will analyze Java, Javascript, PHP and Python source files. If you bind SonarLint CLI to a SonarQube server, other SonarSource analyzer installed in the server will be downloaded and executed, as well as your custom rules.
+                        </li>
+                        <li>
+                            <span class="bold">How do I configure which files to analyze?</span> - By default, SonarLint analyzes all source code that it finds under the current directory, and consider everything as production code.
+                            You can configure the location of source code using <code>--src</code> and distinguish test code from production code using <code>--tests</code>. For example: <pre>sonarlint --src "src/**" --tests "src/test/**"</pre>
+                        </li>
+                        <li>
+                            <span class="bold">How to configure rules?</span> - When SonarLint is bound to a project in a SonarQube server, the Quality Profile of that project is used. For more information, read the section about the connected mode.
+                        </li>
+                        <li>
+                            <span class="bold">How to keep updated about future releases?</span> - Releases are announced in the <a href="https://groups.google.com/a/sonarsource.com/d/forum/sonarlint">SonarLint group</a>. You can also subscribe to <a href="https://github.com/SonarSource/sonarlint-cli/releases.atom">atom feed</a> on github or to the newsletter in <a href=" http://www.sonarsource.com">http://www.sonarsource.com</a>.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split last">
+                <div class="left text fifty" id="Contribute">
+                    <h2>Contribute</h2>
+                    <p>
+                        SonarLint for Command Line is open source under the LGPL v3 license. You can fork us on GitHub, and submit Pull Requests. Feel free to fix bugs or to implement new features.
+                    </p>
+                    <ul>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-cli" title="SonarLint GitHub">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="right text fifty" id="Feedback">
+                    <h2>Feedback</h2>
+                    <p>The preferred way to discuss about SonarLint is by posting on the SonarLint Google Group. We are also constantly monitoring questions posted to
+                    StackOverflow. For faster answers mark your StackOverflow questions with the [SonarLint] tag.</p>
+                     <ul>
+                        <li><a class="button-link google-group" href="https://groups.google.com/forum/#!forum/sonarlint" title="SonarLint Google Group">Google Group</a></li>
+                        <li><a class="button-link stack-overflow" href="http://stackoverflow.com/search?q=%5Bsonarlint%5D" title="SonarLint StackOverflow">StackOverflow</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>
+              &copy; 2008-2017, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland. All content is copyright protected. SONARLINT, SONARQUBE and SONARSOURCE are trademarks of SonarSource SA. 
+              <br/>All other trademarks and copyrights are the property of their respective owners. All rights are expressly reserved.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

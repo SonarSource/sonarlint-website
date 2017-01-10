@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../resources/css/reset.css" rel="stylesheet" />
+    <link href="../resources/css/common.css" rel="stylesheet" />
+    <link href="../resources/css/tool.css" rel="stylesheet" />
+    <link href="resources/css/tool_override.css" rel="stylesheet" />
+    <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
+    <title>SonarLint for Visual Studio - Frequently Asked Questions</title>
+    <link rel="icon" type="image/png" href="../resources/images/ico-sonarlint-32.png" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-1880045-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div id="nav-div">
+                <nav class="six">
+                    <ul>
+                        <li>
+                            <a href="../index.html" title="SonarLint">
+                                <img class="nav-wide nav-icon" src="../resources/images/sonarlint_24.png" alt="SonarLint" />
+                                <span class="nav-tight">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <span class="nav-wide">Visual Studio</span>
+                                <span class="nav-tight">VS</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#Connected">
+                                <span class="nav-wide">Connected Mode</span>
+                                <span class="nav-tight">Connected</span>
+                            </a>
+                        </li>
+                        <li><a href="index.html#News">News</a></li>
+                        <li><a href="rules/index.html">Rules</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section class="split faq">
+                <div class="text wide">
+                    <h2>Frequently Asked Questions</h2>
+                    <ul>
+                        <li>
+                            <span class="question" id="which_languages_supported">Which languages are supported?</span>
+                            <div class="answer">
+                              <p>C#, VB.NET</p>
+                            </div>
+                        </li> 
+                        <li>
+                            <span class="question" id="disable_rule">How do I turn off specific rules?</span>
+                            <div class="answer">
+                                <p>
+                                    If you feel that one of the rules doesn't give value to you, please report this to us in the <a href="https://groups.google.com/forum/#!forum/sonarlint">SonarLint Google Group</a>.
+                                    We'd like to give the best out-of-box experience that suits everyone, so maybe the rule needs to be tuned or maybe it should be disabled by default.
+                                </p>
+                                <p>
+                                    At the same time, you can disable any rule through the Visual Studio Rule Set Editor. To do this, in the Solution Explorer, locate the project on which the rule reports, then in the
+                                    context menu of "References/Analyzers" select the "Open Active Rule Set" menu item. This opens a window with all rules. You can enable/disable rules or even change their default severity.
+                                    Saving your modifications creates a .ruleset file in the project.
+                                    <img src="resources/images/ruleset.png" title="Rule Set Editor" alt="Rule Set Editor" />
+                                </p>
+                                <p>
+                                    If you have many projects, you might want to share the same .ruleset file between them. This can be achieved by modifying the .csproj files, and specifying the <code>CodeAnalysisRuleSet</code> property.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="q2">How can I connect SonarLint to my SonarQube server?</span>
+                            <div class="answer">
+                                <p>
+                                    First, you'll need a SonarQube server, and a SonarQube project that you'd like to associate to the current solution. Head over to
+                                    <a href="http://www.sonarqube.org/">http://www.sonarqube.org/</a> for more info.
+                                </p>
+                                <p>
+                                    Considering that everything is set up on SonarQube and you have SonarLint for Visual Studio 2.0+,  you can define the connection to the server in Visual Studio by selecting
+                                    the "Analyze/Manage SonarQube Connections..." menu item. This opens a connection window.
+                                    <img src="resources/images/connected.png" title="Connection Editor" alt="Connection Editor" />
+                                    Hit connect, and wait for the server response. If anything goes wrong, you'll get a notification in the Team Explorer pane.
+                                    <img src="resources/images/connected_error.png" title="Missing plugin error" alt="Missing plugin error" />
+                                    You should see the list of projects on your SonarQube server. Right click and choose "Bind" to connect the solution to the SonarQube project.
+                                    <img src="resources/images/connected_bind.png" title="Bind to project" alt="Bind to project" />
+                                    This pulls down the settings from the SonarQube server, and adds NuGet analyzer packages to your projects.
+                                    <img src="resources/images/connected_settings.png" title="Changes to the solution" alt="Changes to the solution" />
+                                    After the setup, you'll see the configured issues showing up inside Visual Studio.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="q3">Why are some rules disabled by default?</span>
+                            <div class="answer">
+                                <p>
+                                    We aim to have the best out-of-box experience with SonarLint. This means that controversial rules are not enabled by default. You can choose to enable them by
+                                    <a href="#disable_rule">editing the ruleset file</a>.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>
+                &copy; 2008-2017, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+﻿@font-face {
+    font-family: Roboto;
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: Roboto-Light;
+    src: url(../fonts/Roboto-Light.ttf);
+}
+
+
+html {
+    background: rgb(243, 243, 243);
+    position: relative;
+    width: 100%;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Roboto,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.375em;
+    color: #444;
+    width: 100%;
+}
+
+footer {
+    /*height: 27px;*/
+    
+    padding-top: 3px;
+    padding-bottom: 5px;
+    line-height: 1.5;
+    border-top: 1px solid #e6e6e6;
+    color: #444;
+    font-size: 12px;
+    text-align: center;
+}
+
+header {
+    width: 100%;
+}
+
+header nav {
+    height: 39px;
+}
+
+header:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    vertical-align: middle;
+}
+
+nav li {
+    font-size: 14px;
+    display: inline-block;
+    height: 39px;
+    line-height: 39px;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+nav.four li {
+    width: 25%;
+}
+nav.five li {
+    width: 20%;
+}
+nav.six li {
+    width: 16.66%;
+}
+
+nav a {
+    border-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    height: 100%;
+    display: block;
+    text-align: center;
+    color: #444;
+}
+
+nav a:hover {
+    background-color: white;
+}
+
+.nav-icon{
+    padding: 0;
+    margin: auto;
+    height: 24px;
+    width: auto;
+    margin-top: 7px;
+}
+.nav-wide{
+    display: inline-block;
+}
+.nav-tight{
+    display: none;
+}
+
+a {
+    border-bottom: 1px solid #cae3f2;
+    color: #236a97;
+    cursor: pointer;
+    outline: 0;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+
+h1,
+h2 {
+    font-size: 48px;
+    line-height: 1.05em;
+    font-family: Roboto-Light,'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #495967;
+
+}
+
+div.code {
+   font-family: Consolas, Monaco, "Courier New", Courier, monospace;
+   background-color: #DAE2EA;
+   margin-left: 3%;
+   min-width: 50%;
+   padding: 0 15px 0 10px;
+   display: inline-block;
+}
+
+p.indented {
+   text-indent: 50px;
+}
+
+
+header .logo {
+    text-align: center;
+}
+
+header .logo img {
+    width: 256px;
+    height: 68px;
+}
+
+.header-content {
+    padding-top: 30px;
+    margin-bottom: 20px;
+}
+
+.header-content h1 {
+    padding: 20px 0 20px 0;
+}
+
+header .short-description .emph{
+    border-bottom: 1px solid #cae3f2;
+    box-shadow: 0px -4px 0px #cae3f2 inset;
+}
+
+header .short-description {
+    font-size: 18px;
+    line-height: 1.4em;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+span.section {
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+@media (max-width: 1000px) {
+
+    h1 {
+        font-size: 32px;
+        line-height: 1.05em;
+    }
+    .nav-wide {
+        display: none;
+    }
+    .nav-tight{
+        display: inline-block;
+    }
+}

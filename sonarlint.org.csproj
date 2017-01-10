@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0F05A160-D3D0-4AC0-A8F4-05ED8138B188}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sonarlint.org</RootNamespace>
+    <AssemblyName>sonarlint.org</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="commandline\index.html" />
+    <Content Include="commandline\resources\images\issues-report-console.png" />
+    <Content Include="commandline\resources\images\issues-report.png" />
+    <Content Include="eclipse\compositeArtifacts.xml" />
+    <Content Include="eclipse\compositeContent.xml" />
+    <Content Include="eclipse\index.html" />
+    <Content Include="eclipse\resources\css\rules_override.css" />
+    <Content Include="eclipse\resources\css\tool_override.css" />
+    <Content Include="eclipse\resources\images\connected-add-server.png" />
+    <Content Include="eclipse\resources\images\connected-binding-search.png" />
+    <Content Include="eclipse\resources\images\connected-overlay-icon.png" />
+    <Content Include="eclipse\resources\images\connected-update-config.png" />
+    <Content Include="eclipse\resources\images\enable-verbose-output.png" />
+    <Content Include="eclipse\resources\images\open-rule-description.png" />
+    <Content Include="eclipse\resources\images\open-sonarlint-console.png" />
+    <Content Include="eclipse\resources\images\run-analysis-menu.png" />
+    <Content Include="eclipse\resources\images\screenshot-1.0.png" />
+    <Content Include="eclipse\resources\images\screenshot-1.2.png" />
+    <Content Include="eclipse\resources\images\screenshot-1.3.png" />
+    <Content Include="eclipse\resources\images\screenshot-2.0.png" />
+    <Content Include="eclipse\resources\scripts\App.js" />
+    <Content Include="eclipse\rules\1.3.0\index.html" />
+    <Content Include="eclipse\rules\2.0.0\index.html" />
+    <Content Include="eclipse\rules\index.html" />
+    <Content Include="intellij\resources\css\rules_override.css" />
+    <Content Include="intellij\resources\scripts\App.js" />
+    <Content Include="intellij\rules\1.4.0\index.html" />
+    <Content Include="intellij\rules\1.5.0\index.html" />
+    <Content Include="intellij\rules\index.html" />
+    <Content Include="resources\css\rules.css" />
+    <Content Include="resources\css\tool.css" />
+    <Content Include="index.html" />
+    <Content Include="intellij\index.html" />
+    <Content Include="intellij\resources\images\intellij.png" />
+    <Content Include="resources\css\front-page.css" />
+    <Content Include="resources\css\reset.css" />
+    <Content Include="resources\images\command_256.png" />
+    <Content Include="resources\images\eclipse.png" />
+    <Content Include="resources\images\ico-sonarlint-128.png" />
+    <Content Include="resources\images\ico-sonarlint-16.png" />
+    <Content Include="resources\images\ico-sonarlint-256.png" />
+    <Content Include="resources\images\ico-sonarlint-32.png" />
+    <Content Include="resources\images\ico-sonarlint-400.png" />
+    <Content Include="resources\images\ico-sonarlint-64.png" />
+    <Content Include="resources\images\intellijidea.png" />
+    <Content Include="resources\images\sonarlint-black-128.png" />
+    <Content Include="resources\images\sonarlint-black-256.png" />
+    <Content Include="resources\images\sonarlint-black-512.png" />
+    <Content Include="resources\images\sonarlint-white-128.png" />
+    <Content Include="resources\images\sonarlint-white-256.png" />
+    <Content Include="resources\images\sonarlint-white-512.png" />
+    <Content Include="resources\images\sonarlint.png" />
+    <Content Include="resources\images\sonarlint_24.png" />
+    <Content Include="resources\images\visualstudio.png" />
+    <Content Include="resources\images\waves-sonarqube-256.png" />
+    <Content Include="resources\images\waves-sonarqube-28.png" />
+    <Content Include="resources\scripts\App.js" />
+    <Content Include="resources\scripts\RuleController.js" />
+    <Content Include="visualstudio\faq.html" />
+    <Content Include="visualstudio\index.html" />
+    <Content Include="resources\css\common.css" />
+    <Content Include="resources\css\font-awesome.min.css" />
+    <Content Include="visualstudio\resources\css\tool_override.css" />
+    <Content Include="resources\fonts\fontawesome-webfont.svg" />
+    <Content Include="visualstudio\resources\css\rules_override.css" />
+    <Content Include="visualstudio\resources\images\akka.png" />
+    <Content Include="visualstudio\resources\images\connected_bind.png" />
+    <Content Include="visualstudio\resources\images\connected.png" />
+    <Content Include="visualstudio\resources\images\connected_error.png" />
+    <Content Include="visualstudio\resources\images\connected_settings.png" />
+    <Content Include="visualstudio\resources\images\dasblog.png" />
+    <Content Include="visualstudio\resources\images\roslyn.png" />
+    <Content Include="visualstudio\resources\images\ruleset.png" />
+    <Content Include="visualstudio\resources\images\vs.png" />
+    <Content Include="visualstudio\resources\scripts\App.js" />
+    <Content Include="resources\scripts\Array.js" />
+    <Content Include="resources\scripts\handlebars-3.0.3.min.js" />
+    <Content Include="resources\scripts\jquery-2.1.4.min.js" />
+    <Content Include="visualstudio\resources\scripts\RuleController.js" />
+    <Content Include="resources\scripts\Template.js" />
+    <Content Include="visualstudio\rules\1.0.0\index.html" />
+    <Content Include="visualstudio\rules\1.1.0\index.html" />
+    <Content Include="visualstudio\rules\1.14.0\index.html" />
+    <Content Include="visualstudio\rules\1.13.0\index.html" />
+    <Content Include="visualstudio\rules\1.12.0\index.html" />
+    <Content Include="visualstudio\rules\1.11.0\index.html" />
+    <Content Include="visualstudio\rules\1.15.0\index.html" />
+    <Content Include="visualstudio\rules\1.16.0\index.html" />
+    <Content Include="visualstudio\rules\1.20.1.1275\index.html" />
+    <Content Include="visualstudio\rules\1.20.1.1222\index.html" />
+    <Content Include="visualstudio\rules\1.20.0.1206\index.html" />
+    <Content Include="visualstudio\rules\1.19.0.1077\index.html" />
+    <Content Include="visualstudio\rules\1.19.0.1021\index.html" />
+    <Content Include="visualstudio\rules\1.18.0.910\index.html" />
+    <Content Include="visualstudio\rules\1.18.0.0\index.html" />
+    <Content Include="visualstudio\rules\1.17.0\index.html" />
+    <Content Include="visualstudio\rules\1.2.0\index.html" />
+    <Content Include="visualstudio\rules\1.21.0.1529\index.html" />
+    <Content Include="visualstudio\rules\1.3.0\index.html" />
+    <Content Include="visualstudio\rules\1.4.0\index.html" />
+    <Content Include="visualstudio\rules\1.5.0\index.html" />
+    <Content Include="visualstudio\rules\1.7.0\index.html" />
+    <Content Include="visualstudio\rules\1.6.0\index.html" />
+    <Content Include="visualstudio\rules\1.10.0\index.html" />
+    <Content Include="visualstudio\rules\1.9.0\index.html" />
+    <Content Include="visualstudio\rules\1.8.0\index.html" />
+    <Content Include="visualstudio\rules\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\fonts\Roboto-Light.ttf" />
+    <Content Include="resources\fonts\Roboto-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\fonts\fontawesome-webfont.eot" />
+    <Content Include="resources\fonts\fontawesome-webfont.ttf" />
+    <Content Include="resources\fonts\fontawesome-webfont.woff" />
+    <Content Include="resources\fonts\fontawesome-webfont.woff2" />
+    <Content Include="resources\fonts\FontAwesome.otf" />
+    <Content Include="visualstudio\resources\scripts\App.js.map" />
+    <Content Include="resources\scripts\Array.js.map" />
+    <Content Include="visualstudio\resources\scripts\RuleController.js.map" />
+    <Content Include="resources\scripts\Template.js.map" />
+    <Content Include="visualstudio\rules\1.0.0\rules.json" />
+    <Content Include="visualstudio\rules\1.1.0\rules.json" />
+    <Content Include="visualstudio\rules\1.2.0\rules.json" />
+    <Content Include="visualstudio\rules\1.3.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="eclipse\resources\scripts\App.ts" />
+    <TypeScriptCompile Include="intellij\resources\scripts\App.ts" />
+    <TypeScriptCompile Include="resources\scripts\App.ts" />
+    <TypeScriptCompile Include="resources\scripts\RuleController.ts" />
+    <TypeScriptCompile Include="resources\scripts\typings\handlebars\handlebars.d.ts" />
+    <TypeScriptCompile Include="resources\scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="resources\scripts\typings\google.analytics\ga.d.ts" />
+    <TypeScriptCompile Include="visualstudio\resources\scripts\App.ts" />
+    <TypeScriptCompile Include="resources\scripts\Array.ts" />
+    <TypeScriptCompile Include="visualstudio\resources\scripts\RuleController.ts" />
+    <TypeScriptCompile Include="resources\scripts\Template.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.4.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.5.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.6.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.7.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.8.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.9.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.10.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\scripts\RuleController.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="eclipse\rules\1.3.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="intellij\rules\1.4.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="eclipse\resources\scripts\App.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="intellij\resources\scripts\App.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\scripts\App.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="intellij\rules\1.5.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.11.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="eclipse\rules\2.0.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.12.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.13.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.14.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.15.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.16.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.17.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.18.0.0\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.18.0.910\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.19.0.1021\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.19.0.1077\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.20.0.1206\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.20.1.1222\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.20.1.1275\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\1.21.0.1529\rules.json" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50245</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50245/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../resources/css/reset.css" rel="stylesheet" />
+    <link href="../resources/css/common.css" rel="stylesheet" />
+    <link href="../resources/css/tool.css" rel="stylesheet" />
+    <link href="resources/css/tool_override.css" rel="stylesheet" />
+    <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
+    <title>SonarLint for Eclipse</title>
+    <link rel="icon" type="image/png" href="../resources/images/ico-sonarlint-32.png" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-1880045-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div id="nav-div">
+                <nav class="six">
+                    <ul>
+                        <li>
+                            <a href="../index.html" title="SonarLint">
+                                <img class="nav-wide nav-icon" src="../resources/images/sonarlint_24.png" alt="SonarLint" />
+                                <span class="nav-tight">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <span>Eclipse</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Connected">
+                                <span class="nav-wide">Connected Mode</span>
+                                <span class="nav-tight">Connected</span>
+                            </a>
+                        </li>
+                        <li><a href="#News">News</a></li>
+                        <li><a href="rules/index.html">Rules</a></li>
+                        <li><a href="#FAQ">FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="header">
+                <div class="header-content">
+                    <h1>SonarLint for Eclipse</h1>
+                    <div class="short-description">
+                        SonarLint is an Eclipse plugin that provides
+                        <span class="emph">on-the-fly feedback</span> to developers on
+                        <span class="emph">new bugs and quality issues</span> injected into Java, JavaScript and PHP code.
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="split first" id="Description">
+                <div class="left text">
+                    <p>
+                        SonarLint offers a fully-integrated user experience in Eclipse-based IDEs. After installing the plugin issues will be reported as Eclipse markers.
+                    </p>
+                    <p>
+                        SonarLint is free, open source, and available in the Eclipse Marketplace. Note that it <strong>requires Java 8</strong> to run. The connected mode is compatible with SonarQube 5.6+.
+                    </p>
+                    <ul>
+                        <li><a class="button-link download" href="https://marketplace.eclipse.org/content/sonarlint" title="Download SonarLint from Eclipse Marketplace">Marketplace</a></li>
+                        <li><a href='https://bintray.com/sonarsource/SonarLint-for-Eclipse/releases/_latestVersion' title="Offline installation update site"><img src='https://api.bintray.com/packages/sonarsource/SonarLint-for-Eclipse/releases/images/download.svg'></a></li>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-eclipse" title="SonarLint on GitHub">GitHub</a></li>
+                        <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="left image">
+                    <img src="resources/images/screenshot-2.1.png" title="SonarLint in Eclipse" alt="SonarLint in Eclipse" />
+                </div>
+            </section>
+            <section class="split connected" id="Connected">
+                <div class="text wide">
+                    <h2>Connected Mode</h2>
+                    <p>
+                        You can bind Eclipse projects to a SonarQube project (supporting SonarQube servers 5.6+). This operation will make SonarLint use
+                        the analyzers, quality profiles and settings defined on your SonarQube server. This is a convenient way of customizing the rules used by SonarLint.
+                    </p>
+                    <p>First step is to connect to your SonarQube server:</p>
+                        <ul>
+                            <li>In SonarQube server view, right click and choose 
+                        "New -> Server connection", or directly do "File -> New -> Other... -> SonarLint -> New Server".</li>
+                            <li>Complete connection details (URL and credentials).</li>
+                            <li>Test connection</li>
+                            <li>Click "Finish" to close the wizard and start updating configuration from the server (may take a while)</li>
+                        </ul>
+                    </p>
+                    <img src="resources/images/connected-add-server.png"/>
+                    <p>
+                        You can manage your SonarQube server connections in the "SonarQube Servers" view.
+                        To manually trigger an update of local configuration (if remote SonarQube configuration has changed): right click on a server and use the "update" action.
+                    </p>
+                    <img src="resources/images/connected-update-config.png"/>
+                    <p>
+                        Now you can bind one or more Eclipse project(s) to their remote SonarQube pair. Right click on project -> "SonarLint -> Bind with remote SonarQube server..."
+                    </p>
+                    <p>
+                        You can now use the wizard to find the matching SonarQube project. First try the "auto-bind" feature that will try to find best match based on Eclipse project name.
+                        If auto-bind fail you can manually search for a project.
+                    </p>
+                    <img src="resources/images/connected-binding-search.png"/>
+                    <p>
+                        Click on "Finish" to persist the binding. You should now show SonarQube overlay on your bound project icon.
+                    </p>
+                    <img src="resources/images/connected-overlay-icon.png"/>
+                    <p>
+                        That's it, you can now code and see SonarLint reporting issues based on remote SonarQube configuration.
+                    </p>
+                </div>
+            </section>
+            <section class="split" id="News">
+                <div class="text wide">
+                    <h2>News</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">January 10, 2017</span> - Bug fix <a href="https://jira.sonarsource.com/secure/ReleaseNote.jspa?projectId=11130&amp;version=13657" target="_blank">version 2.5.1</a> was released, fixing a problem that was preventing the analysis of C/C++ projects in Eclipse CDT to work out of the box.
+                        </li>
+                        <li>
+                            <span class="bold">December 14, 2016</span> - We released <a href="https://jira.sonarsource.com/secure/ReleaseNote.jspa?projectId=11130&amp;version=13511" target="_blank">version 2.5.0</a> of SonarLint for Eclipse with the two main improvements: ability to run an analysis on all changed files (based on the SCM) and official support of C/C++ projects when using Eclipse CDT. There are also several bug fixes and small improvements. The analyzer SonarJava was updated to version 4.3.
+                        </li>
+                        <li>
+                            <span class="bold">December 5, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13468" target="_blank">version 2.4.0</a> of SonarLint for Eclipse with the main improvement of showing a notification when an update is detected for the current bindings (new version of an analyzer installed on the SonarQube server for example). There are also several bug fixes and performance improvements.
+                        </li>
+                        <li>
+                            <span class="bold">November 21, 2016</span> - <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13494" target="_blank">Version 2.3.1</a> is out. It fixes hiding resolved issues on Windows, and other minor bugs.
+                        </li>
+                        <li>
+                            <span class="bold">November 15, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13389" target="_blank">version 2.3.0</a> of SonarLint for Eclipse with the main improvement of hiding resolved issues in connected mode. Changing/updating bindings will trigger analysis of open files. The current file will be analyzed after starting Eclipse. Files in aggregator Maven projects will be no longer analyzed twice. We have also updated some analyzers to their latest version (Java 4.2.1, JavaScript 2.18, PHP 2.9). Starting from this version, <span class="bold">SonarLint is only compatible with SonarQube 5.6+</span> (current LTS).
+                        </li>
+                        <li>
+                            <span class="bold">August 26, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13344" target="_blank">version 2.2.1</a> of SonarLint for Eclipse with one important performance improvement when analyzing Java source files. Java and JavaScript analyzers were also updated to their latest version. Compatibility with IBM JVM in connected mode was restored.
+                        </li>
+                        <li>
+                            <span class="bold">July 29, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13248" target="_blank">version 2.2.0</a> of SonarLint for Eclipse with many improvements: Support of Python and updated Java and JavaScript analyzers. File/issue exclusions configured on SonarQube server are now taken into account (in connected mode). Support of custom rules (but plugins have to be updated). Starting from this version, <span class="bold">Java 8 is required</span> to run SonarLint and Juno is no more supported.
+                        </li>
+                        <li>
+                            <span class="bold">June 3, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13022" target="_blank">version 2.1.0</a> of SonarLint for Eclipse with extended support of SonarQube 4.5.4+ in connected mode. Some SonarSource commercial plugins are also supported.
+                            We have also updated Java and JavaScript analyzers to their latest version (Java 3.14 and JavaScript 2.12).
+                        </li>
+                        <li>
+                            <span class="bold">April 4, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=12957" target="_blank">version 2.0.0</a> of SonarLint for Eclipse with ability to connect to a SonarQube server.
+                            We have also updated Java and JavaScript analyzers to their latest version (Java 3.12 and JavaScript 2.11).
+                        </li>
+                        <li>
+                            <span class="bold">March 2, 2016</span> - We released bugfix <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=12997" target="_blank">version 1.3.1</a> of SonarLint for Eclipse.
+                        </li>
+                        <li>
+                            <span class="bold">February 17, 2016</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=12887" target="_blank">version 1.3</a> of SonarLint for Eclipse. The plugin is now fully standalone: there is no more dependency on http://update.sonarlint.org. We removed the quick fix <tt>// NOSONAR</tt> that was too controversial. Java
+                            analyzer is updated to its latest version (3.10). Some rules were added on pom.xml files.
+                        </li>
+                        <li>
+                            <span class="bold">January 15, 2016</span> - We have updated Java and JavaScript analyzers to their latest version (Java 3.9 and JavaScript 2.10). Use Help -> Update SonarLint analyzers menu to get them.
+                        </li>
+                        <li>
+                            <span class="bold">December 16, 2015</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=12853" target="_blank">version 1.2</a> of SonarLint for Eclipse. It is possible to see recently introduced issues by displaying the "Date" column in SonarLint issues view.
+                            Also there is a quick fix for SonarLint issues to mute them by adding a <tt>// NOSONAR</tt> comment.
+                        </li>
+                        <li>
+                            <span class="bold">December 7, 2015</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=12779" target="_blank">version 1.1</a> of SonarLint for Eclipse. Updated versions of Java, JavaScript and PHP analyzers: some issues start to be more precisely located on code. Few more rules and many improvements to existing ones. Use Help -> Update SonarLint menu to get new analyzers.
+                        </li>
+                        <li>
+                            <span class="bold">October 15, 2015</span> - Today we released version 1.0 of SonarLint for Eclipse. Java, JavaScript and PHP are supported.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split faq" id="FAQ">
+                <div class="text wide">
+                    <h2>Frequently Asked Questions</h2>
+                    <ul>
+                        <li>
+                            <span class="question" id="which_languages_supported">Which languages are supported?</span>
+                            <div class="answer">
+                              <p>Out of the box: Java, JavaScript, PHP and Python</p>
+                              <p>With the <a href="#Connected">Connected Mode</a>, it adds: C/C++, ABAP, COBOL, PL/SQL and Swift</p>
+                              <p>For proper analysis of Java projects, you need to install the optional configurator for Java (integrates with JDT). 
+                              For proper analysis of C/C++ projects you have to install the optional configurator for C/C++ (integrates with CDT).</p>
+                            </div>
+                        </li>                        
+                        <li>
+                            <span class="question" id="howto_start_analysis">How to start SonarLint analysis?</span>
+                            <div class="answer">
+                              <p>SonarLint analysis is automatically triggered by a resource change listener (in short: when a file is modified) and also when you open a file.</p>
+                              <p>If you want to disable the automatic analysis: go to project properties (right click on the project -> Properties), select SonarLint entry and uncheck "Run SonarLint automatically"</p>
+                              <p><strong>When automatic analysis is disabled</strong> you can manually run SonarLint analysis using context menu on each source file: <img src="resources/images/run-analysis-menu.png"/></p>
+                            </div>
+                        </li>
+                        <li>
+                            <a name="howto_connect"></a>
+                            <span class="bold">How can I connect SonarLint to my SonarQube server?</span> - Please use <a href="#Connected">connected mode</a> to connect with a SonarQube server.
+                        </li>
+                        <li>
+                            <span class="question" id="connect_supported_plugins">In Connected Mode will all plugins installed on SonarQube be executed in SonarLint?</span>
+                            <div class="answer">
+                              <p>SonarLint supports the SonarSource Analyzers (SonarJava, SonarJS, ...) and also custom rules extending these SonarSource analyzers.</p>
+                              <p>We don't plan to support plugins running third-party analyzers (like PMD, Android Lint, JSLint...). Most of the time those analyzers already have dedicated IDE integration.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="howto_see_rule_description">How to see rule description?</span>
+                            <div class="answer">
+                                <p>Full rule description is available in a dedicated view. You can open it using the context menu in the issues view:
+                                <img src="resources/images/open-rule-description.png"/></p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="howto_exclude_files">How to exclude files from the analysis?</span>
+                            <div class="answer">
+                                <p>By default we are excluding derived files. Apart from that all files recognized as a supported language are analyzed. In connected mode you can configure some exlusions on server side.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="howto_open_console">How to open SonarLint console?</span>
+                            <div class="answer">
+                                <p>SonarLint console allow to see logs of the analysis. This can be useful to understand some technical issues. You can open it from standard Eclipse Console views: <img src="resources/images/open-sonarlint-console.png"/></p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="howto_enable_debug_logs">How to enable verbose logs?</span>
+                            <div class="answer">
+                                <p>By default SonarLint console will not display debug logs. You can enable debug logs from SonarLint console: <img src="resources/images/enable-verbose-output.png"/></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split last">
+                <div class="left text fifty" id="Contribute">
+                    <h2>Contribute</h2>
+                    <p>
+                        SonarLint for Eclipse is open source under the LGPL v3 license. You can fork us on GitHub, and submit Pull Requests. Feel free to fix bugs or to implement new features.
+                    </p>
+                    <ul>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-eclipse" title="SonarLint GitHub">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="right text fifty" id="Feedback">
+                    <h2>Feedback</h2>
+                    <p>The preferred way to discuss about SonarLint is by posting on the SonarLint Google Group. We are also constantly monitoring questions posted to
+                    StackOverflow. For faster answers mark your StackOverflow questions with [SonarLint] and [Eclipse] tags.</p>
+                     <ul>
+                        <li><a class="button-link google-group" href="https://groups.google.com/forum/#!forum/sonarlint" title="SonarLint Google Group">Google Group</a></li>
+                        <li><a class="button-link stack-overflow" href="http://stackoverflow.com/search?q=%5Bsonarlint%5D%2C+%5Beclipse%5D" title="SonarLint StackOverflow">StackOverflow</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>
+              &copy; 2008-2017, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland. All content is copyright protected. SONARLINT, SONARQUBE and SONARSOURCE are trademarks of SonarSource SA. 
+              <br/>All other trademarks and copyrights are the property of their respective owners. All rights are expressly reserved.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
