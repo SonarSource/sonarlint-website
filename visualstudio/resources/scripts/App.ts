@@ -19,9 +19,10 @@ var sonarLintSonarAnalyzerMappings: SonarLintSonarAnalyzerMapping[] = [
     { sonarLintVersion: '2.8.0', sonarAnalyzerVersion: '1.20.0.1206' },
     { sonarLintVersion: '2.8.1-RC1', sonarAnalyzerVersion: '1.20.1.1222' },
     { sonarLintVersion: '2.8.1', sonarAnalyzerVersion: '1.20.1.1275' },
-    { sonarLintVersion: '2.9.0-RC1', sonarAnalyzerVersion: '1.21.0.1529' }
+    { sonarLintVersion: '2.9.0-RC1', sonarAnalyzerVersion: '1.21.0.1529' },
+    { sonarLintVersion: '2.9.0', sonarAnalyzerVersion: '1.21.0.1541' }
 ];
 
 window.onload = () => {
-    App.Controller = new Controllers.VisualStudioRulePageController('1.20.1.1275');
+    App.Controller = new Controllers.VisualStudioRulePageController('1.21.0.1541');
 }
