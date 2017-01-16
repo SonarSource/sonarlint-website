@@ -62,3 +62,6 @@ packages/
 .vs/
 
 !resources/**
+
+# Jekyll
+_site
