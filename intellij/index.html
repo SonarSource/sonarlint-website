@@ -40,13 +40,13 @@
                                 <span>IntelliJ</span>
                             </a>
                         </li>
-                        <li><a href="#News">News</a></li>
                         <li>
                             <a href="#Connected">
                                 <span class="nav-wide">Connected Mode</span>
                                 <span class="nav-tight">Connected</span>
                             </a>
                         </li>
+                        <li><a href="#News">News</a></li>
                         <li><a href="rules/index.html">Rules</a></li>
                         <li><a href="#FAQ">FAQ</a></li>
                     </ul>
@@ -81,6 +81,40 @@
                 </div>
                 <div class="left image">
                     <img src="resources/images/intellij.png" title="SonarLint in IntelliJ IDEA" alt="SonarLint in IntelliJ IDEA" />
+                </div>
+            </section>
+            <section class="split connected" id="Connected">
+                <div class="text wide">
+                    <h2>Connected Mode</h2>
+                    <p>
+                        You can bind IntelliJ projects to a SonarQube project (supporting SonarQube servers 5.6+). This operation will make SonarLint use
+                        the analyzers, quality profiles and settings defined on your SonarQube server. This is a convenient way of customizing the rules used by SonarLint.
+                    </p>
+                    <p>First step is to <span class="bold">configure the SonarQube server</span>:</p>
+                        <ul>
+                            <li>In the SonarLint Global Settings, click in the add icon;</li>
+                            <li>Configure the server. It is recommended to use authentication token, which can be created from your profile page in SonarQube;</li>
+                        </ul>
+                    <img src="resources/images/connected_add_server.png"/>
+                    
+                    <p>After adding a new SonarQube server configuration, a local update will immediately be triggered.
+                       To manually trigger an update of a local configuration at any later time (for example, if the remote SonarQube configuration changes), 
+                       click in the "Update binding" button.
+                    </p>
+                    
+                    <p>
+                      Once this initial update is done, you can <span class="bold">bind the IntelliJ project to a SonarQube project</span> in the SonarLint Project Settings:
+                        <ul>
+                            <li>Enable binding by selecting the check box;</li>
+                            <li>Select the SonarQube server to be used. A warning will be displayed if the local data is not updated;</li>
+                            <li>Select the SonarQube project. SonarLint will use the quality profile and settings from this project;</li>
+                        </ul>
+                    </p>
+                    <img src="resources/images/connected_bind_project.png"/>
+                            
+                    <p>
+                        That's it, you can now code and see SonarLint reporting issues based on the remote SonarQube configuration.
+                    </p>
                 </div>
             </section>
             <section class="split" id="News">
@@ -169,42 +203,7 @@
                         </li>
                     </ul>
                 </div>
-            </section>
-            <section class="split connected" id="Connected">
-                <div class="text wide">
-                    <h2>Connected Mode</h2>
-                    <p>
-                        You can bind IntelliJ projects to a SonarQube project (supporting SonarQube servers 5.6+). This operation will make SonarLint use
-                        the analyzers, quality profiles and settings defined on your SonarQube server. This is a convenient way of customizing the rules used by SonarLint.
-                    </p>
-                    <p>First step is to <span class="bold">configure the SonarQube server</span>:</p>
-                        <ul>
-                            <li>In the SonarLint Global Settings, click in the add icon;</li>
-                            <li>Configure the server. It is recommended to use authentication token, which can be created from your profile page in SonarQube;</li>
-                        </ul>
-                    <img src="resources/images/connected_add_server.png"/>
-                    
-                    <p>After adding a new SonarQube server configuration, a local update will immediately be triggered.
-                       To manually trigger an update of a local configuration at any later time (for example, if the remote SonarQube configuration changes), 
-                       click in the "Update binding" button.
-                    </p>
-                    
-                    <p>
-                      Once this initial update is done, you can <span class="bold">bind the IntelliJ project to a SonarQube project</span> in the SonarLint Project Settings:
-                        <ul>
-                            <li>Enable binding by selecting the check box;</li>
-                            <li>Select the SonarQube server to be used. A warning will be displayed if the local data is not updated;</li>
-                            <li>Select the SonarQube project. SonarLint will use the quality profile and settings from this project;</li>
-                        </ul>
-                    </p>
-                    <img src="resources/images/connected_bind_project.png"/>
-                            
-                    <p>
-                        That's it, you can now code and see SonarLint reporting issues based on the remote SonarQube configuration.
-                    </p>
-                </div>
-            </section>
-            
+            </section>            
             <section class="split faq" id="FAQ">
                 <div class="text wide">
                     <h2>Frequently Asked Questions</h2>
