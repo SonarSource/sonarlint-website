@@ -188,6 +188,11 @@ header .short-description {
     font-weight: bold;
 }
 
+.question{
+ padding-top: 39px;
+ margin-top: -39px;
+}
+
 span.section {
     font-weight: bold;
     margin-top: 50px;

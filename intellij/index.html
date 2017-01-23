@@ -58,7 +58,7 @@
                     <div class="short-description">
                         SonarLint is an IntelliJ IDEA plugin that provides
                         <span class="emph">on-the-fly feedback</span> to developers on
-                        <span class="emph">new bugs and quality issues</span> injected into Java, JavaScript and PHP code.
+                        <span class="emph">new bugs and quality issues</span> injected into Java, JavaScript, PHP <a href="#which_languages_supported" title="Go to supported languages">and more</a>.
                     </div>
                 </div>
             </div>
@@ -209,44 +209,44 @@
                     <h2>Frequently Asked Questions</h2>
                     <ul>
                         <li>
-                            <span class="bold">How to enable SonarLint?</span> - SonarLint is enabled by default.
+                            <span class="bold question">How to enable SonarLint?</span> - SonarLint is enabled by default.
                         </li>
                         <li>
-                            <span class="bold"  id="which_languages_supported">Which languages are supported?</span> - Java, JavaScript, PHP and Python. With the <a href="#Connected">Connected Mode</a>, it adds: ABAP, COBOL, PL/SQL, Swift.
+                            <span class="bold question" id="which_languages_supported">Which languages are supported?</span> - Java, JavaScript, PHP and Python. With the <a href="#Connected">Connected Mode</a>, it adds: ABAP, COBOL, PL/SQL, Swift.
                         </li>
                         <li>
-                            <span class="bold">How can I connect SonarLint to my SonarQube server?</span> - Check the <a href="#Connected">Connected Mode</a> section. This allows to configure rules and settings, but there is no tracking of issues yet.
+                            <span class="bold question">How can I connect SonarLint to my SonarQube server?</span> - Check the <a href="#Connected">Connected Mode</a> section. This allows to configure rules and settings, but there is no tracking of issues yet.
                         </li>
                         <li>
-                            <span class="bold">Where can I find logs of analysis or about the configuration that SonarLint is using?</span> - In the 'logs' tab of SonarLint tool window.
+                            <span class="bold question">Where can I find logs of analysis or about the configuration that SonarLint is using?</span> - In the 'logs' tab of SonarLint tool window.
                             You can configure it to display <b>verbose</b> and/or <b>analysis</b> logs.
                             <img class="center" src="resources/images/logs.png"/>                        
                               <p>SonarLint supports the SonarSource Analyzers (SonarJava, SonarJS, ...) and also custom rules extending these SonarSource analyzers.</p>
                               <p>We don't plan to support plugins running third-party analyzers (like PMD, Android Lint, JSLint...). Most of the time those analyzers already have dedicated IDE integration.</p>
                         </li>
                         <li>
-                         <span class="bold" id="connect_supported_plugins">In Connected Mode, will all plugins installed on SonarQube be executed in SonarLint?</span>
+                         <span class="bold question" id="connect_supported_plugins">In Connected Mode, will all plugins installed on SonarQube be executed in SonarLint?</span>
                          - SonarLint supports the SonarSource Analyzers (SonarJava, SonarJS, ...) and also custom rules extending these SonarSource analyzers.<br/>
                          We don't plan to support plugins running third-party analyzers (like PMD, Android Lint, JSLint...). Most of the time those analyzers already have dedicated IDE integration.
                         </li>
                         <li>
-                            <span class="bold" id="howto_start_analysis">How to start SonarLint analysis?</span> - By default, SonarLint analysis are triggered automatically when working on the code (this behaviour can be disabled in the configuration). It can also be launched manually with the action "Analyze this file with SonarLint" (Control+Shift+A).
+                            <span class="bold question" id="howto_start_analysis">How to start SonarLint analysis?</span> - By default, SonarLint analysis are triggered automatically when working on the code (this behaviour can be disabled in the configuration). It can also be launched manually with the action "Analyze this file with SonarLint" (Control+Shift+A).
                             This action has a configurable key binding (Control + Shift + S by default) and is also available in the SonarLint console and editor popup menu.
                         </li>
                         <li>
-                            <span class="bold">How to configure rules?</span> - Check the <a href="#Connected">Connected Mode</a> section. When not connected to a SonarQube server, <a href="rules/index.html">these</a> are the rules used by SonarLint.
+                            <span class="bold question">How to configure rules?</span> - Check the <a href="#Connected">Connected Mode</a> section. When not connected to a SonarQube server, <a href="rules/index.html">these</a> are the rules used by SonarLint.
                         </li>
                         <li>
-                            <span class="bold">Can I change the highlighting of issues?</span> - Yes, in Settings -> Editor -> Colors & Fonts -> SonarLint.
+                            <span class="bold question">Can I change the highlighting of issues?</span> - Yes, in Settings -> Editor -> Colors & Fonts -> SonarLint.
                             By default, the highlighting of issues matches the standard warnings and errors, but it can be customized by severity, including the error stripe on the right bar.
                         	<img class="center" src="resources/images/edit_highlight.png"/>
                         </li>
                         <li>
-                            <span class="bold" id="howto_exclude_files">How to exclude files from the analysis?</span> - SonarLint analysis will run on every source file but only Java, JavaScript and PHP
+                            <span class="bold question" id="howto_exclude_files">How to exclude files from the analysis?</span> - SonarLint analysis will run on every source file but only Java, JavaScript and PHP
                             files are processed. Advanced users can configure some properties (File -> Settings -> SonarLint) like <tt>sonar.exclusions</tt>.
                         </li>
                         <li>
-                            <span class="bold">How to update SonarLint?</span> - SonarLint IntelliJ Plugin can be updated like any other IntelliJ plugin. Updates are done regularly, which include sometimes new analyzers with improved rule engines.
+                            <span class="bold question">How to update SonarLint?</span> - SonarLint IntelliJ Plugin can be updated like any other IntelliJ plugin. Updates are done regularly, which include sometimes new analyzers with improved rule engines.
                         </li>
                     </ul>
                 </div>
