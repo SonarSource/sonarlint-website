@@ -288,7 +288,7 @@
           "key": "S1451",
           "language": "C#",
           "title": "Track lack of copyright and license headers",
-          "description": "<h2 class=\"param-header\">Parameters</h2><dl><dt class=\"param-key\">headerFormat</dt><dd><span class=\"param-description\">Expected copyright and license header.</span><span class=\"param-type\">STRING</span><span class=\"param-default\"></span></dd><dt class=\"param-key\">isRegularExpression</dt><dd><span class=\"param-description\">Whether the headerFormat is a regular expression.</span><span class=\"param-type\">BOOLEAN</span><span class=\"param-default\">false</span></dd></dl><p>Each source file should start with a header stating file ownership and the license which must be used to distribute the application. </p>\n<p>This rule must be fed with the header text that is expected at the beginning of every file.</p>\n<h2>Compliant Solution</h2>\n<pre>\n/*\n * SonarQube, open source software quality management tool.\n * Copyright (C) 2008-2013 SonarSource\n * mailto:contact AT sonarsource DOT com\n *\n * SonarQube is free software; you can redistribute it and/or\n * modify it under the terms of the GNU Lesser General Public\n * License as published by the Free Software Foundation; either\n * version 3 of the License, or (at your option) any later version.\n *\n * SonarQube is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n * Lesser General Public License for more details.\n *\n * You should have received a copy of the GNU Lesser General Public License\n * along with this program; if not, write to the Free Software Foundation,\n * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.\n */\n</pre>\n\r\n",
+          "description": "<h2 class=\"param-header\">Parameters</h2><dl><dt class=\"param-key\">headerFormat</dt><dd><span class=\"param-description\">Expected copyright and license header.</span><span class=\"param-type\">STRING</span><span class=\"param-default\"></span></dd><dt class=\"param-key\">isRegularExpression</dt><dd><span class=\"param-description\">Whether the headerFormat is a regular expression.</span><span class=\"param-type\">BOOLEAN</span><span class=\"param-default\">false</span></dd></dl><p>Each source file should start with a header stating file ownership and the license which must be used to distribute the application. </p>\r\n<p>This rule must be fed with the header text that is expected at the beginning of every file.</p>\r\n<h2>Compliant Solution</h2>\r\n<pre>\r\n/*\r\n * SonarQube, open source software quality management tool.\r\n * Copyright (C) 2008-2013 SonarSource\r\n * mailto:contact AT sonarsource DOT com\r\n *\r\n * SonarQube is free software; you can redistribute it and/or\r\n * modify it under the terms of the GNU Lesser General Public\r\n * License as published by the Free Software Foundation; either\r\n * version 3 of the License, or (at your option) any later version.\r\n *\r\n * SonarQube is distributed in the hope that it will be useful,\r\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\r\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\r\n * Lesser General Public License for more details.\r\n *\r\n * You should have received a copy of the GNU Lesser General Public License\r\n * along with this program; if not, write to the Free Software Foundation,\r\n * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.\r\n */\r\n</pre>\r\n\r\n<h2>Code Fixes</h2><ul><li>Add or update license header</li></ul>",
           "severity": "Blocker",
           "tags": []
         }
@@ -477,6 +477,46 @@
           "severity": "Info",
           "tags": [
             "cwe"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "S1210",
+      "title": "When implementing \"IComparable\", \"Equals(object o)\" and the \"<\", \">\", \"==\", \"!=\" operators should be overridden",
+      "tags": [
+        "bug"
+      ],
+      "implementations": [
+        {
+          "key": "S1210",
+          "language": "C#",
+          "title": "When implementing \"IComparable\", \"Equals(object o)\" and the \"<\", \">\", \"==\", \"!=\" operators should be overridden",
+          "description": "<p>When you implement <code>IComparable</code> or <code>IComparable&lt;T&gt;</code> on a class, the CLR cannot automatically call your implementation\nin the comparison operators <code>&lt;</code>, <code>==</code>, <code>&gt;</code> and <code>!=</code>. Also, you could get weird and unpredictable\nresults if the <code>Equals()</code> method does not follow the same logic as <code>CompareTo()</code>.</p>\n<h2>Noncompliant Code Example</h2>\n<pre>\npublic class Foo: IComparable\n{\n  public int CompareTo(object obj) { /* ... */ }\n}\n</pre>\n<h2>Compliant Solution</h2>\n<pre>\npublic class Foo: IComparable\n{\n  public int CompareTo(object obj) { /* ... */ }\n  public bool Equals(object obj)\n  {\n    var other = obj as Foo;\n    if (object.ReferenceEquals(other, null))\n    {\n      return false;\n    }\n    return this.CompareTo(other) == 0;\n  }\n  public int GetHashCode() { /* ... */ }\n  public static bool operator == (Foo left, Foo right)\n  {\n    if (object.ReferenceEquals(left, null))\n    {\n      return object.ReferenceEquals(right, null);\n    }\n    return left.Equals(right);\n  }\n  public static bool operator &gt; (Foo left, Foo right)\n  {\n    return Compare(left, right) &gt; 0;\n  }\n  public static bool operator &lt; (Foo left, Foo right)\n  {\n    return Compare(left, right) &lt; 0;\n  }\n  public static bool operator != (Foo left, Foo right)\n  {\n    return !(left == right);\n  }\n}\n</pre>\n\r\n",
+          "severity": "Minor",
+          "tags": [
+            "bug"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "S2688",
+      "title": "\"NaN\" should not be used in comparisons",
+      "tags": [
+        "bug",
+        "cert"
+      ],
+      "implementations": [
+        {
+          "key": "S2688",
+          "language": "C#",
+          "title": "\"NaN\" should not be used in comparisons",
+          "description": "<p><code>NaN</code> is not equal to anything, even itself. Testing for equality or inequality against <code>NaN</code> will yield predictable results,\nbut probably not the ones you want. </p>\n<p>Instead, the best way to see whether a variable is equal to <code>NaN</code> is to use <code>Number.isNaN()</code>, since ES2015, or (perhaps\ncounter-intuitively) to compare it to itself. Since <code>NaN !== NaN</code>, when <code>a !== a</code>, you know it must equal <code>NaN</code>.</p>\n<h2>Noncompliant Code Example</h2>\n<pre>\nvar a = double.NaN;\n\nif (a == double.NaN) // Noncompliant; always false\n{\n  Console.WriteLine(\"a is not a number\");  // this is dead code\n}\nif (a != double.NaN)  // Noncompliant; always true\n{\n  Console.WriteLine(\"a is not NaN\"); // this statement is not necessarily true\n}\n</pre>\n<h2>Compliant Solution</h2>\n<pre>\nif (double.IsNaN(a))\n{\n  console.log(\"a is not a number\");\n}\n</pre>\n<h2>See</h2>\n<ul>\n  <li> <a href=\"https://www.securecoding.cert.org/confluence/x/7AEqAQ\">CERT, NUM07-J.</a> - Do not attempt comparisons with NaN </li>\n</ul>\n\r\n",
+          "severity": "Major",
+          "tags": [
+            "bug",
+            "cert"
           ]
         }
       ]
@@ -2189,7 +2229,7 @@
           "key": "S1163",
           "language": "C#",
           "title": "Exceptions should not be thrown in finally blocks",
-          "description": "<p>Throwing an exception from within a finally block will mask any exception which was previously thrown in the <code>try</code> or <code>catch</code>\r\nblock.</p>\r\n<p>The masked's exception message and stack trace will be lost.</p>\r\n<h2>Noncompliant Code Example</h2>\r\n<pre>\r\ntry\r\n{\r\n  /* some work which end up throwing an exception */\r\n  throw new ArgumentException();\r\n}\r\nfinally\r\n{\r\n  /* clean up */\r\n  throw new InvalidOperationException();       // Noncompliant; will mask the ArgumentException\r\n}\r\n</pre>\r\n<h2>Compliant Solution</h2>\r\n<pre>\r\ntry\r\n{\r\n  /* some work which end up throwing an exception */\r\n  throw new ArgumentException();\r\n}\r\nfinally\r\n{\r\n  /* clean up */                       // Compliant\r\n}\r\n</pre>\r\n<h2>See</h2>\r\n<ul>\r\n  <li> <a href=\"https://www.securecoding.cert.org/confluence/x/soUbAQ\">CERT, ERR05-J.</a> - Do not let checked exceptions escape from a finally block\r\n  </li>\r\n</ul>\r\n\r\n",
+          "description": "<p>Throwing an exception from within a finally block will mask any exception which was previously thrown in the <code>try</code> or <code>catch</code>\r\nblock.</p>\r\n<p>The masked's exception message and stack trace will be lost.</p>\r\n<h2>Noncompliant Code Example</h2>\r\n<pre>\r\ntry\r\n{\r\n  /* some work which end up throwing an exception */\r\n  throw new ArgumentException();\r\n}\r\nfinally\r\n{\r\n  /* clean up */\r\n  throw new RuntimeException();       // Noncompliant; will mask the ArgumentException\r\n}\r\n</pre>\r\n<h2>Compliant Solution</h2>\r\n<pre>\r\ntry\r\n{\r\n  /* some work which end up throwing an exception */\r\n  throw new ArgumentException();\r\n}\r\nfinally\r\n{\r\n  /* clean up */                       // Compliant\r\n}\r\n</pre>\r\n<h2>See</h2>\r\n<ul>\r\n  <li> <a href=\"https://www.securecoding.cert.org/confluence/x/soUbAQ\">CERT, ERR05-J.</a> - Do not let checked exceptions escape from a finally block\r\n  </li>\r\n</ul>\r\n\r\n",
           "severity": "Major",
           "tags": [
             "error-handling",
