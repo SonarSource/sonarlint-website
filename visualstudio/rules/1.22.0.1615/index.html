@@ -1,0 +1,36 @@
+﻿<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio version 2.10-RC1</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
+        </div>
+        <div class="rule-description" id="rule-description">
+
+            <ul class="release">
+                <li class="release-date">Release date: January 27, 2017</li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11242&version=13664" title="Release notes for SonarLint">Release notes for SonarLint</a></li>
+                <li class="release-notes"><a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11233&version=13665" title="Release notes for the rules">Release notes for rules</a></li>
+            </ul>
+            <div id="sonarlint-version-summary">
+            </div>
+            <p>
+                This version of SonarLint brings limited support for dataflow analysis on fields, thus directly improving several rules. 
+                We also fixed some bugs with the dataflow engine and have improved multiple rules.
+                Here are the changes since <a href="#sonarLintVersion=2.8.1">version 2.9.0</a>:
+            </p>
+            <p class="leading-vertical-space">
+                <ul>
+                    <li>Enable dataflow analysis on all fields - <a href='https://jira.sonarsource.com/browse/SLVS-1129'>SLVS-1129</a></li>
+                    <li><a class="rule-link" href="#version=1.22.0.1615&ruleId=S1450">Rule S1450</a> should not throw exceptions - <a href='https://jira.sonarsource.com/browse/SLVS-1142'>SLVS-1142</a></li>
+                    <li>Do not throw exceptions for new C# constructs in CFG and SE - <a href='https://jira.sonarsource.com/browse/SLVS-1143'>SLVS-1143</a></li>
+                    <li><a class="rule-link" href="#version=1.22.0.1615&ruleId=S1481">Rule S1481</a> should not report on variables used inside lambdas - <a href='https://jira.sonarsource.com/browse/SLVS-1123'>SLVS-1123</a></li>
+                    <li>The symbolic value representing the result of <code>nameof(xxx)</code> should always have a NotNull constraint - <a href='https://jira.sonarsource.com/browse/SLVS-1124'>SLVS-1124</a></li>
+                    <li>Pointers should not be marked non-null by default - <a href='https://jira.sonarsource.com/browse/SLVS-1128'>SLVS-1128</a></li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>

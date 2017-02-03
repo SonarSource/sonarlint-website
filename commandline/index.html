@@ -65,9 +65,10 @@
                     </p>
                     <p>
                         SonarLint for Command Line is free and open source.
+                        The connected mode is compatible with SonarQube 5.6+.
                     </p>
                     <ul>
-                        <li><a href='https://bintray.com/sonarsource/Distribution/org.sonarsource.sonarlint-cli/_latestVersion'><img src='https://api.bintray.com/packages/sonarsource/Distribution/org.sonarsource.sonarlint-cli/images/download.svg'></a></li>
+                        <li><a href='https://bintray.com/sonarsource/Distribution/org.sonarsource.sonarlint-cli/_latestVersion'><img alt='download' src='https://api.bintray.com/packages/sonarsource/Distribution/org.sonarsource.sonarlint-cli/images/download.svg'></a></li>
                         <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-cli" title="SonarLint for Command Line on GitHub">GitHub</a></li>
                         <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
                     </ul>
@@ -82,7 +83,7 @@
                     <h2>Installation</h2>
                     <ol>
                         <li>
-                        	Download the <a href="https://bintray.com/sonarsource/Distribution/org.sonarsource.sonarlint-cli/_latestVersion">latest release</a> and extract the zip file.
+                            Download the <a href="https://bintray.com/sonarsource/Distribution/org.sonarsource.sonarlint-cli/_latestVersion">latest release</a> and extract the zip file.
                         </li>
                         <li>
                             Add <code>&lt;extraction_path&gt;/bin</code> to your PATH.
@@ -107,9 +108,9 @@
                         </div>
                         <h3 class="bold">SonarLint CLI arguments</h3>
                         <p>
-                            You can list the accepted arguments with
-			    		    <div class="code">sonarlint -h</div>
+                            You can list the accepted arguments with:
                         </p>
+                        <div class="code">sonarlint -h</div>
                         <h3>Examples</h3>
                             <ul>
                                 <li><span class="bold"><code>--src</code></span> - allow to restrict source set to be analyzed (default is to analyze all supported files)</li>
@@ -119,7 +120,6 @@
                                 <li><span class="bold"><code>--tests</code></span> - mark some files <strong>already included in the source set</strong> as test files. Test files are analyzed with different rules.</li>
                             </ul>
                         <div class="code">sonarlint --src "src/**" --tests "src/tests/**"</div>
-                    </p>
                 </div>
             </section>
             <section class="instructions" id="Connected">
@@ -177,9 +177,13 @@
                     <h2>News</h2>
                     <ul>
                         <li>
-                            <span class="bold">August 12, 2016</span> - SonarLint CLI 2.0 is released, featuring the "connected mode", which allows to point SonarLint CLI to a remote project in a SonarQube server.
+                            <span class="bold">January 16, 2017</span> - SonarLint CLI <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11234&amp;version=13379">version 2.1</a> is released. In connected mode, issues will be matched with issues known on the server. Issues marked resolved will be hidden, other matched issues will have a creation date in the HTML report. Starting from this version, <span class="bold">SonarLint is only compatible with SonarQube 5.6+</span> (current LTS).
+                        </li>
                         <li>
-                            <span class="bold">February 12, 2016</span> - First release of SonarLint CLI.
+                            <span class="bold">August 12, 2016</span> - SonarLint CLI <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11234&amp;version=12961">version 2.0</a> is released, featuring the "connected mode", which allows to point SonarLint CLI to a remote project in a SonarQube server.
+                        </li>
+                        <li>
+                        <span class="bold">February 12, 2016</span> - First release of SonarLint CLI, <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11234&amp;version=12930">version 1.0</a>.
                         </li>
                     </ul>
                 </div>
