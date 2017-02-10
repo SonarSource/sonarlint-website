@@ -86,4 +86,3 @@ Template.VersionInfo = ('<p>Version summary:</p>' +
     '{{/each}}' +
     '</ul>');
 Template.hack_static_run = Template.init();
-//# sourceMappingURL=Template.js.map

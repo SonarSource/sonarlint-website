@@ -8,7 +8,7 @@ var VisualStudio;
     var UrlParameters = (function (_super) {
         __extends(UrlParameters, _super);
         function UrlParameters() {
-            return _super !== null && _super.apply(this, arguments) || this;
+            return _super.apply(this, arguments) || this;
         }
         UrlParameters.prototype.loadFromObject = function (parsedHash) {
             _super.prototype.loadFromObject.call(this, parsedHash);
@@ -57,7 +57,7 @@ var VisualStudio;
     var ContentRenderer = (function (_super) {
         __extends(ContentRenderer, _super);
         function ContentRenderer() {
-            return _super !== null && _super.apply(this, arguments) || this;
+            return _super.apply(this, arguments) || this;
         }
         return ContentRenderer;
     }(Helpers.ContentRenderer));
@@ -75,4 +75,3 @@ var Controllers;
     }(Controllers.RulePageControllerBase));
     Controllers.VisualStudioRulePageController = VisualStudioRulePageController;
 })(Controllers || (Controllers = {}));
-//# sourceMappingURL=RuleController.js.map
