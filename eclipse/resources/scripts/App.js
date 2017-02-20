@@ -1,3 +1,3 @@
 window.onload = function () {
-    App.Controller = new Controllers.RulePageController('Eclipse', '2.5.1', 20);
+    App.Controller = new Controllers.RulePageController('Eclipse', '2.6.0', 20);
 };
