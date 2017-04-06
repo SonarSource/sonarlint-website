@@ -20,6 +20,7 @@ var sonarLintSonarAnalyzerMappings = [
     { sonarLintVersion: '2.10.0-RC2', sonarAnalyzerVersion: '1.22.0.1631' },
     { sonarLintVersion: '2.10.0', sonarAnalyzerVersion: '1.22.0.1631' },
     { sonarLintVersion: '2.11.0', sonarAnalyzerVersion: '1.23.0.1857' },
+    { sonarLintVersion: '2.12.0-RC1', sonarAnalyzerVersion: '5.9.0.992' },
 ];
 window.onload = function () {
     App.Controller = new Controllers.VisualStudioRulePageController('1.23.0.1857');
