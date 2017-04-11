@@ -3,17 +3,16 @@
 <repository name='&quot;SonarLint for Eclipse Update Site&quot;'
     type='org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository' version='1.0.0'>
   <properties size='1'>
-    <property name='p2.timestamp' value='1487601625'/><!-- http://www.epochconverter.com/ or http://www.onlineconversion.com/unix_time.htm -->
+    <property name='p2.timestamp' value='1491916459'/><!-- http://www.epochconverter.com/ or http://www.onlineconversion.com/unix_time.htm -->
   </properties>
   <children size='8'>
-    <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/1.3.1/'/>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/2.0.2/'/>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/2.1.0/'/>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/2.2.1/'/>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/2.3.1/'/>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/2.4.0/'/>
-    <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/2.5.0/'/>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/2.5.1/'/>
     <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/2.6.0/'/>
+    <child location='https://sonarsource.bintray.com/SonarLint-for-Eclipse/releases/3.0.0/'/>
   </children>
 </repository>
