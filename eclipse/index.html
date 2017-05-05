@@ -74,13 +74,13 @@
                     </p>
                     <ul>
                         <li><a class="button-link download" href="https://marketplace.eclipse.org/content/sonarlint" title="Download SonarLint from Eclipse Marketplace">Marketplace</a></li>
-                        <li><a href='https://bintray.com/sonarsource/SonarLint-for-Eclipse/releases/_latestVersion' title="Offline installation update site"><img src='https://api.bintray.com/packages/sonarsource/SonarLint-for-Eclipse/releases/images/download.svg'></a></li>
+                        <li><a href='https://bintray.com/sonarsource/SonarLint-for-Eclipse/download_file?file_path=releases%2Forg.sonarlint.eclipse.site-3.1.0.201705051000.zip' title="Offline installation update site"><img src='https://api.bintray.com/packages/sonarsource/SonarLint-for-Eclipse/releases/images/download.svg'></a></li>
                         <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-eclipse" title="SonarLint on GitHub">GitHub</a></li>
                         <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
                     </ul>
                 </div>
                 <div class="left image">
-                    <img src="resources/images/screenshot-2.1.png" title="SonarLint in Eclipse" alt="SonarLint in Eclipse" />
+                    <img src="resources/images/screenshot-3.1.png" title="SonarLint in Eclipse" alt="SonarLint in Eclipse" />
                 </div>
             </section>
             <section class="split connected" id="Connected">
@@ -90,31 +90,32 @@
                         You can bind Eclipse projects to a SonarQube project (supporting SonarQube servers 5.6+). This operation will make SonarLint use
                         the analyzers, quality profiles and settings defined on your SonarQube server. This is a convenient way of customizing the rules used by SonarLint.
                     </p>
-                    <p>First step is to connect to your SonarQube server:</p>
+                    <p>First step is to configure connection with the SonarQube server:</p>
                         <ul>
                             <li>In SonarQube server view, right click and choose 
                         "New -> Server connection", or directly do "File -> New -> Other... -> SonarLint -> New Server".</li>
                             <li>Complete connection details (URL and credentials).</li>
+                            <li>When using sonarqube.com set your organization. Leave blank for on premise servers or when using default organization.</li>
                             <li>Test connection</li>
-                            <li>Click "Finish" to close the wizard and start updating configuration from the server (may take a while)</li>
+                            <li>Click "Finish" to close the wizard. A background process will start updating configuration from the server (may take a while)</li>
                         </ul>
                     </p>
                     <img src="resources/images/connected-add-server.png"/>
                     <p>
                         You can manage your SonarQube server connections in the "SonarQube Servers" view.
-                        To manually trigger an update of local configuration (if remote SonarQube configuration has changed): right click on a server and use the "update" action.
+                        Note: To manually trigger an update of local configuration (if remote SonarQube configuration has changed): right click on a server and use the "Update all project bindings" action.
                     </p>
                     <img src="resources/images/connected-update-config.png"/>
                     <p>
-                        Now you can bind one or more Eclipse project(s) to their remote SonarQube pair. Right click on project -> "SonarLint -> Bind with remote SonarQube server..."
+                        Now you can bind one or more Eclipse project(s) to their remote SonarQube pair. Right click on Eclipse project -> "SonarLint -> Bind with remote SonarQube server..."
                     </p>
                     <p>
-                        You can now use the wizard to find the matching SonarQube project. First try the "auto-bind" feature that will try to find best match based on Eclipse project name.
+                        You can now use the wizard to find the matching SonarQube project. Give a try to the "auto-bind" feature that will find best match based on Eclipse project name.
                         If auto-bind fail you can manually search for a project.
                     </p>
                     <img src="resources/images/connected-binding-search.png"/>
                     <p>
-                        Click on "Finish" to persist the binding. You should now show SonarQube overlay on your bound project icon.
+                        Click on "Finish" to persist the binding. You should now see the SonarQube overlay on your bound Eclipse project icon.
                     </p>
                     <img src="resources/images/connected-overlay-icon.png"/>
                     <p>
@@ -126,6 +127,9 @@
                 <div class="text wide">
                     <h2>News</h2>
                     <ul>
+                        <li>
+                            <span class="bold">May 5, 2017</span> - We released <a href="https://jira.sonarsource.com/secure/ReleaseNote.jspa?projectId=11130&amp;version=13781" target="_blank">version 3.1.0</a>, that allow to connect to an organization when using sonarqube.com. This version also collect anonymous usage statistics to help us focus our efforts. SonarJS was also updated to the latest version.
+                        </li>
                         <li>
                             <span class="bold">April 11, 2017</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13699" target="_blank">version 3.0.0</a>, that is a big technical refactoring to help integration with other Eclipse based IDEs like IBM IDz. Analyzers were also updated and many small bug were fixed.
                             <br/>
@@ -233,15 +237,15 @@
                             </div>
                         </li>
                         <li>
-                            <span class="question" id="howto_open_console">How to open SonarLint console?</span>
+                            <span class="question" id="howto_open_console">How to open the SonarLint console?</span>
                             <div class="answer">
-                                <p>SonarLint console allow to see logs of the analysis. This can be useful to understand some technical issues. You can open it from standard Eclipse Console views: <img src="resources/images/open-sonarlint-console.png"/></p>
+                                <p>The SonarLint console allow to see logs of the analysis. This can be useful to understand some technical issues. You can open it from standard Eclipse Console views: <img src="resources/images/open-sonarlint-console.png"/></p>
                             </div>
                         </li>
                         <li>
                             <span class="question" id="howto_enable_debug_logs">How to enable verbose logs?</span>
                             <div class="answer">
-                                <p>By default SonarLint console will not display debug logs. You can enable debug logs from SonarLint console: <img src="resources/images/enable-verbose-output.png"/></p>
+                                <p>By default the SonarLint console will not display debug logs. You can enable debug logs from the SonarLint console: <img src="resources/images/enable-verbose-output.png"/></p>
                             </div>
                         </li>
                     </ul>
