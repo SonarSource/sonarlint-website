@@ -23,9 +23,9 @@ var sonarLintSonarAnalyzerMappings = [
     { sonarLintVersion: '2.12.0-RC1', sonarAnalyzerVersion: '5.9.0.992' },
     { sonarLintVersion: '2.12.0', sonarAnalyzerVersion: '5.9.0.1001' },
     { sonarLintVersion: '2.13.0-RC1', sonarAnalyzerVersion: '5.10.0.1343' },
-    { sonarLintVersion: '2.13.0', sonarAnalyzerVersion: '5.10.0.1344' }
+    { sonarLintVersion: '2.13.0', sonarAnalyzerVersion: '5.10.1.1411' }
 ];
 window.onload = function () {
-    App.Controller = new Controllers.VisualStudioRulePageController('5.10.0.1344');
+    App.Controller = new Controllers.VisualStudioRulePageController('5.10.1.1411');
 };
 //# sourceMappingURL=App.js.map
