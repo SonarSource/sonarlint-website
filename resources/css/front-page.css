@@ -34,7 +34,7 @@ footer {
 .product-grid > .col-1 {
     display: block;
     float: left;
-    width: 33.33%;
+    width: 25%;
     position: relative;
     color: #444;
     padding: 0 0 30px 0;
@@ -44,7 +44,7 @@ footer {
     -moz-box-shadow: inset 0px 0px 0px 1px #e6e6e6;
     box-shadow: inset 0px 0px 0px 1px #e6e6e6;
 }
-.product-grid > .col-1:hover{
+.product-grid > .col-1:hover {
     border: 7px solid #449DD2;
 }
 
