@@ -62,7 +62,7 @@
                         <li>
                             <span class="question" id="which_languages_supported">Which languages are supported?</span>
                             <div class="answer">
-                              <p>C#, VB.NET</p>
+                              <p>C#, VB.NET, and starting with version 3.0, you can <a href="#activate_more">activate JavaScript analysis</a>.</p>
                             </div>
                         </li> 
                         <li>
@@ -110,6 +110,20 @@
                                 <p>
                                     We aim to have the best out-of-box experience with SonarLint. This means that controversial rules are not enabled by default. You can choose to enable them by
                                     <a href="#disable_rule">editing the ruleset file</a>.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="activate_more">How can I activate the analysis of JavaScript files in SonarLint?</span>
+                            <div class="answer">
+                              <p>
+                                    Make sure that you've installed SonarLint for Visual Studio version &gt;=3.0.
+                                    Opening your first project, you'll get a notification and you can choose to install and activate the support of JavaScript in SonarLint.
+                                    <img src="resources/images/activate_javascript_notification.png" title="Activate JavaScript notification" alt="Activate JavaScript notification" />
+                                    If you missed this opportunity, you can still do it at any time from the <b>Tools / Options / SonarLint for Visual Studio</b> menu item.
+                                    <img src="resources/images/activate_javascript_settings.png" title="Activate JavaScript settings" alt="Activate JavaScript settings" />
+                                    Once this option activated, no need to restart: any JavaScript file that you open from now on will be automatically analyzed.
+                                    Note that, for the time being, JavaScript analysis doesn't benefit from the connected mode.
                                 </p>
                             </div>
                         </li>
