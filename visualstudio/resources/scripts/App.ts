@@ -30,7 +30,8 @@ var sonarLintSonarAnalyzerMappings: SonarLintSonarAnalyzerMapping[] = [
     { sonarLintVersion: '2.13.0-RC1', sonarAnalyzerVersion: '5.10.0.1343' },
     { sonarLintVersion: '2.13.0', sonarAnalyzerVersion: '5.10.1.1411' },
     { sonarLintVersion: '3.0.0-RC1', sonarAnalyzerVersion: '5.11.0.1721' },
-    { sonarLintVersion: '3.0.0', sonarAnalyzerVersion: '5.11.0.1756' }
+    { sonarLintVersion: '3.0.0', sonarAnalyzerVersion: '5.11.0.1756' },
+    { sonarLintVersion: '3.1.0', sonarAnalyzerVersion: '6.0.0.2021' }
 ];
 
 window.onload = () => {
