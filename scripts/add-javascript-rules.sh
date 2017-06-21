@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
+#
+# Add JavaScript rules to an existing rules.json file
+#
+# Simply run this script without any arguments to get the usage message
+# that describes the required arguments.
+#
+# Requirements:
+# - Java
+# - jq utility on PATH
+# - Rule Extractor jar with dependencies: clone and build sonarlint-core
+# - SonarJS jar from which to extract rules
+#
 
 usage() {
     echo usage: $0 path/to/rule-extractor-with-deps-jar path/to/sonarjs-jar path/to/rules.json
