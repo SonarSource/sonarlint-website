@@ -1,0 +1,1 @@
+exclude: ["CNAME", "Gemfile*", "packages.config", "sonarlint.org.*", "scripts"]
