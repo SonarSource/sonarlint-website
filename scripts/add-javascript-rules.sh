@@ -17,7 +17,7 @@ usage() {
     exit 1
 }
 
-type jq &>/dev/null || {
+{ type jq &>/dev/null || type jq.exe &> /dev/null; } || {
     echo Fatal: cannot find jq on PATH, please install it
     exit 1
 }
