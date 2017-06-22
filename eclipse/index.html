@@ -58,7 +58,7 @@
                     <div class="short-description">
                         SonarLint is an Eclipse plugin that provides
                         <span class="emph">on-the-fly feedback</span> to developers on
-                        <span class="emph">new bugs and quality issues</span> injected into Java, JavaScript and PHP code.
+                        <span class="emph">new bugs and quality issues</span> injected into Java, JavaScript, PHP, Python... code.
                     </div>
                 </div>
             </div>
@@ -200,16 +200,14 @@
                             <div class="answer">
                               <p>Out of the box: Java, JavaScript, PHP and Python</p>
                               <p>With the <a href="#Connected">Connected Mode</a>, it adds: C/C++, ABAP, COBOL, PL/SQL, PL/I, Swift and RPG</p>
-                              <p>For proper analysis of Java projects, you need to install the optional configurator for Java (integrates with JDT). 
-                              For proper analysis of C/C++ projects you have to install the optional configurator for C/C++ (integrates with CDT).</p>
                             </div>
                         </li>                        
                         <li>
-                            <span class="question" id="howto_start_analysis">How to start SonarLint analysis?</span>
+                            <span class="question" id="howto_start_analysis">How to trigger SonarLint analysis?</span>
                             <div class="answer">
                               <p>SonarLint analysis is automatically triggered by a resource change listener (in short: when a file is modified) and also when you open a file.</p>
-                              <p>If you want to disable the automatic analysis: go to project properties (right click on the project -> Properties), select SonarLint entry and uncheck "Run SonarLint automatically"</p>
-                              <p><strong>When automatic analysis is disabled</strong> you can manually run SonarLint analysis using context menu on each source file: <img src="resources/images/run-analysis-menu.png"/></p>
+                              <p>If you want to disable the automatic analysis: go to project properties (right click on the project -> Properties), select SonarLint entry and uncheck "Enable SonarLint on-the-fly"</p>
+                              <p><strong>When on-the-fly analysis is disabled</strong> you can manually run SonarLint analysis using context menu on each source file: <img src="resources/images/run-analysis-menu.png"/></p>
                             </div>
                         </li>
                         <li>
@@ -219,7 +217,7 @@
                         <li>
                             <span class="question" id="connect_supported_plugins">In Connected Mode will all plugins installed on SonarQube be executed in SonarLint?</span>
                             <div class="answer">
-                              <p>SonarLint supports the SonarSource Analyzers (SonarJava, SonarJS, ...) and also custom rules extending these SonarSource analyzers.</p>
+                              <p>SonarLint supports only the SonarSource Analyzers (SonarJava, SonarJS, ...) and also custom rules extending these SonarSource analyzers.</p>
                               <p>We don't plan to support plugins running third-party analyzers (like PMD, Android Lint, JSLint...). Most of the time those analyzers already have dedicated IDE integration.</p>
                             </div>
                         </li>
