@@ -74,7 +74,7 @@
                     </p>
                     <ul>
                         <li><a class="button-link download" href="https://marketplace.eclipse.org/content/sonarlint" title="Download SonarLint from Eclipse Marketplace">Marketplace</a></li>
-                        <li><a href='https://bintray.com/sonarsource/SonarLint-for-Eclipse/download_file?file_path=releases%2Forg.sonarlint.eclipse.site-3.1.0.201705051000.zip' title="Offline installation update site"><img src='https://api.bintray.com/packages/sonarsource/SonarLint-for-Eclipse/releases/images/download.svg'></a></li>
+                        <li><a href='https://bintray.com/sonarsource/SonarLint-for-Eclipse/download_file?file_path=releases%2Forg.sonarlint.eclipse.site-3.2.0.201706271328.zip' title="Offline installation update site"><img src='https://api.bintray.com/packages/sonarsource/SonarLint-for-Eclipse/releases/images/download.svg'></a></li>
                         <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-eclipse" title="SonarLint on GitHub">GitHub</a></li>
                         <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
                     </ul>
@@ -127,6 +127,9 @@
                 <div class="text wide">
                     <h2>News</h2>
                     <ul>
+                        <li>
+                            <span class="bold">June 27, 2017</span> - We released <a href="https://jira.sonarsource.com/jira/secure/ReleaseNote.jspa?projectId=11130&amp;version=13810" target="_blank">version 3.2.0</a>, with "Analyze all files" feature, a reworked server connection wizard, and many optimizations and bug fixes. Analyzers were updated to their latest version.
+                        </li>
                         <li>
                             <span class="bold">May 5, 2017</span> - We released <a href="https://jira.sonarsource.com/secure/ReleaseNote.jspa?projectId=11130&amp;version=13781" target="_blank">version 3.1.0</a>, that allow to connect to an organization when using sonarqube.com. This version also collect anonymous usage statistics to help us focus our efforts. SonarJS was also updated to the latest version.
                         </li>
@@ -207,12 +210,12 @@
                             <div class="answer">
                               <p>SonarLint analysis is automatically triggered by a resource change listener (in short: when a file is modified) and also when you open a file.</p>
                               <p>If you want to disable the automatic analysis: go to project properties (right click on the project -> Properties), select SonarLint entry and uncheck "Enable SonarLint on-the-fly"</p>
-                              <p><strong>When on-the-fly analysis is disabled</strong> you can manually run SonarLint analysis using context menu on each source file: <img src="resources/images/run-analysis-menu.png"/></p>
+                              <p>You can also manually run SonarLint analysis using the context menu on project or individual source files: <img src="resources/images/run-analysis-menu.png"/></p>
                             </div>
                         </li>
                         <li>
                             <a name="howto_connect"></a>
-                            <span class="bold">How can I connect SonarLint to my SonarQube server?</span> - Please use <a href="#Connected">connected mode</a> to connect with a SonarQube server.
+                            <span class="bold">How can I connect SonarLint to SonarCloud or to my SonarQube server?</span> - Please use <a href="#Connected">connected mode</a> to connect with SonarCloud or a SonarQube server.
                         </li>
                         <li>
                             <span class="question" id="connect_supported_plugins">In Connected Mode will all plugins installed on SonarQube be executed in SonarLint?</span>
@@ -224,7 +227,7 @@
                         <li>
                             <span class="question" id="howto_see_rule_description">How to see rule description?</span>
                             <div class="answer">
-                                <p>Full rule description is available in a dedicated view. You can open it using the context menu in the issues view:
+                                <p>Full rule description is available in a dedicated view. You can open it using the context menu in the issues view, or using the quick fix action on a marker:
                                 <img src="resources/images/open-rule-description.png"/></p>
                             </div>
                         </li>
