@@ -18,7 +18,7 @@
             <div id="sonarlint-version-summary">
             </div>
             <p>
-                This new version adds 15 new rules, adjusts the severity of some rules and fixes several bugs.
+                This new version adds 6 new rules, fixes several bugs and brings improvements to symbolic execution-related rules.
                 Here are the changes since <a href="#sonarLintVersion=3.1.0">version 3.1.0</a>:
             </p>
             <p class="leading-vertical-space">
@@ -27,7 +27,7 @@
                     <li>Rule S2221: "Exception" should not be caught when not required by called methods</li>
                     <li>Rule S3927: Serialization event handlers should be implemented correctly</li>
                     <li>Rule S3972: Conditionals should start on new lines</li>
-                    <li>Rule S4035: Classes implementing "IEquatable<T>" should be sealed</li>
+                    <li>Rule S4035: Classes implementing "IEquatable&lt;T&gt;" should be sealed</li>
                     <li>Rule S4039: Interface methods should be callable by derived types</li>
                     <li>Rule S4041: Type names should not match namespaces</li>
                 </ul>
@@ -37,8 +37,8 @@
                     <li>Fix S2259: "Null pointer dereference" raises FP when a variable is initialized in catch(Exception) block</li>
                     <li>Fix S2386: Do not raise if the readonly field is initialized with a known immutable collection</li>
                     <li>Fix S2583: Rule should consider Nullable<bool> values</li>
-                    <li>Fix S3897: Classes that provide "Equals(<T>)" should implement "IEquatable<T>"</li>
-                    <li>Fix S3897: Correctly recognize IEquatable<T> implementations from base classes</li>
+                    <li>Fix S3897: Classes that provide "Equals(&lt;T&gt;)" should implement "IEquatable&lt;T&gt;"</li>
+                    <li>Fix S3897: Correctly recognize IEquatable&lt;T&gt; implementations from base classes</li>
                     <li>Fix S4015: Rule should not raise on 'new' or 'override' members</li>
                     <li>Update S1479: "Switch with too many cases" should ignore empty, fall-through cases</li>
                     <li>Update S1764: Comparing the same object with Object.Equals() method</li>
@@ -50,7 +50,7 @@
                     <li>Support nested try-catch blocks</li>
                     <li>Support many coverage reports</li>
                     <li>Potential problem in CFG with continue statement in and do-while loop</li>
-                    <li>SonarC# fails when parsing xUnit test results with empty <assembly> tags</li>
+                    <li>SonarC# fails when parsing xUnit test results with empty &lt;assembly&gt; tags</li>
                     <li>default() should have a null or not null constraint on it</li>
                     <li>Provide better error message when using old version of Scanner for MSBuild</li>
                     <li>Fix spelling errors</li>
