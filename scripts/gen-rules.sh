@@ -13,18 +13,14 @@
 
 usage() {
     test "$@" && echo error: $*
-    echo usage: $0 path/to/rule-extractor-with-deps-jar path/to/rules/dir path/to/analyzer1-jar ...
+    echo usage: $0 version path/to/rules.json path/to/rule-extractor-with-deps-jar path/to/analyzer1-jar ...
     exit 1
 }
 
-test $# -gt 2 || usage
+test $# -gt 3 || usage
 
+version=$1; shift
+rules_json=$1; shift
 rule_extractor=$1; shift
-rules_dir=$1; shift
 
-test -d "$rules_dir" || usage "$rules_dir is not a directory"
-
-version=$(basename "$rules_dir")
-rules=$rules_dir/rules.json
-
-java -jar $rule_extractor $version "$@" > "$rules"
+java -jar "$rule_extractor" "$version" "$@" > "$rules_json"
