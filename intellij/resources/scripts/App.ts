@@ -1,3 +1,3 @@
 ﻿window.onload = () => {
-    App.Controller = new Controllers.RulePageController('IntelliJ', '2.10', 20);
+    App.Controller = new Controllers.RulePageController('IntelliJ', '3.0', 20);
 }
