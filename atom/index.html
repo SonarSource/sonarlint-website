@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../resources/css/reset.css" rel="stylesheet" />
+    <link href="../resources/css/common.css" rel="stylesheet" />
+    <link href="../resources/css/tool.css" rel="stylesheet" />
+    <link href="resources/css/tool_override.css" rel="stylesheet" />
+    <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
+    <title>SonarLint for Atom</title>
+    <link rel="icon" type="image/png" href="../resources/images/ico-sonarlint-32.png" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-1880045-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div id="nav-div">
+                <nav class="six">
+                    <ul>
+                        <li>
+                            <a href="../index.html" title="SonarLint">
+                                <img class="nav-wide nav-icon" src="../resources/images/sonarlint_24.png" alt="SonarLint" />
+                                <span class="nav-tight">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <span>Atom</span>
+                            </a>
+                        </li>
+                        <li><a href="#News">News</a></li>
+                        <li><a href="rules/index.html">Rules</a></li>
+                        <li><a href="#FAQ">FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="header">
+                <div class="header-content">
+                    <h1>SonarLint for Atom</h1>
+                    <div class="short-description">
+                        SonarLint is a Atom extension that provides
+                        <span class="emph">on-the-fly feedback</span> to developers on
+                        <span class="emph">new bugs and quality issues</span> injected into JavaScript, PHP and Python code.
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="split first" id="Description">
+                <div class="left text">
+                    <p>
+                    SonarLint offers a fully-integrated user experience in Atom, in conjunction with <a href="https://atom.io/packages/linter">Linter</a>, the base linter provider of Atom. After installing the package, issues will be reported in the Linter view, and highlighted in the editor.
+                    </p>
+                    <p>
+                    SonarLint is free, open source, and available on <a href="https://atom.io">atom.io</a>. Note that it <strong>requires a JRE 8</strong> to run, and <a href="https://atom.io/packages/linter">Linter</a>.
+                    </p>
+                    <ul>
+                        <li><a href="https://atom.io/packages/sonarlint" title="atom.io"><img src="https://img.shields.io/apm/v/sonarlint.svg?style=flat-square" alt="sonarlint-atom-badge"></a></li>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-atom" title="SonarLint on GitHub">GitHub</a></li>
+                        <li><a class="button-link twitter" href="https://twitter.com/sonarlint" title="SonarLint on Twitter">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="left image">
+                    <img src="resources/images/screenshot-1.0.0.png" title="SonarLint in Atom" alt="SonarLint in Atom" />
+                </div>
+            </section>
+            <section class="split" id="News">
+                <div class="text wide">
+                    <h2>News</h2>
+                    <ul>
+                        <li>
+                            <span class="bold">July 12, 2017</span> - Today we released version 1.0.0 of SonarLint for Atom. JavaScript, PHP and Python are supported. The following analyzers are embedded: SonarJS 3.1.1.5128, SonarPHP 2.10.0.2087 and SonarPython 1.8.0.1496.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split faq" id="FAQ">
+                <div class="text wide">
+                    <h2>Frequently Asked Questions</h2>
+                    <ul>
+                        <li>
+                            <span class="question" id="which_languages_supported">Which languages are supported?</span>
+                            <div class="answer">
+                              <p>JavaScript, PHP and Python are currently supported.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="howto_start_analysis">How to start SonarLint analysis?</span>
+                            <div class="answer">
+                              <p>SonarLint analysis is automatically triggered when you type code and also when you open a file. Note that only files within a project are analyzed.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="howto_see_rule_description">How to see rule description?</span>
+                            <div class="answer">
+                                <p>Full rule description is available in your web browser. You can open it using the link icon of the highlighted issue in the editor view:
+                                <img src="resources/images/open-rule-description.png"/></p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="question" id="connected_mode">Is connected mode supported?</span>
+                            <div class="answer">
+                              <p>Not yet. Please follow and vote for <a href="https://jira.sonarsource.com/browse/SLATOM-8">https://jira.sonarsource.com/browse/SLATOM-8</a></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="split last">
+                <div class="left text fifty" id="Contribute">
+                    <h2>Contribute</h2>
+                    <p>
+                        SonarLint for Atom is open source under the LGPL v3 license. You can fork us on GitHub, and submit Pull Requests. Feel free to fix bugs or to implement new features.
+                    </p>
+                    <ul>
+                        <li><a class="button-link github" href="https://github.com/SonarSource/sonarlint-atom" title="SonarLint GitHub">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="right text fifty" id="Feedback">
+                    <h2>Feedback</h2>
+                    <p>The preferred way to discuss about SonarLint is by posting on the SonarLint Google Group. We are also constantly monitoring questions posted to
+                    StackOverflow. For faster answers mark your StackOverflow questions with [SonarLint] and [atom] tags.</p>
+                     <ul>
+                        <li><a class="button-link google-group" href="https://groups.google.com/forum/#!forum/sonarlint" title="SonarLint Google Group">Google Group</a></li>
+                        <li><a class="button-link stack-overflow" href="http://stackoverflow.com/search?q=%5Bsonarlint%5D+%5Batom%5D" title="SonarLint+Atom StackOverflow">StackOverflow</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>
+              &copy; 2008-2017, <a href="http://www.sonarsource.com" target="SonarSource S.A, Switzerland">SonarSource S.A</a>, Switzerland. All content is copyright protected. SONARLINT and SONARSOURCE are trademarks of SonarSource SA.
+              <br/>All other trademarks and copyrights are the property of their respective owners. All rights are expressly reserved.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
