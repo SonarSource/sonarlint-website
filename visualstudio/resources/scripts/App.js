@@ -30,9 +30,9 @@ var sonarLintSonarAnalyzerMappings = [
     { sonarLintVersion: '3.1.0', sonarAnalyzerVersion: '6.0.0.2033' },
     { sonarLintVersion: '3.2.0-RC1', sonarAnalyzerVersion: '6.1.0.2272' },
     { sonarLintVersion: '3.2.1', sonarAnalyzerVersion: '6.1.0.2359' },
-    { sonarLintVersion: '3.3.0-RC1', sonarAnalyzerVersion: '6.2.0.2536' }
+    { sonarLintVersion: '3.3.0', sonarAnalyzerVersion: '6.2.0.2536' }
 ];
 window.onload = function () {
-    App.Controller = new Controllers.VisualStudioRulePageController('6.1.0.2359');
+    App.Controller = new Controllers.VisualStudioRulePageController('6.2.0.2536');
 };
 //# sourceMappingURL=App.js.map
