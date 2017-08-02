@@ -1,4 +1,4 @@
-﻿interface SonarLintSonarAnalyzerMapping {
+interface SonarLintSonarAnalyzerMapping {
     sonarLintVersion: string;
     sonarAnalyzerVersion: string;
 }
@@ -35,7 +35,8 @@ var sonarLintSonarAnalyzerMappings: SonarLintSonarAnalyzerMapping[] = [
     { sonarLintVersion: '3.1.0', sonarAnalyzerVersion: '6.0.0.2033' },
     { sonarLintVersion: '3.2.0-RC1', sonarAnalyzerVersion: '6.1.0.2272' },
     { sonarLintVersion: '3.2.1', sonarAnalyzerVersion: '6.1.0.2359' },
-    { sonarLintVersion: '3.3.0', sonarAnalyzerVersion: '6.2.0.2536' }
+    { sonarLintVersion: '3.3.0', sonarAnalyzerVersion: '6.2.0.2536' },
+    { sonarLintVersion: '3.4.0-RC1', sonarAnalyzerVersion: '6.3.0.2784' }
 ];
 
 window.onload = () => {
