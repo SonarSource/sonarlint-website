@@ -83,4 +83,3 @@ foreach ($ruleToMerge in $rulesToMerge.rules)
 
 $escapedJson = ToEscapedJson -psObject $mergedRules
 Set-Content $targetFilePath -Value $escapedJson
-    
