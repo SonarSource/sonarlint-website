@@ -1,54 +1,75 @@
 param
 (
-    [Parameter(Mandatory = $true, HelpMessage = "full path to json rules file")]
+    [Parameter(Mandatory = $true,
+        HelpMessage = "full path to json rules file")]
     [ValidateScript({Test-Path $_})]
     [string]
     $mainFilePath,
 
-    [Parameter(Mandatory = $true, HelpMessage = "full path to json rules file to be merged")]
+    [Parameter(Mandatory = $true,
+        HelpMessage = "full path to json rules file to be merged")]
     [ValidateScript({Test-Path $_})]
     [string]
-    $filesToMergePath,
+    $fileToMergePath,
 
-    [Parameter(Mandatory = $true, HelpMessage = "path to the result - merged file")]
+    [Parameter(Mandatory = $true,
+        HelpMessage = "path to the result - merged file")]
     [string]
     $targetFilePath
 )
 
-function DecodeUtfCharacters($text)
+$ErrorActionPreference = "Stop"
+
+function EscapeSlashes($text)
 {
-    $charRegex = [regex]'\\u[a-zA-Z0-9]{4}'
-    $matches = $charRegex.Matches($text)
+    return $text.Replace('\\', '-----@-----')
 
-    if (!$matches)
-    {
-        return $text
-    }
-
-    $utfToReplace = $matches | Select-Object -ExpandProperty Value -Unique
-
-    $result = $text
-    foreach ($u in $utfToReplace)
-    {
-        $repl = [regex]::Unescape($u)
-        $result = $result.Replace($u, $repl)
-    }
-
-    $result
 }
 
-
-$mainFileText = (Get-Content -Path $mainFilePath -Encoding UTF8) -Join "`n"
-$mainFileJson = ConvertFrom-Json -InputObject $mainFileText
-
-$fileToMergeText = (Get-Content -Path $fileToMergePath -Encoding UTF8) -Join "`n"
-$fileToMergeJson = ConvertFrom-Json -InputObject $fileToMergeText
-
-$result = $mainFileJson
-
-foreach ($ruleToMerge in $fileToMergeJson.rules)
+function UnescapeSlashes($text)
 {
-     $existingRule = $result.rules | where-object { $_.key -eq $ruleToMerge.key }
+    return $text.Replace('-----@-----', '\\')
+}
+
+function ParseJsonFromFile($path)
+{
+    $text = (Get-Content -Path $path) -Join "`n"
+    $text = EscapeSlashes -text $text
+    $json = ConvertFrom-Json -InputObject $text
+    return $json
+}
+
+function ToEscapedJson($psObject)
+{
+    $json = ConvertTo-Json -Depth 5 $psObject
+
+    $charRegex = [regex]'\\u[a-zA-Z0-9]{4}'
+    $matches = $charRegex.Matches($json)
+
+    $result = $json
+    
+    if ($matches)
+    {
+        $utfToReplace = $matches | Select-Object -ExpandProperty Value -Unique
+
+        foreach ($u in $utfToReplace)
+        {
+            $result = $result.Replace($u, [regex]::Unescape($u))
+        }
+    }
+
+    $unescaped = UnescapeSlashes -text $result
+    return $unescaped
+}
+
+$mainRules = ParseJsonFromFile -path $mainFilePath
+$rulesToMerge = ParseJsonFromFile -path $fileToMergePath
+
+$mergedRules = $mainRules
+
+foreach ($ruleToMerge in $rulesToMerge.rules)
+{
+     $existingRule = $mergedRules.rules | Where-Object { $_.key -eq $ruleToMerge.key }
 
      if ($existingRule)
      {
@@ -56,12 +77,10 @@ foreach ($ruleToMerge in $fileToMergeJson.rules)
      }
      else
      {
-         $result.rules += $ruleToMerge
+         $mergedRules.rules += $ruleToMerge
      }
 }
 
-$resultJson = ConvertTo-Json -Depth 5 $result
-$unsescapedResultJson = DecodeUtfCharacters -text $resultJson
-
-Set-Content $targetFilePath -Value $unsescapedResultJson -Encoding UTF8
+$escapedJson = ToEscapedJson -psObject $mergedRules
+Set-Content $targetFilePath -Value $escapedJson
     
