@@ -1,14 +1,157 @@
 Add-Type -AssemblyName System.Web
 
+$ErrorActionPreference = 'Stop'
+
 function Trace ($msg)
 {
     Write-Host $msg -foreground "magenta"
 }
 
+function FindDaemonVersion($fileText)
+{
+    Trace "FindDaemonVersion"
+
+    $versionRegex = [regex]'daemonVersion\s*=\s*\"(?<version>[0-9\.]+)"\s*;'
+
+    $versionGroup = $versionRegex.Match($fileText).Groups["version"]
+    if (!$versionGroup.Success)
+    {
+        throw "FindDaemonVersion: failed to find the version"
+    }
+
+    return $versionGroup.Value
+}
+
+function GetUrlContent($url)
+{
+    Trace "GetUrlContent '$url'"
+    
+    $response = Invoke-WebRequest -Uri $url -Method "GET" -UseBasicParsing
+    if ($response.StatusCode -ne 200)
+    {
+        $code = $response.StatusCode
+        throw "unexpected http code: $code"
+    }
+
+    return $response.Content
+}
+
+function DownloadFile($url, $targetPath)
+{
+    Trace "DownloadFile '$url' '$targetPath'"
+    
+    (New-Object System.Net.WebClient).DownloadFile($url, $targetPath)
+}
+
+function GenerateCppJsRulesDescription($targetFolder, $ruleExtractor)
+{
+    Trace "GenerateCppJsRulesDescription '$targetFolder' '$ruleExtractor'"
+    
+    $daemonText = GetUrlContent `
+        -url "https://raw.githubusercontent.com/SonarSource/sonarlint-visualstudio/master/src/Integration.Vsix/SonarLintDaemon/SonarLintDaemon.cs"
+    $daemonVersion = FindDaemonVersion -fileText $daemonText
+
+    $pomXmlText = GetUrlContent `
+        -url "https://raw.githubusercontent.com/SonarSource/sonarlint-core/$daemonVersion/daemon/pom.xml"
+    $pomXml = [xml]$pomXmlText
+    $sonarJsVersion  = $pomXml["project"]["properties"]["sonar.javascript.version"].'#text'
+    $sonarCppVersion = $pomXml["project"]["properties"]["sonar.cfamily.version"].'#text'
+        
+    DownloadFile `
+        -url "https://sonarsource.bintray.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-$sonarJsVersion.jar" `
+        "$targetFolder\jsplugin.jar"
+
+    DownloadFile `
+        -url "https://sonarsource.bintray.com/CommercialDistribution/sonar-cfamily-plugin/sonar-cfamily-plugin-$sonarCppVersion.jar" `
+        "$targetFolder\cplugin.jar"
+
+    java -jar $ruleExtractor dummyversion-js "$targetFolder\jsplugin.jar" > "$targetFolder\jsplugin.rule.json"
+    java -jar $ruleExtractor dummyversion-c  "$targetFolder\cplugin.jar"  > "$targetFolder\cplugin.rule.json"
+}
+
+
+function EscapeSlashes($text)
+{
+    Trace "EscapeSlashes"
+    
+    return $text.Replace('\\', '-----@-----')
+}
+
+function UnescapeSlashes($text)
+{
+    Trace "UnescapeSlashes"
+    
+    return $text.Replace('-----@-----', '\\')
+}
+
+function ParseJsonFromFile($path)
+{
+    Trace "ParseJsonFromFile"
+    
+    $text = (Get-Content -Path $path) -Join "`n"
+    $text = EscapeSlashes -text $text
+    $json = ConvertFrom-Json -InputObject $text
+    return $json
+}
+function ToEscapedJson($psObject)
+{
+    Trace "ToEscapedJson"
+    
+    $json = ConvertTo-Json -Depth 5 $psObject
+
+    $charRegex = [regex]'\\u[a-zA-Z0-9]{4}'
+    $matches = $charRegex.Matches($json)
+
+    $result = $json
+    
+    if ($matches)
+    {
+        $utfToReplace = $matches | Select-Object -ExpandProperty Value -Unique
+
+        foreach ($u in $utfToReplace)
+        {
+            $result = $result.Replace($u, [regex]::Unescape($u))
+        }
+    }
+
+    $unescaped = UnescapeSlashes -text $result
+    return $unescaped
+}
+
+function MergeRules($mainFilePath, $fileToMergePath, $targetFilePath)
+{
+    Trace "MergeRules '$mainFilePath', '$fileToMergePath', '$targetFilePath'"
+
+    $mainRules = ParseJsonFromFile -path $mainFilePath
+    $rulesToMerge = ParseJsonFromFile -path $fileToMergePath
+
+    $mergedRules = $mainRules
+
+    foreach ($ruleToMerge in $rulesToMerge.rules)
+    {
+        $existingRule = $mergedRules.rules | Where-Object { $_.key -eq $ruleToMerge.key }
+
+        if ($existingRule)
+        {
+            $existingRule.implementations += $ruleToMerge.implementations
+        }
+        else
+        {
+            $mergedRules.rules += $ruleToMerge
+        }
+    }
+
+    $escapedJson = ToEscapedJson -psObject $mergedRules
+
+    $directory = [System.IO.Path]::GetDirectoryName($targetFilePath)
+    New-Item -ItemType Directory -Force -Path $directory
+    Set-Content $targetFilePath -Value $escapedJson
+}
+
 function ReplaceAll($lookupTable, $string)
 {
     $result = $string
-    $lookupTable.GetEnumerator() | ForEach-Object
+    $lookupTable.GetEnumerator() | ForEach-Object `
     {
         $result = $result.Replace($_.Key, $_.Value)
     }
@@ -75,8 +218,8 @@ function FindLastReleasedSonarlintVersion($appTsPath)
 
     $escapedAnalyzerVersion = $lastReleasedAnalyzerVersion.Replace(".", "\.")
 
-    $lastReleasedLintVersionRegex = [regex]"sonarLintVersion.*?'(?<ver>.+)'.*?sonarAnalyzerVersion:.*?'$escapedAnalyzerVersion'.*?}\s*"
-    $match = $lastReleasedLintVersionRegex.Match($appTsContent)
+    $lastReleasedSonarlintVersionRegex = [regex]"sonarLintVersion.*?'(?<ver>.+)'.*?sonarAnalyzerVersion:.*?'$escapedAnalyzerVersion'.*?}\s*"
+    $match = $lastReleasedSonarlintVersionRegex.Match($appTsContent)
 
     if (!$match.Success)
     {
@@ -93,13 +236,13 @@ function UpdateAppTsMapping($appTsPath, $releaseType, $analyzerVersion, $sonarli
     
     $appTsContent = Get-Content $appTsPath -Raw
 
-    $lintVersionString = ToVersion3 -version $sonarlintVersion
+    $sonarlintVersionString = ToVersion3 -version $sonarlintVersion
     if ($releaseType -ne "final")
     {
-        $lintVersionString += "-" + $releaseType
+        $sonarlintVersionString += "-" + $releaseType
     }
 
-    $newline = ",`r`n    { sonarLintVersion: '$lintVersionString', sonarAnalyzerVersion: '$analyzerVersion' }"
+    $newline = ",`r`n    { sonarLintVersion: '$sonarlintVersionString', sonarAnalyzerVersion: '$analyzerVersion' }"
 
     $lastLineInMap = [regex]"'\s*}\s*`n"
     $lastLineMatch = $lastLineInMap.Match($appTsContent)
@@ -146,16 +289,24 @@ function GenerateJsonRulesTo($analyzerPath, $targetPath, $ruleExtractorPath)
 {
     Trace "GenerateJsonRulesTo '$analyzerPath', '$targetPath' '$ruleExtractorPath'"
     
-    $tmpFolder = "$targetPath\" + [string][System.Guid]::NewGuid()
-    New-Item -ItemType Directory -Path $tmpFolder
+    $tmpFolder = $env:temp + "\" + [string][System.Guid]::NewGuid()
+    Trace "   Create temp folder '$tmpFolder'"
+    
+    New-Item -ItemType Directory -Path $tmpFolder -Force
 
     GenerateCsharpRulesTo -analyzerPath $analyzerPath -targetPath $tmpFolder
 
-    .\GenerateCppJsRulesDescription.ps1 -targetFolder $tmpFolder -ruleExtractor $ruleExtractorPath
+    GenerateCppJsRulesDescription -targetFolder $tmpFolder -ruleExtractor $ruleExtractorPath
 
-    .\mergeRules.ps1 -mainFilePath "$tmpFolder\csrules.json" -fileToMergePath "$tmpFolder\cplugin.rule.json"  -targetFilePath "step1.json"
-    .\mergeRules.ps1 -mainFilePath "$tmpFolder\step1.json"   -fileToMergePath "$tmpFolder\jsplugin.rule.json" -targetFilePath "$targetPath\rules.json"
+    MergeRules -mainFilePath "$tmpFolder\rules.json" `
+               -fileToMergePath "$tmpFolder\cplugin.rule.json" `
+               -targetFilePath "$tmpFolder\step1.json"
 
+    MergeRules -mainFilePath "$tmpFolder\step1.json" `
+               -fileToMergePath "$tmpFolder\jsplugin.rule.json" `
+               -targetFilePath "$targetPath\rules.json"
+
+    Trace "   Remove temp folder 'tmpFolder'"
     Remove-Item $tmpFolder -Force -Recurse
 }
 
@@ -264,18 +415,18 @@ function GetAnalyzerMilestone_GH($analyzerVersion)
     return $result
 }
 
-function GetLintMilestone_GH($lintVersion, $releaseType, $lintProjectUri)
+function GetLintMilestone_GH($sonarlintVersion, $releaseType, $lintProjectUri)
 {
-    Trace "GetLintMilestone_GH '$lintVersion', '$releaseType', '$lintProjectUri'"
+    Trace "GetLintMilestone_GH '$sonarlintVersion', '$releaseType', '$lintProjectUri'"
 
     $allMilestones = Invoke-WebRequest -Uri "$lintProjectUri/milestones" -Method "GET" -UseBasicParsing
     $allMilestonesJson = ConvertFrom-Json $allMilestones.Content
 
-    $lintVersionString = ToVersion2 -version $lintVersion
+    $sonarlintVersionString = ToVersion2 -version $sonarlintVersion
 
     #todo: fail if not exactly 1
     #todo: only search title?
-    $milestone = $allMilestonesJson | Where-Object { $_.title -eq $lintVersionString }
+    $milestone = $allMilestonesJson | Where-Object { $_.title -eq $sonarlintVersionString }
 
     $result = @{}
     $result["closedIssuesLink"] = $milestone.html_url + "?closed=1"
@@ -359,7 +510,7 @@ function GenerateDescriptionTable($analyzerVersion, $sonarlintVersion, $releaseT
 {
     Trace "GenerateDescriptionTable '$analyzerVersion', '$sonarlintVersion', '$releaseType', '$sonarlintProjectUri', '$analyzerProjectUri', '$lastReleasedSonarlintVersion'"
     
-    $lintMilestone = GetLintMilestone_GH -lintVersion $lintVersion -lintProjectUri $sonarlintProjectUri -releaseType $releaseType
+    $lintMilestone = GetLintMilestone_GH -sonarlintVersion $sonarlintVersion -lintProjectUri $sonarlintProjectUri -releaseType $releaseType
     $lintClosedMilestoneLink = $lintMilestone["closedIssuesLink"] # looks like "https://github.com/SonarSource/sonarlint-visualstudio/milestone/8?closed=1"
 
     $analyzerMilestone = GetAnalyzerMilestone_GH -analyzerVersion $analyzerVersion -analyzerProjectUri $analyzerProjectUri
@@ -374,8 +525,8 @@ function GenerateDescriptionTable($analyzerVersion, $sonarlintVersion, $releaseT
     $generatedSections = GenerateSections -analyzerMilestone $analyzerMilestone
     $generatedSummmary = GenerateSummary($analyzerMilestone)
     $releaseDate = Get-Date -Format "MMMM d, yyyy"
-    $lintVersion2 = ToVersion2 -version $sonarlintVersion
-    $lintVersion3 = ToVersion3 -version $sonarlintVersion
+    $sonarlintVersion2 = ToVersion2 -version $sonarlintVersion
+    $sonarlintVersion3 = ToVersion3 -version $sonarlintVersion
 
     $lookupTable = @{
         "(==LINT_MILESTONE_LINK==)"      = $lintClosedMilestoneLink
@@ -385,8 +536,8 @@ function GenerateDescriptionTable($analyzerVersion, $sonarlintVersion, $releaseT
         "(==GENERATED_SUMMARY==)"        = $generatedSummmary
         "(==GO_TO_LATEST_VERSION_TAG==)" = $goToLastVersionTag
         "(==DATE==)"                     = $releaseDate
-        "(==LINT_VERSION==)"             = $lintVersion2
-        "(==LINT_VERSION_3==)"           = $lintVersion3 
+        "(==LINT_VERSION==)"             = $sonarlintVersion2
+        "(==LINT_VERSION_3==)"           = $sonarlintVersion3 
     }
 
     return $lookupTable
@@ -496,9 +647,9 @@ function DEBUG_GetAnalyzerMilestone_GH($analyzerVersion)
     return $result
 }
 
-function DEBUG_GetLintMilestone_GH($lintVersion, $releaseType, $lintProjectUri)
+function DEBUG_GetLintMilestone_GH($sonarlintVersion, $releaseType, $lintProjectUri)
 {
-    Trace "DEBUG_GetLintMilestone_GH '$lintVersion', 'releaseType', '$lintProjectUri'"
+    Trace "DEBUG_GetLintMilestone_GH '$sonarlintVersion', 'releaseType', '$lintProjectUri'"
         
     $lintMilestone = @{}
     $lintMilestone.number = 9

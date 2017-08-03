@@ -7,6 +7,7 @@ This script adds new release to sonarlint website.
 It automates the process outlined at https://xtranet.sonarsource.com/display/LANG/SonarLint+website+release+process
 
 Prerequisites / assumptions:
+- analyzer master branch is checked out with most recent code pulled
 - git branch (usually named "sonarlint-vs") is created, clean and checked out
 - script is run from powershell within Developer Command prompt for VS
 - java is installed and added to %path%
@@ -50,12 +51,11 @@ param
     [string]
     $sonarlintVersion,
 
-    [Parameter(Mandatory = $true, HelpMessage = "path to rule extractor (e.g. c:\src\sonarlint-rule-extractor-2.18-SNAPSHOT-jar-with-dependencies.jar)")]
+    [Parameter(Mandatory = $true, HelpMessage = "path to rule extractor (e.g. c:\tools\sonarlint-rule-extractor-2.18-SNAPSHOT-jar-with-dependencies.jar)")]
     [string]
     $ruleExtractorPath
 )
 
-$DebugPreference = 'Continue'
 $ErrorActionPreference = 'Stop'
 
 Import-Module "$PSScriptRoot\functions.psm1" -Force
@@ -63,6 +63,7 @@ Import-Module "$PSScriptRoot\functions.psm1" -Force
 $sonarlintProjectUri = "https://api.github.com/repos/SonarSource/sonarlint-visualstudio"
 $analyzerProjectUri = "https://api.github.com/repos/SonarSource/sonar-csharp"
 
+#todo: consider if that should be part of the script
 RebuildAnalyzer -analyzerPath $analyzerPath
 
 $versionPath = "$websitePath\visualstudio\rules\$analyzerFullVersion"
