@@ -2,27 +2,17 @@ Add-Type -AssemblyName System.Web
 
 function Trace ($msg)
 {
-    write-host $msg -foreground "magenta"
+    Write-Host $msg -foreground "magenta"
 }
 
 function ReplaceAll($lookupTable, $string)
 {
     $result = $string
-    $lookupTable.GetEnumerator() | ForEach-Object {
-
+    $lookupTable.GetEnumerator() | ForEach-Object
+    {
         $result = $result.Replace($_.Key, $_.Value)
     }
-    $result
-}
-
-function CreateCheckoutBranch()
-{
-    Trace "creating and checking out branch 'sonarlint-vs'"
-
-    git checkout gh-pages 2> $null
-    git pull 2> $null
-    git branch -d sonarlint-vs 2> $null
-    git checkout -b sonarlint-vs 2> $null
+    return $result
 }
 
 function CreateDescriptionFor($arr, $format)
@@ -38,28 +28,26 @@ function CreateDescriptionFor($arr, $format)
 
         $desc = [string]::Format($format, $arr.Count, $s)
     }
-    $desc
+    return $desc
 }
 
 function RebuildAnalyzer($analyzerPath)
 {
     Trace "rebuilding analyzer"
     
-     # todo: need vs commandline
-     $sln = "$analyzerPath\SonarAnalyzer.sln"
-     nuget restore $sln
-     msbuild $sln /t:rebuild /p:Configuration=Release
-     # todo: check for errors
+    # todo: vs commandline is required
+    $sln = "$analyzerPath\SonarAnalyzer.sln"
+    nuget restore $sln
+    msbuild $sln /t:rebuild /p:Configuration=Release
+    # todo: check for errors
 }
 
 function RebuildWebsite($websitePath)
 {
     Trace "rebuilding website"
     
-     # todo: need vs commandline
-     $sln = "$websitePath\sonarlint.org.sln"
-     msbuild $sln /t:rebuild #/p:Configuration=Release
-     # todo: check for errors
+    $sln = "$websitePath\sonarlint.org.sln"
+    msbuild $sln /t:rebuild
 }
 
 function FindLastReleasedAnalyzerVersion($appTsPath)
@@ -73,15 +61,14 @@ function FindLastReleasedAnalyzerVersion($appTsPath)
     $versionGroup = $lastReleasedAnalyzerVersionRegex.Match($appTsContent).Groups["version"]
     if (!$versionGroup.Success)
     {
-        Write-Error "todo"
+        throw "could not find the version - no regex match"
     }
-    $lastReleasedAnalyzerVersion = $versionGroup.Value
-    $lastReleasedAnalyzerVersion
+    return $versionGroup.Value
 }
 
-function FindLastReleasedLintVersion($appTsPath)
+function FindLastReleasedSonarlintVersion($appTsPath)
 {
-    Trace "FindLastReleasedLintVersion '$appTsPath'"
+    Trace "FindLastReleasedSonarlintVersion '$appTsPath'"
     
     $lastReleasedAnalyzerVersion = FindLastReleasedAnalyzerVersion -appTsPath $appTsPath
     $appTsContent = Get-Content $appTsPath -Raw
@@ -93,21 +80,20 @@ function FindLastReleasedLintVersion($appTsPath)
 
     if (!$match.Success)
     {
-        Write-Error "todo"
+        throw "could not find the version - no regex match"
     }
     $versionGroup = $match.Groups["ver"]
 
-    $lastReleasedLintVersion = $versionGroup.Value
-    $lastReleasedLintVersion
+    return $versionGroup.Value
 }
 
-function UpdateAppTsMapping($appTsPath, $releaseType, $analyzerVersion, $lintVersion, $lastReleasedAnalyzerVersion)
+function UpdateAppTsMapping($appTsPath, $releaseType, $analyzerVersion, $sonarlintVersion, $lastReleasedAnalyzerVersion)
 {
-    Trace "UpdateAppTsMapping '$appTsPath', '$releaseType', '$analyzerVersion', '$lintVersion', '$lastReleasedAnalyzerVersion'"
+    Trace "UpdateAppTsMapping '$appTsPath', '$releaseType', '$analyzerVersion', '$sonarlintVersion', '$lastReleasedAnalyzerVersion'"
     
     $appTsContent = Get-Content $appTsPath -Raw
 
-    $lintVersionString = ToVersion3 -version $lintVersion
+    $lintVersionString = ToVersion3 -version $sonarlintVersion
     if ($releaseType -ne "final")
     {
         $lintVersionString += "-" + $releaseType
@@ -119,7 +105,7 @@ function UpdateAppTsMapping($appTsPath, $releaseType, $analyzerVersion, $lintVer
     $lastLineMatch = $lastLineInMap.Match($appTsContent)
     if (!$lastLineMatch.Success)
     {
-        Write-Error "todo"
+        throw "could not find last version mapping"
     }
 
     $idx = $lastLineMatch.Index + $lastLineMatch.Length - 2 # for newline
@@ -132,12 +118,10 @@ function UpdateAppTsMapping($appTsPath, $releaseType, $analyzerVersion, $lintVer
         $match = $lastReleasedAnalyzerVersionRegex.Match($appTsContent)
         if (!$match.Success)
         {
-            Write-Error "todo"
+            throw "could not find redirection version"
         }
 
-        #todo: check
         $newVersionString = "VisualStudioRulePageController('$analyzerVersion');";
-
         $updatedContent = $updatedContent -replace $lastReleasedAnalyzerVersionRegex, $newVersionString
     }
 
@@ -155,13 +139,29 @@ function UpdateGoToLatestInLastVersion($lastVersionPath)
               '<!--<li class="release-goto-latest"><a href="#">Go to latest version</a></li>-->', `
                   '<li class="release-goto-latest"><a href="#">Go to latest version</a></li>')
 
-    # todo: verify if updated
     Set-Content -Path $indexHtmlPath -Value $previousIndexContentUpdated
 }
 
-function GenerateJsonRulesTo($analyzerPath, $targetPath)
+function GenerateJsonRulesTo($analyzerPath, $targetPath, $ruleExtractorPath)
 {
-    Trace "GenerateJsonRulesTo '$analyzerPath', '$targetPath'"
+    Trace "GenerateJsonRulesTo '$analyzerPath', '$targetPath' '$ruleExtractorPath'"
+    
+    $tmpFolder = "$targetPath\" + [string][System.Guid]::NewGuid()
+    New-Item -ItemType Directory -Path $tmpFolder
+
+    GenerateCsharpRulesTo -analyzerPath $analyzerPath -targetPath $tmpFolder
+
+    .\GenerateCppJsRulesDescription.ps1 -targetFolder $tmpFolder -ruleExtractor $ruleExtractorPath
+
+    .\mergeRules.ps1 -mainFilePath "$tmpFolder\csrules.json" -fileToMergePath "$tmpFolder\cplugin.rule.json"  -targetFilePath "step1.json"
+    .\mergeRules.ps1 -mainFilePath "$tmpFolder\step1.json"   -fileToMergePath "$tmpFolder\jsplugin.rule.json" -targetFilePath "$targetPath\rules.json"
+
+    Remove-Item $tmpFolder -Force -Recurse
+}
+
+function GenerateCsharpRulesTo($analyzerPath, $targetPath)
+{
+    Trace "GenerateCsharpRulesTo '$analyzerPath', '$targetPath'"
     
     ."$analyzerPath/src/SonarAnalyzer.RuleDocGenerator.Web/bin/Release/SonarAnalyzer.RuleDocGenerator.Web.exe" $targetPath
 }
@@ -177,7 +177,7 @@ function ToVersion2($version)
     {
         $result += "." + $parts[2]
     }
-    $result
+    return $result
 }
 
 function ToVersion3($version)
@@ -194,9 +194,242 @@ function ToVersion3($version)
     }
 
     $result += "." + $last
-    $result
+    return $result
 }
 
+function GetAnalyzerMilestone_GH($analyzerVersion)
+{
+    Trace "GetAnalyzerMilestone_GH '$analyzerVersion'"
+
+    $allMilestones = Invoke-WebRequest -Uri "$analyzerProjectUri/milestones" -Method "GET" -UseBasicParsing
+    $allMilestonesJson = ConvertFrom-Json $allMilestones.Content
+
+    $version2 = ToVersion2 -version $analyzerVersion
+    $milestone = $allMilestonesJson | Where-Object { $_.title -eq $version2 }
+
+    $result = @{}
+    $result["closedIssuesLink"] = $milestone.html_url + "?closed=1"
+    $result["number"] = $milestone.number
+    $number = $result["number"]
+    $milestoneIssues = Invoke-WebRequest -Uri "$analyzerProjectUri/issues?milestone=$number&state=all" -Method "GET" -UseBasicParsing
+    $milestoneIssuesjson = ConvertFrom-Json $milestoneIssues.Content
+
+    $unclosedIssues = $milestoneIssuesjson | where-object { $_.state -ne "closed" }
+    if ($unclosedIssues.Count -gt 0)
+    {
+        Write-Warning "found unclosed tickets in analyzer milestone"
+    }
+
+    $allIssueTitles =  $milestoneIssuesjson | Select-Object -ExpandProperty title
+
+    $result["newRules"] = @()
+    $result["fixes"] = @()
+    $result["improvements"] = @()
+    $result["others"] = @()
+    $result["allIssues"] = @()
+
+    $ruleRegexString = "^{0}\s+S\d+:"
+    $newRuleRegex = [regex]([String]::Format($ruleRegexString, "Rule"))
+    $fixRuleRegex = [regex]([String]::Format($ruleRegexString, "Fix"))
+    $improvementRuleRegex = [regex]([String]::Format($ruleRegexString, "Update"))
+
+    foreach ($issue in $allIssueTitles)
+    {
+        if ($newRuleRegex.Match($issue).Success)
+        {
+            $result.newRules += $issue
+        } 
+        elseif ($fixRuleRegex.Match($issue).Success)
+        {
+            $result.fixes += $issue
+        } 
+        elseif ($improvementRuleRegex.Match($issue).Success)
+        {
+            $result.improvement += $issue
+        }
+        else
+        {
+            $result.others += $issue
+        }
+
+        $result.allIssues += $issue
+    }
+
+    [Array]::Sort($result.newRules)
+    [Array]::Sort($result.fixes)
+    [Array]::Sort($result.improvements)
+    [Array]::Sort($result.others)
+    [Array]::Sort($result.allIssues)
+
+    return $result
+}
+
+function GetLintMilestone_GH($lintVersion, $releaseType, $lintProjectUri)
+{
+    Trace "GetLintMilestone_GH '$lintVersion', '$releaseType', '$lintProjectUri'"
+
+    $allMilestones = Invoke-WebRequest -Uri "$lintProjectUri/milestones" -Method "GET" -UseBasicParsing
+    $allMilestonesJson = ConvertFrom-Json $allMilestones.Content
+
+    $lintVersionString = ToVersion2 -version $lintVersion
+
+    #todo: fail if not exactly 1
+    #todo: only search title?
+    $milestone = $allMilestonesJson | Where-Object { $_.title -eq $lintVersionString }
+
+    $result = @{}
+    $result["closedIssuesLink"] = $milestone.html_url + "?closed=1"
+    $result["number"] = $milestone.number
+    $number = $result["number"]
+    $milestoneIssues = Invoke-WebRequest -Uri "$lintProjectUri/issues?milestone=$number&state=all" -Method "GET" -UseBasicParsing
+    $milestoneIssuesjson = ConvertFrom-Json $milestoneIssues.Content
+
+    $unclosedIssues = $milestoneIssuesjson | where-object { $_.state -ne "closed" }
+    if ($unclosedIssues.Count -gt 0)
+    {
+        Write-Warning "found unclosed tickets in lint milestone"
+    }
+
+    $result["allIssues"] = $milestoneIssuesjson | Select-Object -ExpandProperty title
+    [Array]::Sort($result["allIssues"])
+    
+    return $result
+}
+
+function WriteReleaseNotes($templatePath, $analyzerVersionPath, $lookupTable)
+{
+    Trace "WriteReleaseNotes '$templatePath', '$analyzerVersionPath'"
+    
+    $templateRC = Get-Content -Path $templatePath -Raw
+    $generatedNotes = ReplaceAll -lookupTable $lookupTable -string $templateRC.ToString()
+    Set-Content -Path "$analyzerVersionPath\index.html" -Value $generatedNotes
+}
+
+function GenerateSummary($analyzerMilestone)
+{
+    Trace "GenerateSummary"
+    
+    $releaseDescription = ""
+    $releaseDescription += CreateDescriptionFor -arr $analyzerMilestone["newRules"]     -Format " adds {0} new rule{1},"
+    $releaseDescription += CreateDescriptionFor -arr $analyzerMilestone["fixes"]        -Format " fixes {0} rule{1},"
+    $releaseDescription += CreateDescriptionFor -arr $analyzerMilestone["improvements"] -Format " improves {0} rule{1}"
+
+    $releaseDescription = $releaseDescription.TrimEnd(",") + "."
+    return $releaseDescription
+}
+
+function GenerateSection($title, $arr)
+{
+    if ($arr.count -eq 0)
+    {
+        return ""
+    }
+
+    $result = "                <p><strong>$title</strong></p>`r`n"
+    $result += "                <ul>`r`n"
+
+    foreach ($item in $arr)
+    {
+        $result += GenerateItem($item)
+    }
+
+    $result += "                </ul>`r`n"
+    return $result
+}
+
+function GenerateItem($item)
+{
+    $escaped =  [System.Web.HttpUtility]::HtmlEncode($item)
+    return "                    <li>$escaped</li>`r`n"
+}
+
+function GenerateSections($analyzerMilestone)
+{
+    Trace "GenerateSections"
+    
+    $sections = ""
+    $sections += GenerateSection -title "New Rules" -arr $analyzerMilestone["newRules"]
+    $sections += GenerateSection -title "Bug fixes" -arr $analyzerMilestone["fixes"]
+    $sections += GenerateSection -title "Rule improvements" -arr $analyzerMilestone["improvements"]
+    $sections += GenerateSection -title "Others" -arr $analyzerMilestone["others"]
+    return $sections
+}
+
+function GenerateDescriptionTable($analyzerVersion, $sonarlintVersion, $releaseType, $sonarlintProjectUri, $analyzerProjectUri, $lastReleasedSonarlintVersion)
+{
+    Trace "GenerateDescriptionTable '$analyzerVersion', '$sonarlintVersion', '$releaseType', '$sonarlintProjectUri', '$analyzerProjectUri', '$lastReleasedSonarlintVersion'"
+    
+    $lintMilestone = GetLintMilestone_GH -lintVersion $lintVersion -lintProjectUri $sonarlintProjectUri -releaseType $releaseType
+    $lintClosedMilestoneLink = $lintMilestone["closedIssuesLink"] # looks like "https://github.com/SonarSource/sonarlint-visualstudio/milestone/8?closed=1"
+
+    $analyzerMilestone = GetAnalyzerMilestone_GH -analyzerVersion $analyzerVersion -analyzerProjectUri $analyzerProjectUri
+    $analyzerClosedMilestoneLink = $analyzerMilestone["closedIssuesLink"]  # looks like "https://github.com/SonarSource/sonar-csharp/milestone/8?closed=1"
+
+    $goToLastVersionTag = '<li class="release-goto-latest"><a href ="#">Go to latest version</a></li>'
+    if ($releaseType -eq "final")
+    {
+        $goToLastVersionTag= "<!--$goToLastVersionTag-->"
+    }
+
+    $generatedSections = GenerateSections -analyzerMilestone $analyzerMilestone
+    $generatedSummmary = GenerateSummary($analyzerMilestone)
+    $releaseDate = Get-Date -Format "MMMM d, yyyy"
+    $lintVersion2 = ToVersion2 -version $sonarlintVersion
+    $lintVersion3 = ToVersion3 -version $sonarlintVersion
+
+    $lookupTable = @{
+        "(==LINT_MILESTONE_LINK==)"      = $lintClosedMilestoneLink
+        "(==ANALYZER_MILESTONE_LINK==)"  = $analyzerClosedMilestoneLink
+        "(==LINT_PREVIOUS_VERSION==)"    = $lastReleasedSonarlintVersion
+        "(==GENERATED_SECTIONS==)"       = $generatedSections
+        "(==GENERATED_SUMMARY==)"        = $generatedSummmary
+        "(==GO_TO_LATEST_VERSION_TAG==)" = $goToLastVersionTag
+        "(==DATE==)"                     = $releaseDate
+        "(==LINT_VERSION==)"             = $lintVersion2
+        "(==LINT_VERSION_3==)"           = $lintVersion3 
+    }
+
+    return $lookupTable
+}
+
+function UpdateNews($websitePath, $lookupTable)
+{
+    Trace "UpdateNews '$websitePath', TABLE: $lookupTable"
+    
+    $spacing = "                        "
+
+    $newsTemplate = 
+    "$spacing<li>`n" +
+    "$spacing    <span class=`"bold`">(==DATE==)</span> - <a href=`"rules/index.html#sonarLintVersion=(==LINT_VERSION_3==)`" title=`"Go to version (==LINT_VERSION_3==)`">Version (==LINT_VERSION==)</a>`n" +
+    "$spacing    (==GENERATED_SUMMARY==)`n" +
+    "$spacing</li>`n"
+
+    $newsText = ReplaceAll -lookupTable $lookupTable -string $newsTemplate
+
+    $newsPagePath = "$websitePath\visualstudio\index.html"
+    $newsPageContent = Get-Content $newsPagePath -Raw
+
+    $sectionIdx = $newsPageContent.IndexOf('<section class="split" id="News">')
+    if ($sectionIdx -eq -1)
+    {
+        throw "news section not found"
+    }
+
+    $ulIdx = $newsPageContent.IndexOf('<ul>', $sectionIdx)
+    if ($ulIdx -eq -1)
+    {
+        throw "list in news section not found"
+    }
+
+    $pastUlIdx = $ulIdx + 6;
+    $updatedNews = $newsPageContent.Insert($pastUlIdx, $newsText)
+
+    Set-Content -Path $newsPagePath -Value $updatedNews
+}
+
+
+########################
+# Github has a request rate limit. Use these functions with canned data for offline testing
 
 function DEBUG_GetAnalyzerMilestone_GH($analyzerVersion)
 {
@@ -263,77 +496,6 @@ function DEBUG_GetAnalyzerMilestone_GH($analyzerVersion)
     return $result
 }
 
-
-function GetAnalyzerMilestone_GH($analyzerVersion)
-{
-    Trace "GetAnalyzerMilestone_GH '$analyzerVersion'"
-
-    $allMilestones = Invoke-WebRequest -Uri "$analyzerProjectUri/milestones" -Method "GET" -UseBasicParsing
-    $allMilestonesJson = ConvertFrom-Json $allMilestones.Content
-
-    #todo: fail if not exactly 1
-    #todo: only search title?
-    $version2 = ToVersion2 -version $analyzerVersion
-    $milestone = $allMilestonesJson | Where-Object { $_.title -eq $version2 }
-
-    $result = @{}
-    $result["closedIssuesLink"] = $milestone.html_url + "?closed=1"
-    $result["number"] = $milestone.number
-    $number = $result["number"]
-    $milestoneIssues = Invoke-WebRequest -Uri "$analyzerProjectUri/issues?milestone=$number&state=all" -Method "GET" -UseBasicParsing
-    $milestoneIssuesjson = ConvertFrom-Json $milestoneIssues.Content
-
-    $unclosedIssues = $milestoneIssuesjson | where-object { $_.state -ne "closed" }
-    if ($unclosedIssues.Count -gt 0)
-    {
-        # todo: list 
-        Write-Warning "unclosed tickets in analyzer milestone"
-    }
-
-    $allIssueTitles =  $milestoneIssuesjson | select -ExpandProperty title
-
-    $result["newRules"] = @()
-    $result["fixes"] = @()
-    $result["improvements"] = @()
-    $result["others"] = @()
-    $result["allIssues"] = @()
-
-    $ruleRegexString = "^{0}\s+S\d+:"
-    $newRuleRegex = [regex]([String]::Format($ruleRegexString, "Rule"))
-    $fixRuleRegex = [regex]([String]::Format($ruleRegexString, "Fix"))
-    $improvementRuleRegex = [regex]([String]::Format($ruleRegexString, "Update")) #todo!
-
-    foreach ($issue in $allIssueTitles)
-    {
-        if ($newRuleRegex.Match($issue).Success)
-        {
-            $result.newRules += $issue
-        } 
-        elseif ($fixRuleRegex.Match($issue).Success)
-        {
-            $result.fixes += $issue
-        } 
-        elseif ($improvementRuleRegex.Match($issue).Success)
-        {
-            $result.improvement += $issue
-        }
-        else
-        {
-            $result.others += $issue
-        }
-
-        $result.allIssues += $issue
-    }
-
-    [Array]::Sort($result.newRules)
-    [Array]::Sort($result.fixes)
-    [Array]::Sort($result.improvements)
-    [Array]::Sort($result.others)
-    [Array]::Sort($result.allIssues)
-
-    return $result
-}
-
 function DEBUG_GetLintMilestone_GH($lintVersion, $releaseType, $lintProjectUri)
 {
     Trace "DEBUG_GetLintMilestone_GH '$lintVersion', 'releaseType', '$lintProjectUri'"
@@ -344,179 +506,4 @@ function DEBUG_GetLintMilestone_GH($lintVersion, $releaseType, $lintProjectUri)
     $lintMilestone.allIssues = @("Embed SonarC#/SonarVB v6.2", "Update SonarLint short description")
 
     return $lintMilestone
-}
-
-
-function GetLintMilestone_GH($lintVersion, $releaseType, $lintProjectUri)
-{
-    Trace "GetLintMilestone_GH '$lintVersion', '$releaseType', '$lintProjectUri'"
-
-    $allMilestones = Invoke-WebRequest -Uri "$lintProjectUri/milestones" -Method "GET" -UseBasicParsing
-    $allMilestonesJson = ConvertFrom-Json $allMilestones.Content
-
-    $lintVersionString = ToVersion2 -version $lintVersion
-
-    #todo: fail if not exactly 1
-    #todo: only search title?
-    $milestone = $allMilestonesJson | Where-Object { $_.title -eq $lintVersionString }
-
-    $result = @{}
-    $result["closedIssuesLink"] = $milestone.html_url + "?closed=1"
-    $result["number"] = $milestone.number
-    $number = $result["number"]
-    $milestoneIssues = Invoke-WebRequest -Uri "$lintProjectUri/issues?milestone=$number&state=all" -Method "GET" -UseBasicParsing
-    $milestoneIssuesjson = ConvertFrom-Json $milestoneIssues.Content
-
-    $unclosedIssues = $milestoneIssuesjson | where-object { $_.state -ne "closed" }
-    if ($unclosedIssues.Count -gt 0)
-    {
-        # todo: list
-        Write-Warning "unclosed tickets in lint milestone"
-    }
-
-    $result["allIssues"] = $milestoneIssuesjson | select -ExpandProperty title
-    [Array]::Sort($result["allIssues"])
-    
-    $result
-}
-
-function WriteReleaseNotes($templatePath, $analyzerVersionPath, $lookupTable)
-{
-    Trace "WriteReleaseNotes '$templatePath', '$analyzerVersionPath'"
-    
-    $templateRC = Get-Content -Path $templatePath -Raw
-    
-    $generatedNotes = ReplaceAll -lookupTable $lookupTable -string $templateRC.ToString()
-
-    Set-Content -Path "$analyzerVersionPath\index.html" -Value $generatedNotes
-}
-
-function GenerateSummary($analyzerMilestone)
-{
-    Trace "GenerateSummary"
-    
-    $releaseDescription = ""
-    $releaseDescription += CreateDescriptionFor -arr $analyzerMilestone["newRules"]     -Format " adds {0} new rule{1},"
-    $releaseDescription += CreateDescriptionFor -arr $analyzerMilestone["fixes"]        -Format " fixes {0} rule{1},"
-    $releaseDescription += CreateDescriptionFor -arr $analyzerMilestone["improvements"] -Format " improves {0} rule{1}"
-
-    $releaseDescription = $releaseDescription.TrimEnd(",") + "."
-
-    $releaseDescription
-}
-
-
-function GenerateSection($title, $arr)
-{
-    if ($arr.count -eq 0)
-    {
-        return ""
-    }
-
-    $result = "                <p><strong>$title</strong></p>`r`n"
-    $result += "                <ul>`r`n"
-
-    foreach ($item in $arr)
-    {
-        $result += GenerateItem($item)
-    }
-
-    $result += "                </ul>`r`n"
-    $result
-}
-
-function GenerateItem($item)
-{
-    $escaped =  [System.Web.HttpUtility]::HtmlEncode($item)
-    return "                    <li>$escaped</li>`r`n"
-}
-
-function GenerateSections($analyzerMilestone)
-{
-    Trace "GenerateSections"
-    
-    $sections = ""
-
-    # [System.Web.HttpUtility]::HtmlEncode('something <somthing else>')
-
-    $sections += GenerateSection -title "New Rules" -arr $analyzerMilestone["newRules"]
-    $sections += GenerateSection -title "Bug fixes" -arr $analyzerMilestone["fixes"]
-    $sections += GenerateSection -title "Rule improvements" -arr $analyzerMilestone["improvements"]
-    $sections += GenerateSection -title "Others" -arr $analyzerMilestone["others"]
-
-    $sections
-}
-
-function GenerateDescriptionTable($analyzerVersion, $lintVersion, $releaseType, $lintProjectUri, $analyzerProjectUri, $lastReleasedLintVersion)
-{
-    Trace "GenerateDescriptionTable '$analyzerVersion', '$lintVersion', '$releaseType', '$lintProjectUri', '$analyzerProjectUri', '$lastReleasedLintVersion'"
-    
-    $lintMilestone = GetLintMilestone_GH -lintVersion $lintVersion -lintProjectUri $lintProjectUri -releaseType $releaseType
-    $lintClosedMilestoneLink = $lintMilestone["closedIssuesLink"] #"https://github.com/SonarSource/sonarlint-visualstudio/milestone/8?closed=1"
-
-    $analyzerMilestone = GetAnalyzerMilestone_GH -analyzerVersion $analyzerVersion -analyzerProjectUri $analyzerProjectUri
-    $analyzerClosedMilestoneLink = $analyzerMilestone["closedIssuesLink"]  #"https://github.com/SonarSource/sonar-csharp/milestone/8?closed=1"
-
-    $goToLastVersionTag = '<li class="release-goto-latest"><a href ="#">Go to latest version</a></li>'
-    if ($releaseType -eq "final")
-    {
-        $goToLastVersionTag= "<!--$goToLastVersionTag-->"
-    }
-
-    $generatedSections = GenerateSections -analyzerMilestone $analyzerMilestone
-    $generatedSummmary = GenerateSummary($analyzerMilestone)
-    $releaseDate = Get-Date -Format "MMMM d, yyyy"
-    $lintVersion2 = ToVersion2 -version $lintVersion
-    $lintVersion3 = ToVersion3 -version $lintVersion
-
-    $lookupTable = @{
-        "(==LINT_MILESTONE_LINK==)"      = $lintClosedMilestoneLink
-        "(==ANALYZER_MILESTONE_LINK==)"  = $analyzerClosedMilestoneLink
-        "(==LINT_PREVIOUS_VERSION==)"    = $lastReleasedLintVersion
-        "(==GENERATED_SECTIONS==)"       = $generatedSections
-        "(==GENERATED_SUMMARY==)"        = $generatedSummmary
-        "(==GO_TO_LATEST_VERSION_TAG==)" = $goToLastVersionTag
-        "(==DATE==)"                     = $releaseDate
-        "(==LINT_VERSION==)"             = $lintVersion2
-        "(==LINT_VERSION_3==)"           = $lintVersion3 
-    }
-
-    $lookupTable
-}
-
-function UpdateNews($websitePath, $lookupTable)
-{
-    Trace "UpdateNews '$websitePath', TABLE: $lookupTable"
-    
-    $spacing = "                        "
-
-    # todo: make sure it's version3
-    $newsTemplate = 
-    "$spacing<li>`n" +
-    "$spacing    <span class=`"bold`">(==DATE==)</span> - <a href=`"rules/index.html#sonarLintVersion=(==LINT_VERSION_3==)`" title=`"Go to version (==LINT_VERSION_3==)`">Version (==LINT_VERSION==)</a>`n" +
-    "$spacing    (==GENERATED_SUMMARY==)`n" +
-    "$spacing</li>`n"
-
-    $newsText = ReplaceAll -lookupTable $lookupTable -string $newsTemplate
-
-    $newsPagePath = "$websitePath\visualstudio\index.html"
-    $newsPageContent = Get-Content $newsPagePath -Raw
-
-    #todo: what if not found
-    $sectionIdx = $newsPageContent.IndexOf('<section class="split" id="News">')
-    $ulIdx = $newsPageContent.IndexOf('<ul>', $sectionIdx)
-
-    $pastUlIdx = $ulIdx + 6;
-
-    $updatedNews = $newsPageContent.Insert($pastUlIdx, $newsText)
-
-    Set-Content -Path $newsPagePath -Value $updatedNews
-}
-
-function CommitChanges($lintVersion)
-{
-    Trace "CommitChanges"
-    
-    git add .
-    git commit -m "Add SonarLint for VS $lintVersion"
 }
