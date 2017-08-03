@@ -107,7 +107,7 @@ function UpdateAppTsMapping($appTsPath, $releaseType, $analyzerVersion, $lintVer
     
     $appTsContent = Get-Content $appTsPath -Raw
 
-    $lintVersionString = $lintVersion
+    $lintVersionString = ToVersion3 -version $lintVersion
     if ($releaseType -ne "final")
     {
         $lintVersionString += "-" + $releaseType
@@ -200,7 +200,7 @@ function ToVersion3($version)
 
 function DEBUG_GetAnalyzerMilestone_GH($analyzerVersion)
 {
-    Trace "DEBUG GetAnalyzerMilestone_GH '$analyzerVersion'"
+    Trace "DEBUG_GetAnalyzerMilestone_GH '$analyzerVersion'"
 
     $result = @{}
     $result["newRules"] = @()
@@ -356,11 +356,6 @@ function GetLintMilestone_GH($lintVersion, $releaseType, $lintProjectUri)
 
     $lintVersionString = ToVersion2 -version $lintVersion
 
-    if ($releaseType -ne "final")
-    {
-        $lintVersionString += "-" + $releaseType
-    }
-
     #todo: fail if not exactly 1
     #todo: only search title?
     $milestone = $allMilestonesJson | Where-Object { $_.title -eq $lintVersionString }
@@ -389,7 +384,6 @@ function WriteReleaseNotes($templatePath, $analyzerVersionPath, $lookupTable)
 {
     Trace "WriteReleaseNotes '$templatePath', '$analyzerVersionPath'"
     
-    #TODO: remove ..\
     $templateRC = Get-Content -Path $templatePath -Raw
     
     $generatedNotes = ReplaceAll -lookupTable $lookupTable -string $templateRC.ToString()
@@ -457,10 +451,10 @@ function GenerateDescriptionTable($analyzerVersion, $lintVersion, $releaseType, 
 {
     Trace "GenerateDescriptionTable '$analyzerVersion', '$lintVersion', '$releaseType', '$lintProjectUri', '$analyzerProjectUri', '$lastReleasedLintVersion'"
     
-    $lintMilestone = DEBUG_GetLintMilestone_GH -lintVersion $lintVersion -lintProjectUri $lintProjectUri -releaseType $releaseType
+    $lintMilestone = GetLintMilestone_GH -lintVersion $lintVersion -lintProjectUri $lintProjectUri -releaseType $releaseType
     $lintClosedMilestoneLink = $lintMilestone["closedIssuesLink"] #"https://github.com/SonarSource/sonarlint-visualstudio/milestone/8?closed=1"
 
-    $analyzerMilestone = DEBUG_GetAnalyzerMilestone_GH -analyzerVersion $analyzerVersion -analyzerProjectUri $analyzerProjectUri
+    $analyzerMilestone = GetAnalyzerMilestone_GH -analyzerVersion $analyzerVersion -analyzerProjectUri $analyzerProjectUri
     $analyzerClosedMilestoneLink = $analyzerMilestone["closedIssuesLink"]  #"https://github.com/SonarSource/sonar-csharp/milestone/8?closed=1"
 
     $goToLastVersionTag = '<li class="release-goto-latest"><a href ="#">Go to latest version</a></li>'

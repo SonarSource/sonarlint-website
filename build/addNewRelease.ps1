@@ -90,6 +90,9 @@ WriteReleaseNotes -templatePath $templatePath `
 
 RebuildWebsite -websitePath $websitePath
 
-UpdateNews -websitePath $websitePath -lookupTable $releaseNotesTable
+if ($releaseType -eq "final")
+{
+    UpdateNews -websitePath $websitePath -lookupTable $releaseNotesTable
+}
 
 #todo:uncomment CommitChanges -lintVersion $lintVersion
