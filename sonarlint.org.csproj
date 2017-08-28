@@ -188,6 +188,7 @@
     <Content Include="visualstudio\rules\6.2.0.2536\index.html" />
     <Content Include="visualstudio\rules\6.3.0.2862\index.html" />
     <Content Include="visualstudio\rules\6.3.0.2784\index.html" />
+    <Content Include="visualstudio\rules\6.4.0.3302\index.html" />
     <Content Include="visualstudio\rules\index.html" />
   </ItemGroup>
   <ItemGroup>
@@ -371,6 +372,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="visualstudio\rules\6.3.0.2862\rules.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="visualstudio\rules\6.4.0.3302\rules.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
