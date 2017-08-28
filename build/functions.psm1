@@ -314,7 +314,7 @@ function GenerateCsharpRulesTo($analyzerPath, $targetPath)
 {
     Trace "GenerateCsharpRulesTo '$analyzerPath', '$targetPath'"
     
-    ."$analyzerPath/src/SonarAnalyzer.RuleDocGenerator.Web/bin/Release/SonarAnalyzer.RuleDocGenerator.Web.exe" $targetPath
+    ."$analyzerPath/src/SonarAnalyzer.RuleDocGenerator.Web/bin/Classic/Release/SonarAnalyzer.RuleDocGenerator.Web.exe" $targetPath
 }
 
 function ToVersion2($version)
