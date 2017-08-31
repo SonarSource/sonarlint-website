@@ -352,7 +352,7 @@ function GetAnalyzerMilestone_GH($analyzerVersion)
 {
     Trace "GetAnalyzerMilestone_GH '$analyzerVersion'"
 
-    $allMilestones = Invoke-WebRequest -Uri "$analyzerProjectUri/milestones" -Method "GET" -UseBasicParsing
+    $allMilestones = Invoke-WebRequest -Uri "$analyzerProjectUri/milestones?state=all" -Method "GET" -UseBasicParsing
     $allMilestonesJson = ConvertFrom-Json $allMilestones.Content
 
     $version2 = ToVersion2 -version $analyzerVersion
