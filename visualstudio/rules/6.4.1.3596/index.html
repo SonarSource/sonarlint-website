@@ -1,0 +1,59 @@
+<div class="rule-details-container">
+    <div class="rule-details">
+        <div class="rule-meta">
+            <h1 id="rule-title">SonarLint for Visual Studio version 3.5</h1>
+            <span id="rule-id" class="id" style="visibility:hidden"></span>
+            <div class="rules-detail-properties">
+                <span class="tags" id="rule-tags" style="visibility:hidden"></span>
+            </div>
+        </div>
+        <div class="rule-description" id="rule-description">
+            <ul class="release">
+                <li class="release-date">Release date: August 31, 2017</li>
+                <li class="release-notes"><a href="https://github.com/SonarSource/sonarlint-visualstudio/milestone/11?closed=1" title="Release notes for SonarLint">Release notes for SonarLint</a></li>
+                <li class="release-notes"><a href="https://github.com/SonarSource/sonar-csharp/milestone/10?closed=1" title="Release notes for the rules">Release notes for rules</a></li>
+                <!--<li class="release-goto-latest"><a href ="#">Go to latest version</a></li>-->
+            </ul>
+            <div id="sonarlint-version-summary">
+            </div>
+            <p>
+                This release adds 12 new rules, fixes 11 rules.
+                Here are the changes since <a href="#sonarLintVersion=3.4.0">version 3.4.0</a>:
+            </p>
+            <p class="leading-vertical-space">
+                <p><strong>New Rules</strong></p>
+                <ul>
+                    <li>Rule S1168: Empty arrays and collections should be returned instead of null</li>
+                    <li>Rule S1607: Tests should not be ignored</li>
+                    <li>Rule S2183: Ints and longs should not be shifted by zero or more than their number of bits-1</li>
+                    <li>Rule S2187: Test class should contain test methods</li>
+                    <li>Rule S2699: Tests should include assertions</li>
+                    <li>Rule S2701: Literal boolean values should not be used in assertions</li>
+                    <li>Rule S3415: Assertion arguments should be passed in the correct order</li>
+                    <li>Rule S3431: &#39;ExpectedExceptionAttribute&#39; should not be used</li>
+                    <li>Rule S3433: Test methods should have correct signature</li>
+                    <li>Rule S4142: Duplicate values should not be passed as arguments</li>
+                    <li>Rule S4144: Methods should not have identical implementations</li>
+                    <li>Rule S4158: Empty collections should not be accessed or iterated</li>
+                </ul>
+                <p><strong>Bug fixes</strong></p>
+                <ul>
+                    <li>Fix S1121: NullReferenceException when while loop with assignment expression is within a for loop with no condition</li>
+                    <li>Fix S1751: Rule shouldn&#39;t raise on exceptions within while loops</li>
+                    <li>Fix S2325: Should raise issues for methods and properties with SuppressMessage attribute</li>
+                    <li>Fix S2372: Allow some exceptions being raised in properties as per CA1065</li>
+                    <li>Fix S2372: do not throw ArgumentNullException on nlog</li>
+                    <li>Fix S3242: Rule should not trigger on interface methods</li>
+                    <li>Fix S3263: Rule should not raise when constant field is used in initialization</li>
+                    <li>Fix S3877: do not throw ArgumentNullException on ravendb</li>
+                    <li>Fix S3881: Rule should not fail with &#39;Syntax node is not within syntax tree&#39;</li>
+                    <li>Fix S3897: Rule should not suggest to implement IEquatable&lt;T&gt; when Equals is not public</li>
+                    <li>Fix CognitiveComplexity to not throw an exception on Lucene.Net</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
